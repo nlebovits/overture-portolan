@@ -35,3 +35,19 @@ that earn this file, so write them as you find them.
 
 Assets and structural links resolve relative to the object that carries them.
 Catalogs here carry no `self` link, so a client tracks its own location.
+
+## Publication
+
+This catalog is deployed from git by Cloudflare Pages. It uses neither
+`portolan push` nor the catalog template's `tools/publish.py`, and it uploads
+nothing to an object store. A merge to `main` is a deploy.
+
+`_headers` in this directory is not catalog content. Cloudflare consumes it at
+deploy time to set CORS and range headers, and never serves it. Deleting it makes
+the published catalog fail PTL-LIV-003, PTL-LIV-004, and PTL-LIV-005 while the
+repository still looks healthy. See [docs/publication.md](https://github.com/nlebovits/overture-portolan/blob/main/docs/publication.md)
+for why this catalog publishes the way it does.
+
+Every `data` and `visual` asset href points at Overture's own buckets rather than
+at this host. Those buckets answer range requests and permit cross-origin reads,
+so a client reads them directly. This catalog holds metadata only.

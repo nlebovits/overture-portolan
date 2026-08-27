@@ -1,0 +1,12 @@
+# Consumed by Cloudflare Pages at deploy time. Never served.
+#
+# Portolan's Data Storage requirements (PORTO-CORE-043 through 045) are written
+# for an object store with a CORS policy. This file is how a git-deployed static
+# host satisfies the same requirements. Deleting it makes the published catalog
+# fail PTL-LIV-003, PTL-LIV-004, and PTL-LIV-005.
+
+/*
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD
+  Access-Control-Allow-Headers: Range, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since
+  Access-Control-Expose-Headers: Content-Type, Content-Length, Content-Range, Accept-Ranges, ETag

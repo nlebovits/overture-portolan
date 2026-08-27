@@ -4,9 +4,9 @@
   "stac_extensions": [
     "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json"
   ],
-  "id": "example-catalog",
-  "title": "Example Catalog",
-  "description": "TODO(setup): one or two sentences saying what this catalog holds, who produced the data, and who it is for. A person and an agent both read this first.",
+  "id": "overture-maps",
+  "title": "Overture Maps",
+  "description": "A Portolan mirror of Overture Maps: global buildings, transportation, places, addresses, divisions, and base layers. The data itself stays where Overture publishes it, and every asset here links straight to Overture's own buckets. What this catalog adds is the part Overture leaves out: what each column means, how to query it, and what it looks like on a map. See the [catalog agent guide](AGENTS.md) for schemas, join keys, and queries that run.",
   "links": [
     {
       "rel": "root",
@@ -26,13 +26,25 @@
       "title": "Catalog agent guide"
     },
     {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/",
+      "type": "text/html",
+      "title": "Overture Maps documentation"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps STAC catalog"
+    },
+    {
       "rel": "vcs",
-      "href": "https://github.com/TODO(setup)",
+      "href": "https://github.com/nlebovits/overture-portolan",
       "title": "Source repository"
     },
     {
       "rel": "issues",
-      "href": "https://github.com/TODO(setup)/issues",
+      "href": "https://github.com/nlebovits/overture-portolan/issues",
       "title": "Issue tracker"
     }
   ]
