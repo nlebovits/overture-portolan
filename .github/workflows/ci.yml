@@ -18,22 +18,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      # The template took a floor here, not a pin, so a repo made from it picks
-      # up each new 0.1.x release. This catalog pins instead, because it needs a
-      # fix that is merged but not yet released.
-      # Pinned to the merge commit of portolan-sdi/rashid#167, which moves
-      # PTL-DAT-006 off a per-row read and onto footer statistics. Measured on
-      # one remote Overture part, that takes the data pass from 48.5s to 7.1s.
-      # Switch to 'rashid==0.1.8' when that release is cut.
-      #
-      # stac-check stays unpinned on purpose. The stac-check exemption in
-      # docs/conformance.md expires when the upstream crash stops. That only
-      # happens if CI takes each new release.
+      # The pins and the reason for each one are in requirements-ci.txt.
+      # sync.yml and data-pass.yml read the same file, so one validator runs
+      # every gate. tools/check_rashid_release.py watches the rashid pin.
       - name: Install the validators
-        run: |
-          python -m pip install \
-            'rashid @ git+https://github.com/portolan-sdi/rashid@07fdc40300f4b06f15fca30eef10d7a5aa62ed3d' \
-            stac-check
+        run: python -m pip install -r requirements-ci.txt
 
       - name: Lint the tooling
         run: |

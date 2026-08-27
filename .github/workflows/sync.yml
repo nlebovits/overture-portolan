@@ -65,9 +65,12 @@ jobs:
           HAVE: ${{ steps.release.outputs.have }}
         run: echo "Overture release ${HAVE} is current."
 
+      # The validator pins are in requirements-ci.txt, which ci.yml and
+      # data-pass.yml read too. A gate must not mean one thing on a pull
+      # request and a different thing in the sync.
       - name: Install the harvest and gate dependencies
         if: steps.release.outputs.changed == 'true'
-        run: python -m pip install pyarrow 'rashid==0.1.7' stac-check
+        run: python -m pip install pyarrow -r requirements-ci.txt
 
       # sources/fingerprint.json is the committed baseline, and
       # tools/harvest_overture.py overwrites it in place. Keep a copy first, so

@@ -1,0 +1,169 @@
+# Reads the bytes of every data asset, once a week.
+#
+# `tests/test_conformance.py` runs rashid with `--no-data`, so a pull request
+# never reaches the byte rules: PTL-DAT-006 spatial ordering, PTL-DAT-007
+# per-row-group statistics, PTL-DAT-008 the 150,000 row cap on a row group,
+# and PTL-DAT-012 the GeoParquet version. Those rules read each asset over
+# HTTP range. One remote Overture part takes about 7 seconds, and the catalog
+# holds 987 parts, so a single job would run for about 2 hours.
+#
+# The matrix splits the work by collection. Fifteen jobs run at once and the
+# whole pass takes as long as buildings/building, which is about an hour. A
+# failure also names a collection rather than a log line.
+#
+# This workflow reports and it does not gate. Overture can republish a part in
+# the middle of a release, and the pass then goes red on data this repository
+# does not own and cannot fix. On a failure it opens one issue, or it comments
+# on the issue that is already open. Nothing downstream reads the result.
+#
+# The schedule is Thursday, because sync.yml runs on Monday. A red data pass
+# and a red release sync must not look like the same event.
+name: Data pass
+
+on:
+  schedule:
+    - cron: "41 3 * * 4"
+  # Keep this. GitHub disables a schedule trigger after 60 days of repository
+  # inactivity, and this is the manual way back.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: data-pass
+  cancel-in-progress: false
+
+jobs:
+  # The matrix comes from the catalog, not from an array written here. A
+  # collection that is added or removed changes the matrix on the same commit.
+  collections:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.list.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - id: list
+        name: List the collections
+        run: python3 tools/list_collections.py --github-output matrix
+
+  data:
+    needs: collections
+    name: ${{ matrix.entry.collection }}
+    runs-on: ubuntu-latest
+    # buildings/building holds 512 parts at about 7 seconds each. The default
+    # 6-hour limit would hide a hung job for most of a day.
+    timeout-minutes: 180
+    strategy:
+      # Every collection reports. One failure must not cancel the other 14,
+      # because the report needs all of them.
+      fail-fast: false
+      matrix:
+        entry: ${{ fromJSON(needs.collections.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install the validator
+        run: python -m pip install -r requirements-ci.txt
+
+      - name: Data pass
+        env:
+          COLLECTION: ${{ matrix.entry.collection }}
+        run: python3 tests/test_data_pass.py "$COLLECTION" --report findings.md
+
+      # The report job reads these. The gate writes findings.md before it
+      # exits, including when rashid gives it no JSON.
+      - name: Keep the findings
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: findings-${{ matrix.entry.slug }}
+          path: findings.md
+          if-no-files-found: error
+
+  report:
+    needs: [collections, data]
+    if: failure()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      # Each artifact holds a file called findings.md, so they land in one
+      # directory each. A merge would overwrite 14 of them.
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: findings-*
+          path: findings
+
+      - name: Compose the report
+        env:
+          RUN_URL: >-
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{
+            github.run_id }}
+        run: |
+          {
+            echo "The weekly data pass found errors on $(date -u +%Y-%m-%d)."
+            echo
+            echo "The pass reads the bytes of every \`data\` asset over HTTP"
+            echo "range. It checks PTL-DAT-006 spatial ordering, PTL-DAT-007"
+            echo "per-row-group statistics, PTL-DAT-008 the 150,000 row cap on"
+            echo "a row group, and PTL-DAT-012 the GeoParquet version."
+            echo
+            echo "The assets belong to Overture. A finding here can mean the"
+            echo "upstream data changed, and this repository then cannot fix"
+            echo "it. Read the finding first, then decide."
+            echo
+            echo "Run: ${RUN_URL}"
+            echo
+            echo "## Findings"
+            echo
+            found=0
+            for file in findings/*/findings.md; do
+              [ -f "$file" ] || continue
+              found=1
+              cat "$file"
+              echo
+            done
+            if [ "$found" = "0" ]; then
+              echo "A job failed and it uploaded no findings. Read the run."
+            fi
+            echo "## Verification"
+            echo
+            echo "Reproduce one collection with the command the job ran:"
+            echo
+            echo '```'
+            echo "python -m pip install -r requirements-ci.txt"
+            echo "python3 tests/test_data_pass.py divisions/division_area"
+            echo '```'
+          } > /tmp/body.md
+          cat /tmp/body.md
+
+      # One issue, not one issue a week. A failure that lasts a month is one
+      # problem, and a comment on the open issue shows how long it lasted.
+      - name: File the report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: "The weekly data pass reports errors"
+        run: |
+          number=$(gh issue list --state open --limit 100 \
+            --json number,title \
+            --jq "first(.[] | select(.title == \"${TITLE}\") | .number)")
+          if [ -n "$number" ]; then
+            echo "Issue #${number} is open. Add the report to it."
+            gh issue comment "$number" --body-file /tmp/body.md
+          else
+            echo "No issue is open. File one."
+            gh issue create --title "${TITLE}" --body-file /tmp/body.md
+          fi
