@@ -234,8 +234,21 @@ def build_collection(
         docs.collection_agents(key, record, meanings, release)
     )
 
+    written = set()
     for item in record["items"]:
-        write(directory / "items" / f"{item['id']}.json", build_item(item, type_name))
+        path = directory / "items" / f"{item['id']}.json"
+        write(path, build_item(item, type_name))
+        written.add(path)
+
+    # Overture repartitions between releases, so a collection can hold fewer
+    # parts than it did. An item file left from the last release keeps a href
+    # into a pruned release directory, and the collection no longer links it.
+    # Nothing else deletes it: only --clean removes a theme, and that also
+    # removes the thumbnails and styles, which the sync does not regenerate.
+    for stale in sorted((directory / "items").glob("*.json")):
+        if stale not in written:
+            stale.unlink()
+            print(f"    removed stale {stale.relative_to(ROOT)}", file=sys.stderr)
 
     return directory
 

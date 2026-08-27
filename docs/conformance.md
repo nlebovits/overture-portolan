@@ -7,7 +7,24 @@ not claiming to conform, so it runs in CI:
 python3 tests/test_conformance.py
 ```
 
-That gate fails on any error-severity finding whose rule is not listed below.
+That gate runs rashid without `--live`, so it never reaches the two rules in
+the table below. Both probe a server, and a pull request has no server to
+probe. A second gate covers them after each deploy:
+
+```bash
+python3 tests/test_live_hosting.py https://nlebovits.github.io/overture-portolan/
+```
+
+It runs from `.github/workflows/pages.yml` once the deploy succeeds. It passes
+only when the host reports exactly PTL-LIV-004 and PTL-LIV-005 and nothing
+else, so a third finding fails the build. The `--url` is mandatory: rashid
+exempts the upstream hosts under PORTO-CORE-073 only when it knows the publish
+host, and without it the Overture buckets report CORS failures this catalog
+does not control. The gate also fails on any finding that names another host,
+which proves the carve-out took effect.
+
+The metadata gate fails on any error-severity finding whose rule is not listed
+below.
 The list starts empty and it must never grow without a row here. A known
 deviation with an issue number is a debt someone can pay off. A silently
 widened allow-list is a false claim about what this catalog conforms to.

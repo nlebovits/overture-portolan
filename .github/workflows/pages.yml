@@ -26,6 +26,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
@@ -34,3 +36,27 @@ jobs:
           path: catalog
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # The live pass needs a deployed URL, so it cannot run on a pull request.
+  # Without it, PTL-LIV-004 and PTL-LIV-005 stay unchecked: tests/
+  # test_conformance.py runs rashid with no --live, and those two ids are the
+  # whole content of its ACCEPTED set. This job asserts that the host still
+  # reports exactly those two and nothing else.
+  live:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # The alpha carries the --url flag that the gate needs. rashid skips the
+      # upstream hosts under PORTO-CORE-073 only when it knows the publish
+      # host, and without the flag the Overture buckets report CORS failures
+      # this catalog does not control.
+      - name: Install the CLI
+        run: python -m pip install 'portolan-cli==1.0.0a0'
+      - name: Live hosting gate
+        run: |
+          python3 tests/test_live_hosting.py \
+            "${{ needs.deploy.outputs.page_url }}"
