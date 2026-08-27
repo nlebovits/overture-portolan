@@ -18,7 +18,11 @@
 *.zip
 
 # Downloaded sources and build scratch. Re-fetchable by your own tooling.
-sources/
+# Git cannot re-include a file whose parent directory is excluded, so this
+# excludes the contents rather than the directory.
+sources/*
+# ...except the fingerprint, which is the sync gate's committed baseline.
+!sources/fingerprint.json
 staging/*/data/
 .cache/
 
