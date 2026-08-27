@@ -1,0 +1,273 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "division_area",
+  "title": "division_area",
+  "description": "Overture's division_area collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.862548828125,
+          -67.5722427368164,
+          -43.999996185302734,
+          83.33621978759766
+        ],
+        [
+          -177.6505584716797,
+          -59.67296600341797,
+          166.86962890625,
+          83.87517547607422
+        ],
+        [
+          -180.0,
+          -85.05113220214844,
+          180.0,
+          71.58895874023438
+        ],
+        [
+          -180.0,
+          41.185096740722656,
+          180.0,
+          82.05862426757812
+        ],
+        [
+          16.333520889282227,
+          -47.17884063720703,
+          63.33327102661133,
+          52.81937789916992
+        ],
+        [
+          20.16356658935547,
+          50.49531173706055,
+          69.95723724365234,
+          82.05862426757812
+        ],
+        [
+          39.41386413574219,
+          -55.322818756103516,
+          180.0,
+          35.67293167114258
+        ],
+        [
+          46.49321746826172,
+          17.95751953125,
+          179.87913513183594,
+          81.47418212890625
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "geometry",
+      "description": "Division area geometries MUST be polygons or multi-polygons as defined by the GeoJSON schema."
+    },
+    {
+      "name": "country",
+      "description": "ISO 3166-1 alpha-2 country code of the division this area belongs to."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "subtype",
+      "description": "Category of the division from a finite, hierarchical, ordered list of categories (e.g. country, region, locality, etc.) similar to a Who's on First placetype."
+    },
+    {
+      "name": "admin_level",
+      "description": "Integer representing this division's position in its country's administrative hierarchy, where lower numbers correspond to higher level administrative units. In Overture data releases, this value is typically equal to the number of ancestor features in the division's primary hierarchy (the one defined by following `parent_division_id`). Thus, a country always has an `admin_level` of 0, a region has an `admin_level` of 1, while further subdivisions have `admin_level` values greater than 1."
+    },
+    {
+      "name": "class",
+      "description": "Whether the area stops at the coastline or extends beyond it. Use it to exclude maritime extents when a land polygon is wanted."
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "is_land",
+      "description": "A boolean to indicate whether or not the feature geometry represents the land-clipped, non-maritime boundary. The geometry can be used for map rendering, cartographic display, and similar purposes."
+    },
+    {
+      "name": "is_territorial",
+      "description": "A boolean to indicate whether or not the feature geometry represents Overture's best approximation of this place's maritime boundary. For coastal places, this would tend to include the water area. The geometry can be used for data processing, reverse-geocoding, and similar purposes."
+    },
+    {
+      "name": "region",
+      "description": "ISO 3166-2 principal subdivision code of the division this area belongs to."
+    },
+    {
+      "name": "division_id",
+      "description": "Division ID of the division this area belongs to."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture divisions vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole divisions theme. This collection's features are in the `division_area` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Divisions"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/divisions/division_area",
+      "type": "text/html",
+      "title": "Overture documentation for division_area"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/divisions/division_area/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture divisions vector tiles",
+      "pmtiles:layers": [
+        "division_area"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 138,481 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 138,440 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 137,677 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 135,323 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 121,969 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 130,273 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 135,321 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 136,693 rows"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "collections": {
+    "divisions/division_area": {
+      "columns": [
+        "id",
+        "geometry",
+        "country",
+        "sources",
+        "subtype",
+        "admin_level",
+        "class",
+        "names",
+        "is_land",
+        "is_territorial",
+        "region",
+        "division_id",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 8,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 4556,
+      "row_group_cap": 150000
+    }
+  },
+  "release": "2026-08-19.0"
+}

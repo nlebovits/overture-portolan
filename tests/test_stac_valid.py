@@ -56,6 +56,7 @@ that no validator read. The failure message gives the install command.
 
 Run: python3 tests/test_stac_valid.py
 """
+
 import json
 import re
 import sys

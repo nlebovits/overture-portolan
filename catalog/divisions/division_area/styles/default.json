@@ -1,0 +1,69 @@
+{
+  "version": 8,
+  "name": "Division Area by subtype",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 12,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "division_area-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "division_area",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "locality",
+          "#4c72b0",
+          "neighborhood",
+          "#dd8452",
+          "microhood",
+          "#55a868",
+          "macrohood",
+          "#c44e52",
+          "county",
+          "#8172b3",
+          "localadmin",
+          "#937860",
+          "region",
+          "#da8bc3",
+          "country",
+          "#e8c547",
+          "dependency",
+          "#ccb974",
+          "#9e9e9e"
+        ],
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "division_area-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "division_area",
+      "paint": {
+        "line-color": "#101418",
+        "line-width": 0.3
+      }
+    }
+  ]
+}

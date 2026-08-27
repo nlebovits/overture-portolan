@@ -1,0 +1,25 @@
+# Linting for the generator scripts and the catalog gates.
+#
+# The template shipped pyflakes, which catches unused names and little else.
+# ruff covers the same ground and adds import order, modern syntax, and the
+# bug-prone patterns in flake8-bugbear, at no extra cost in CI.
+
+line-length = 88
+target-version = "py311"
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "F",    # pyflakes, the rules the template already enforced
+    "W",    # pycodestyle warnings
+    "I",    # import order
+    "UP",   # pyupgrade
+    "B",    # bugbear
+    "C4",   # comprehensions
+    "SIM",  # simplify
+    "RUF",  # ruff's own rules
+]
+
+# No per-file ignores. The gates already carry `# noqa: E402` on the
+# imports that follow their sys.path insert, so a blanket ignore here
+# would only make those comments redundant.

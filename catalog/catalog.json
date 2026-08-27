@@ -46,6 +46,13 @@
       "rel": "issues",
       "href": "https://github.com/nlebovits/overture-portolan/issues",
       "title": "Issue tracker"
+    },
+    {
+      "rel": "child",
+      "href": "./divisions/catalog.json",
+      "type": "application/json",
+      "title": "Divisions"
     }
-  ]
+  ],
+  "updated": "2026-08-19T00:00:00Z"
 }
