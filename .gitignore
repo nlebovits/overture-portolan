@@ -41,3 +41,6 @@ __pycache__/
 # Python bytecode from tools/
 __pycache__/
 *.pyc
+
+# Agent worktrees. Each is its own git repo.
+.claude/worktrees/

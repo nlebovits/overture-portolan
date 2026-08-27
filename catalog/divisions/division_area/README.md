@@ -2,6 +2,11 @@
 
 Overture's division_area collection
 
+> **Reading this with an agent?** Start at [AGENTS.md](AGENTS.md). It carries
+> the S3 glob, the bbox pruning pattern that makes queries cheap, the coded
+> column values, and queries that have been run against this data. This README
+> is the human summary.
+
 This is a Portolan mirror. Overture Maps produces and hosts the data, and this
 catalog adds column documentation, styles, and a thumbnail. No bytes are copied.
 Every asset link points at Overture's own buckets.
@@ -28,8 +33,8 @@ SELECT count(*)
 FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division_area/*.parquet');
 ```
 
-Read the [agent guide](AGENTS.md) for join keys, the bbox pruning pattern, and
-queries that run.
+See [AGENTS.md](AGENTS.md) for join keys, the bbox pruning pattern, and more
+queries.
 
 ## Where this came from
 

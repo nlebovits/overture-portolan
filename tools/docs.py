@@ -43,6 +43,11 @@ def collection_readme(
 
 {record["description"]}
 
+> **Reading this with an agent?** Start at [AGENTS.md](AGENTS.md). It carries
+> the S3 glob, the bbox pruning pattern that makes queries cheap, the coded
+> column values, and queries that have been run against this data. This README
+> is the human summary.
+
 This is a Portolan mirror. Overture Maps produces and hosts the data, and this
 catalog adds column documentation, styles, and a thumbnail. No bytes are copied.
 Every asset link points at Overture's own buckets.
@@ -69,8 +74,8 @@ SELECT count(*)
 FROM read_parquet('{_glob(record)}');
 ```
 
-Read the [agent guide](AGENTS.md) for join keys, the bbox pruning pattern, and
-queries that run.
+See [AGENTS.md](AGENTS.md) for join keys, the bbox pruning pattern, and more
+queries.
 
 ## Where this came from
 
@@ -196,6 +201,10 @@ def theme_readme(theme: str, title: str, keys: list[str], release: str) -> str:
         for k in sorted(keys)
     )
     return f"""# {title}
+
+> **Reading this with an agent?** Start at [AGENTS.md](AGENTS.md), and then at
+> the agent guide inside each collection. Those carry the measured row counts,
+> the access patterns, and queries that have been run.
 
 The Overture Maps `{theme}` theme, release `{release}`.
 
