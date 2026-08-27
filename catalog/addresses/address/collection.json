@@ -309,6 +309,14 @@
         "default"
       ],
       "title": "Default style"
+    },
+    "style-zoom": {
+      "href": "./styles/zoom.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By zoom level"
     }
   },
   "links": [

@@ -3237,6 +3237,38 @@
         "default"
       ],
       "title": "Default style"
+    },
+    "style-by-roof-material": {
+      "href": "./styles/by_roof_material.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By roof material"
+    },
+    "style-by-subtype": {
+      "href": "./styles/by_subtype.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By subtype"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
+    },
+    "style-zoom": {
+      "href": "./styles/zoom.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By zoom level"
     }
   },
   "links": [

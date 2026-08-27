@@ -65,6 +65,12 @@ meanings are carried in `table:columns` on the collection.
 - **`class`**: `aerialway_station`, `airport`, `airport_gate`, `airstrip`, `apron`, `aqueduct`, `artwork`, `atm`, `barrier`, `bell_tower`, `bench`, `bicycle_parking`, and 152 more
 - **`surface`**: `asphalt`, `cobblestone`, `compacted`, `concrete`, `concrete_plates`, `dirt`, `earth`, `fine_gravel`, `grass`, `gravel`, `ground`, `paved`, and 12 more
 
+## Known issues
+
+Read these before you trust a query against this collection.
+
+- **The legend comes from a sample.** Style categories were measured over bbox windows rather than a full scan, because a full `GROUP BY` on this collection costs minutes. A sample proves a category is present and never proves one is absent, so a category that occurs only outside those windows is missing from the legend. The windows are in `sources/style_sampling.json`.
+
 ## Schema and field notes
 
 The collection's `table:columns` carries a description for every documented

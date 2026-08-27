@@ -232,6 +232,8 @@ def build_collection(
         },
         "links": links,
     }
+    collection["assets"].update(style_assets(directory))
+
     if single:
         collection["assets"]["data"] = data_asset(record["items"][0])
         collection["stac_extensions"] = sorted(
@@ -315,6 +317,40 @@ def clamp_bbox(bbox: list[float] | None, where: str) -> list[float] | None:
         if abs(out[index]) > limit:
             CLAMPED.append(f"{where}: lat {out[index]}")
             out[index] = limit if out[index] > 0 else -limit
+    return out
+
+
+STYLE_TITLES = {
+    "flat": "Single colour",
+    "zoom": "By zoom level",
+}
+
+
+def style_assets(directory: Path) -> dict[str, Any]:
+    """Every style on disk beside `default.json`, as collection assets.
+
+    PORTO-CORE-069 requires each style to be a collection-level asset carrying
+    the `style` role, and `portolan-bootstrap` asks for three to five per
+    dataset. `make_styles.py` writes the alternates; without this they sit on
+    disk undeclared, which is a style a client cannot find.
+
+    `default.json` is declared separately, because PORTO-CORE-070 requires
+    exactly one asset to carry both `style` and `default`.
+    """
+    out: dict[str, Any] = {}
+    for path in sorted((directory / "styles").glob("*.json")):
+        stem = path.stem
+        if stem == "default":
+            continue
+        title = STYLE_TITLES.get(stem)
+        if title is None and stem.startswith("by_"):
+            title = "By " + stem[3:].replace("_", " ")
+        out[f"style-{stem.replace('_', '-')}"] = {
+            "href": f"./styles/{path.name}",
+            "type": STYLE_TYPE,
+            "roles": ["style"],
+            "title": title or stem.replace("_", " ").capitalize(),
+        }
     return out
 
 

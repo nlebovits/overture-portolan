@@ -56,6 +56,12 @@ Parts hold 4 to
 15,200 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
+## Known issues
+
+Read these before you trust a query against this collection.
+
+- **The rows are not spatially ordered.** rashid reports PTL-DAT-006 against release 2026-08-19.0: 59,963 rows in 4 row groups do not cluster spatially. A reader cannot skip any part of the file, so a bbox filter prunes nothing here and a spatial query reads the whole collection. Reproduce it with `python3 tests/test_data_pass.py base/bathymetry`, which takes about 13 seconds.
+
 ## Schema and field notes
 
 The collection's `table:columns` carries a description for every documented

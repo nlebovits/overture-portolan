@@ -164,6 +164,38 @@
       ],
       "title": "Default style"
     },
+    "style-by-roof-material": {
+      "href": "./styles/by_roof_material.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By roof material"
+    },
+    "style-by-roof-shape": {
+      "href": "./styles/by_roof_shape.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By roof shape"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
+    },
+    "style-zoom": {
+      "href": "./styles/zoom.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By zoom level"
+    },
     "data": {
       "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=buildings/type=building_part/part-00000-18b25a16-1800-5503-8e41-c3f077aa7e2d-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",

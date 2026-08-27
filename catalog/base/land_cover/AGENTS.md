@@ -63,6 +63,14 @@ meanings are carried in `table:columns` on the collection.
 
 - **`subtype`**: `barren`, `crop`, `forest`, `grass`, `mangrove`, `moss`, `shrub`, `snow`, `urban`, `wetland`
 
+## Known issues
+
+Read these before you trust a query against this collection.
+
+- **Overture reports bboxes outside the WGS84 range.** Its STAC gives longitudes of 180.00022888183594 and -180.00022888183594, which PTL-BBX-001 rejects. This catalog clamps them to ±180 and logs every clamp. The excess is about 25 metres at the equator, so the clamp loses nothing a consumer can use. Overture's own STAC still carries the original values.
+
+- **The legend comes from a sample.** Style categories were measured over bbox windows rather than a full scan, because a full `GROUP BY` on this collection costs minutes. A sample proves a category is present and never proves one is absent, so a category that occurs only outside those windows is missing from the legend. The windows are in `sources/style_sampling.json`.
+
 ## Schema and field notes
 
 The collection's `table:columns` carries a description for every documented

@@ -217,6 +217,22 @@
         "default"
       ],
       "title": "Default style"
+    },
+    "style-by-surface": {
+      "href": "./styles/by_surface.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By surface"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
     }
   },
   "links": [

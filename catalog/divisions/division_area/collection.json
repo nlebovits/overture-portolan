@@ -173,6 +173,14 @@
         "default"
       ],
       "title": "Default style"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
     }
   },
   "links": [

@@ -161,6 +161,22 @@
       ],
       "title": "Default style"
     },
+    "style-by-subtype": {
+      "href": "./styles/by_subtype.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By subtype"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
+    },
     "data": {
       "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=divisions/type=division/part-00000-4427279e-644a-58f2-bf86-ec1c351e39f4-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",

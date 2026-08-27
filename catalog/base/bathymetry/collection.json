@@ -105,6 +105,14 @@
       ],
       "title": "Default style"
     },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
+    },
     "data": {
       "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=bathymetry/part-00000-cf17cfee-00e5-5871-9cab-7f48d910d28f-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",

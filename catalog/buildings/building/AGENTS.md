@@ -68,6 +68,14 @@ meanings are carried in `table:columns` on the collection.
 - **`roof_shape`**: `dome`, `flat`, `gabled`, `gambrel`, `half_hipped`, `hipped`, `mansard`, `onion`, `pyramidal`, `round`, `saltbox`, `sawtooth`, and 2 more
 - **`roof_orientation`**: `across`, `along`
 
+## Known issues
+
+Read these before you trust a query against this collection.
+
+- **Most attributes are null, so this collection carries no legend.** Measured over central Paris on release 2026-08-19.0, 354,621 rows: `facade_material` is present on 0.4%, `subtype` on 25.7%, `class` on 25.4%, and `roof_material` on none. No column describes enough of the data to colour a map by, so the default style is a single colour. Filter on an attribute only after you have counted its nulls.
+
+- **The legend comes from a sample.** Style categories were measured over bbox windows rather than a full scan, because a full `GROUP BY` on this collection costs minutes. A sample proves a category is present and never proves one is absent, so a category that occurs only outside those windows is missing from the legend. The windows are in `sources/style_sampling.json`.
+
 ## Schema and field notes
 
 The collection's `table:columns` carries a description for every documented

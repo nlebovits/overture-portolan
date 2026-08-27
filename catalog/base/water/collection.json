@@ -313,6 +313,22 @@
         "default"
       ],
       "title": "Default style"
+    },
+    "style-by-class": {
+      "href": "./styles/by_class.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By class"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
     }
   },
   "links": [
