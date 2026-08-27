@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "infrastructure-fill",
       "type": "fill",
       "source": "overture",
@@ -33,25 +26,25 @@
             "subtype"
           ],
           "transportation",
-          "#386641",
+          "#9aa3a8",
           "transit",
-          "#6a994e",
+          "#1e526b",
           "barrier",
-          "#a7c957",
+          "#b0a377",
           "pedestrian",
-          "#bc4749",
+          "#538400",
           "power",
-          "#f2e8cf",
+          "#e89d07",
           "bridge",
-          "#457b9d",
+          "#585f63",
           "waste_management",
-          "#1d3557",
+          "#b5651d",
           "emergency",
-          "#a8dadc",
+          "#c03221",
           "water",
-          "#e63946",
+          "#4a9d9c",
           "utility",
-          "#2b9348",
+          "#7c5295",
           "#9e9e9e"
         ],
         "fill-opacity": 0.85
@@ -70,8 +63,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#101418",
-        "line-width": 0.3
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
       }
     },
     {
@@ -94,25 +99,25 @@
             "subtype"
           ],
           "transportation",
-          "#386641",
+          "#9aa3a8",
           "transit",
-          "#6a994e",
+          "#1e526b",
           "barrier",
-          "#a7c957",
+          "#b0a377",
           "pedestrian",
-          "#bc4749",
+          "#538400",
           "power",
-          "#f2e8cf",
+          "#e89d07",
           "bridge",
-          "#457b9d",
+          "#585f63",
           "waste_management",
-          "#1d3557",
+          "#b5651d",
           "emergency",
-          "#a8dadc",
+          "#c03221",
           "water",
-          "#e63946",
+          "#4a9d9c",
           "utility",
-          "#2b9348",
+          "#7c5295",
           "#9e9e9e"
         ],
         "line-width": 1.1
@@ -138,29 +143,31 @@
             "subtype"
           ],
           "transportation",
-          "#386641",
+          "#9aa3a8",
           "transit",
-          "#6a994e",
+          "#1e526b",
           "barrier",
-          "#a7c957",
+          "#b0a377",
           "pedestrian",
-          "#bc4749",
+          "#538400",
           "power",
-          "#f2e8cf",
+          "#e89d07",
           "bridge",
-          "#457b9d",
+          "#585f63",
           "waste_management",
-          "#1d3557",
+          "#b5651d",
           "emergency",
-          "#a8dadc",
+          "#c03221",
           "water",
-          "#e63946",
+          "#4a9d9c",
           "utility",
-          "#2b9348",
+          "#7c5295",
           "#9e9e9e"
         ],
         "circle-radius": 2.4,
-        "circle-opacity": 0.9
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
       }
     }
   ]

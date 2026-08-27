@@ -65,41 +65,28 @@ SIZE = 1024
 # second, so correctness is worth the extra one.
 PROBE_SIZE = SIZE
 BLANK_TOLERANCE = 1.15
-BACKGROUND = "#101418"
+BACKGROUND = "#f4f1ea"
 
-# Strategy B, per portolan-thumbnails. A collection lands here when a full
-# extent frame renders blank or flat, and each entry records why.
-#
-# Eight of the fifteen render blank globally. The reason is measurable: the
-# layer's own minzoom inside the PMTiles archive, which is not the archive's
-# range. A global frame sits near z2, so any layer whose data starts above that
-# draws nothing. Read with tools/survey_layers.py.
-#
 # Each entry is (centre longitude, centre latitude, zoom). The frame is derived
-# from the zoom, so it always clears the layer's floor.
+# from the zoom, so it always clears the layer's floor. The locations and scales
+# are art-directed together: regional frames explain broad themes, while city
+# and neighbourhood frames make dense feature layers readable.
 WINDOWS: dict[str, tuple[float, float, int]] = {
-    # Layer starts at z14. Amsterdam, dense and completely covered.
     "addresses/address": (4.895, 52.370, 16),
     "places/place": (4.895, 52.370, 16),
-    # Layer starts at z13.
     "base/infrastructure": (2.343, 48.858, 14),
     "transportation/connector": (2.343, 48.858, 14),
-    # Layer starts at z8.
-    "buildings/building_part": (4.895, 52.370, 13),
-    # Layer starts at z4. Close enough that thinning does not show as holes.
-    "buildings/building": (2.343, 48.858, 13),
-    "transportation/segment": (2.343, 48.858, 11),
-    # Renders globally, but `subtype` is hierarchical, so a global frame shows
-    # only `country` and paints one colour.
+    "buildings/building_part": (13.405, 52.520, 14),
+    "buildings/building": (2.343, 48.858, 14),
+    "transportation/segment": (2.343, 48.858, 12),
     "divisions/division_area": (4.0, 50.9, 6),
-    # These render globally and read as one grey continent against one grey
-    # ocean. The categorical variety is regional, so a region shows it. South
-    # Scandinavia and the Baltic carry coast, lakes, rivers, forest, and
-    # farmland inside one frame.
-    "base/land": (16.0, 59.5, 6),
+    "divisions/division": (4.0, 50.9, 8),
+    "divisions/division_boundary": (4.0, 50.9, 6),
+    "base/land": (16.0, 59.5, 9),
     "base/water": (17.0, 59.35, 9),
     "base/land_cover": (16.0, 59.5, 6),
-    "base/land_use": (16.0, 59.5, 8),
+    "base/land_use": (2.343, 48.858, 11),
+    "base/bathymetry": (-30.0, 25.0, 3),
 }
 
 
@@ -216,6 +203,90 @@ def pmtiles_zooms(url: str) -> tuple[int, int]:
     return header[100], header[101]
 
 
+def catalog_source(key: str) -> dict[str, Any]:
+    """A generated Overture source, copied for use as thumbnail context."""
+    theme, layer = key.split("/", 1)
+    style_path = CATALOG / theme / layer / "styles" / "default.json"
+    style = json.loads(style_path.read_text())
+    return json.loads(json.dumps(style["sources"]["overture"]))
+
+
+def thumbnail_style(
+    style: dict[str, Any], key: str, window_zoom: int | None
+) -> dict[str, Any]:
+    """Compose the transparent data style over a quiet Overture basemap.
+
+    Published styles stay transparent, like the St. Louis Overture references,
+    so an interactive browser can supply its own basemap. A static thumbnail
+    has no browser beneath it, so this renderer adds pale water, buildings, and
+    roads from the same release-pinned Overture archives. No third-party map is
+    introduced.
+    """
+    sources = dict(style["sources"])
+    layers: list[dict[str, Any]] = [
+        {
+            "id": "context-background",
+            "type": "background",
+            "paint": {"background-color": BACKGROUND},
+        }
+    ]
+
+    if key not in {"base/bathymetry", "base/water"}:
+        sources["context-base"] = catalog_source("base/water")
+        layers.append(
+            {
+                "id": "context-water",
+                "type": "fill",
+                "source": "context-base",
+                "source-layer": "water",
+                "filter": ["==", ["geometry-type"], "Polygon"],
+                "paint": {"fill-color": "#c9dfe8", "fill-opacity": 0.75},
+            }
+        )
+
+    if window_zoom is not None and window_zoom >= 12 and key != "buildings/building":
+        sources["context-buildings"] = catalog_source("buildings/building")
+        layers.append(
+            {
+                "id": "context-buildings",
+                "type": "fill",
+                "source": "context-buildings",
+                "source-layer": "building",
+                "paint": {"fill-color": "#e3e0da", "fill-opacity": 0.8},
+            }
+        )
+
+    if (
+        window_zoom is not None
+        and window_zoom >= 10
+        and key != "transportation/segment"
+    ):
+        sources["context-transportation"] = catalog_source("transportation/segment")
+        layers.append(
+            {
+                "id": "context-roads",
+                "type": "line",
+                "source": "context-transportation",
+                "source-layer": "segment",
+                "paint": {
+                    "line-color": "#c9cfd3",
+                    "line-opacity": 0.8,
+                    "line-width": [
+                        "interpolate",
+                        ["linear"],
+                        ["zoom"],
+                        8,
+                        0.25,
+                        14,
+                        1.0,
+                    ],
+                },
+            }
+        )
+
+    return {**style, "sources": sources, "layers": [*layers, *style["layers"]]}
+
+
 def render(style: dict[str, Any], bbox: list[float], size: int) -> bytes:
     body = json.dumps({"style": style}).encode()
     url = (
@@ -242,16 +313,17 @@ def render(style: dict[str, Any], bbox: list[float], size: int) -> bytes:
 
 
 def probe_styles(style: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
-    """The probe and blank styles Gate 1 compares.
+    """The target-plus-context probe and context-only blank styles.
 
     A symbol layer with no glyphs endpoint crashes MapLibre GL Native outright,
-    so it is stripped from both.
+    so it is stripped from both. Context stays in the blank. Otherwise a valid
+    basemap would let an empty target layer pass Gate 1.
     """
     layers = [layer for layer in style["layers"] if layer.get("type") != "symbol"]
     probe = {**style, "layers": layers}
     blank = {
         **style,
-        "layers": [layer for layer in layers if layer.get("type") == "background"],
+        "layers": [layer for layer in layers if layer.get("source") != "overture"],
     }
     return probe, blank
 
@@ -302,6 +374,7 @@ def main() -> int:
             )
         else:
             box, report = frame(record["extent"]["spatial"]["bbox"][0])
+        style = thumbnail_style(style, key, window[2] if window else None)
         print(
             f"  {key}: bbox={[round(v, 3) for v in box]} "
             f"aspect={report['aspect']} fill={report['fill']} "

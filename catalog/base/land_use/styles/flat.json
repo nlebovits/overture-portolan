@@ -14,20 +14,13 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "land_use-fill",
       "type": "fill",
       "source": "overture",
       "source-layer": "land_use",
       "paint": {
-        "fill-color": "#386641",
-        "fill-opacity": 0.5
+        "fill-color": "#e0b394",
+        "fill-opacity": 0.85
       }
     },
     {
@@ -43,8 +36,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#e8f1f2",
-        "line-width": 0.6
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.6
+        ]
       }
     },
     {
@@ -60,7 +65,7 @@
         "LineString"
       ],
       "paint": {
-        "line-color": "#386641",
+        "line-color": "#e0b394",
         "line-width": 1.1
       }
     }

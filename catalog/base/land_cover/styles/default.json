@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "land_cover-fill",
       "type": "fill",
       "source": "overture",
@@ -33,21 +26,21 @@
             "subtype"
           ],
           "shrub",
-          "#386641",
+          "#adc487",
           "barren",
-          "#6a994e",
+          "#e0d59f",
           "forest",
-          "#a7c957",
+          "#7fb356",
           "crop",
-          "#bc4749",
+          "#d6c977",
           "urban",
-          "#f2e8cf",
+          "#d0c4b0",
           "grass",
-          "#457b9d",
+          "#95c68f",
           "wetland",
-          "#1d3557",
+          "#8fc6c0",
           "mangrove",
-          "#a8dadc",
+          "#4a9d9c",
           "#9e9e9e"
         ],
         "fill-opacity": 0.85
@@ -66,8 +59,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#101418",
-        "line-width": 0.3
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
       }
     }
   ]

@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "water-fill",
       "type": "fill",
       "source": "overture",
@@ -33,25 +26,25 @@
             "subtype"
           ],
           "human_made",
-          "#386641",
+          "#c9a0d6",
           "stream",
-          "#6a994e",
+          "#5591b5",
           "canal",
-          "#a7c957",
+          "#4a9d9c",
           "water",
-          "#bc4749",
+          "#a8d4e8",
           "pond",
-          "#f2e8cf",
+          "#7fb3d0",
           "river",
-          "#457b9d",
+          "#1e6f9c",
           "reservoir",
-          "#1d3557",
+          "#8fbdd6",
           "physical",
-          "#a8dadc",
+          "#8fc6c0",
           "spring",
-          "#e63946",
+          "#95d0c8",
           "lake",
-          "#2b9348",
+          "#2874a6",
           "#9e9e9e"
         ],
         "fill-opacity": 0.85
@@ -70,7 +63,7 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#101418",
+        "line-color": "#FFFFFF",
         "line-width": [
           "interpolate",
           [
@@ -106,25 +99,25 @@
             "subtype"
           ],
           "human_made",
-          "#386641",
+          "#c9a0d6",
           "stream",
-          "#6a994e",
+          "#5591b5",
           "canal",
-          "#a7c957",
+          "#4a9d9c",
           "water",
-          "#bc4749",
+          "#a8d4e8",
           "pond",
-          "#f2e8cf",
+          "#7fb3d0",
           "river",
-          "#457b9d",
+          "#1e6f9c",
           "reservoir",
-          "#1d3557",
+          "#8fbdd6",
           "physical",
-          "#a8dadc",
+          "#8fc6c0",
           "spring",
-          "#e63946",
+          "#95d0c8",
           "lake",
-          "#2b9348",
+          "#2874a6",
           "#9e9e9e"
         ],
         "line-width": 1.1
@@ -150,29 +143,31 @@
             "subtype"
           ],
           "human_made",
-          "#386641",
+          "#c9a0d6",
           "stream",
-          "#6a994e",
+          "#5591b5",
           "canal",
-          "#a7c957",
+          "#4a9d9c",
           "water",
-          "#bc4749",
+          "#a8d4e8",
           "pond",
-          "#f2e8cf",
+          "#7fb3d0",
           "river",
-          "#457b9d",
+          "#1e6f9c",
           "reservoir",
-          "#1d3557",
+          "#8fbdd6",
           "physical",
-          "#a8dadc",
+          "#8fc6c0",
           "spring",
-          "#e63946",
+          "#95d0c8",
           "lake",
-          "#2b9348",
+          "#2874a6",
           "#9e9e9e"
         ],
         "circle-radius": 2.4,
-        "circle-opacity": 0.9
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
       }
     }
   ]

@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "division_boundary-line",
       "type": "line",
       "source": "overture",
@@ -40,11 +33,11 @@
             "subtype"
           ],
           "county",
-          "#4c72b0",
+          "#e89d07",
           "region",
-          "#dd8452",
+          "#5591b5",
           "country",
-          "#55a868",
+          "#174054",
           "#9e9e9e"
         ],
         "line-width": 1.1

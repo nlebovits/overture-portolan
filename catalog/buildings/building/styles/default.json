@@ -14,20 +14,13 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "building-fill",
       "type": "fill",
       "source": "overture",
       "source-layer": "building",
       "paint": {
-        "fill-color": "#e8a33d",
-        "fill-opacity": 0.5
+        "fill-color": "#b0a377",
+        "fill-opacity": 0.85
       }
     },
     {
@@ -43,8 +36,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#e8f1f2",
-        "line-width": 0.6
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.6
+        ]
       }
     }
   ]

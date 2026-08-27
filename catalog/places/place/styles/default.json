@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "place-point",
       "type": "circle",
       "source": "overture",
@@ -33,9 +26,11 @@
         "Point"
       ],
       "paint": {
-        "circle-color": "#b5179e",
+        "circle-color": "#c03221",
         "circle-radius": 2.4,
-        "circle-opacity": 0.9
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
       }
     }
   ]

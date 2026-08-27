@@ -14,20 +14,13 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "building-fill",
       "type": "fill",
       "source": "overture",
       "source-layer": "building",
       "paint": {
-        "fill-color": "#c1553b",
-        "fill-opacity": 0.5
+        "fill-color": "#c6dbe8",
+        "fill-opacity": 0.85
       }
     },
     {
@@ -43,7 +36,7 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#e8f1f2",
+        "line-color": "#FFFFFF",
         "line-width": [
           "interpolate",
           [

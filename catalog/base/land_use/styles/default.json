@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "land_use-fill",
       "type": "fill",
       "source": "overture",
@@ -33,25 +26,25 @@
             "subtype"
           ],
           "managed",
-          "#386641",
+          "#b8c9a0",
           "recreation",
-          "#6a994e",
+          "#7fb356",
           "residential",
-          "#a7c957",
+          "#e0b394",
           "park",
-          "#bc4749",
+          "#538400",
           "agriculture",
-          "#f2e8cf",
+          "#d6c977",
           "horticulture",
-          "#457b9d",
+          "#adc487",
           "developed",
-          "#1d3557",
+          "#d0c4b0",
           "education",
-          "#a8dadc",
+          "#e89d07",
           "golf",
-          "#e63946",
+          "#95c68f",
           "pedestrian",
-          "#2b9348",
+          "#c9b970",
           "#9e9e9e"
         ],
         "fill-opacity": 0.85
@@ -70,8 +63,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#101418",
-        "line-width": 0.3
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
       }
     },
     {
@@ -94,25 +99,25 @@
             "subtype"
           ],
           "managed",
-          "#386641",
+          "#b8c9a0",
           "recreation",
-          "#6a994e",
+          "#7fb356",
           "residential",
-          "#a7c957",
+          "#e0b394",
           "park",
-          "#bc4749",
+          "#538400",
           "agriculture",
-          "#f2e8cf",
+          "#d6c977",
           "horticulture",
-          "#457b9d",
+          "#adc487",
           "developed",
-          "#1d3557",
+          "#d0c4b0",
           "education",
-          "#a8dadc",
+          "#e89d07",
           "golf",
-          "#e63946",
+          "#95c68f",
           "pedestrian",
-          "#2b9348",
+          "#c9b970",
           "#9e9e9e"
         ],
         "line-width": 1.1

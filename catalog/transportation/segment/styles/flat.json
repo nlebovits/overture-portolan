@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "segment-line",
       "type": "line",
       "source": "overture",
@@ -33,7 +26,7 @@
         "LineString"
       ],
       "paint": {
-        "line-color": "#2a9d8f",
+        "line-color": "#1e526b",
         "line-width": 1.1
       }
     }

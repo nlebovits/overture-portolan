@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "segment-line",
       "type": "line",
       "source": "overture",
@@ -40,25 +33,25 @@
             "class"
           ],
           "residential",
-          "#2a9d8f",
+          "#9aa3a8",
           "service",
-          "#264653",
+          "#c9cfd3",
           "footway",
-          "#e9c46a",
+          "#538400",
           "tertiary",
-          "#f4a261",
+          "#b8b83c",
           "unclassified",
-          "#e76f51",
+          "#b7bec2",
           "unknown",
-          "#457b9d",
+          "#c2c9cd",
           "secondary",
-          "#1d3557",
+          "#d4b13f",
           "primary",
-          "#a8dadc",
+          "#e89d07",
           "path",
-          "#588157",
+          "#6b7f2a",
           "steps",
-          "#3a5a40",
+          "#538400",
           "#9e9e9e"
         ],
         "line-width": 1.1

@@ -14,20 +14,13 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "water-fill",
       "type": "fill",
       "source": "overture",
       "source-layer": "water",
       "paint": {
-        "fill-color": "#386641",
-        "fill-opacity": 0.5
+        "fill-color": "#2874a6",
+        "fill-opacity": 0.85
       }
     },
     {
@@ -43,7 +36,7 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#e8f1f2",
+        "line-color": "#FFFFFF",
         "line-width": [
           "interpolate",
           [
@@ -72,7 +65,7 @@
         "LineString"
       ],
       "paint": {
-        "line-color": "#386641",
+        "line-color": "#2874a6",
         "line-width": 1.1
       }
     },
@@ -89,9 +82,11 @@
         "Point"
       ],
       "paint": {
-        "circle-color": "#386641",
+        "circle-color": "#2874a6",
         "circle-radius": 2.4,
-        "circle-opacity": 0.9
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
       }
     }
   ]

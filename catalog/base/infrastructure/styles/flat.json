@@ -14,20 +14,13 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "infrastructure-fill",
       "type": "fill",
       "source": "overture",
       "source-layer": "infrastructure",
       "paint": {
-        "fill-color": "#386641",
-        "fill-opacity": 0.5
+        "fill-color": "#e89d07",
+        "fill-opacity": 0.85
       }
     },
     {
@@ -43,8 +36,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#e8f1f2",
-        "line-width": 0.6
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.6
+        ]
       }
     },
     {
@@ -60,7 +65,7 @@
         "LineString"
       ],
       "paint": {
-        "line-color": "#386641",
+        "line-color": "#e89d07",
         "line-width": 1.1
       }
     },
@@ -77,9 +82,11 @@
         "Point"
       ],
       "paint": {
-        "circle-color": "#386641",
+        "circle-color": "#e89d07",
         "circle-radius": 2.4,
-        "circle-opacity": 0.9
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
       }
     }
   ]

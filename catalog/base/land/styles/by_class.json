@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "land-fill",
       "type": "fill",
       "source": "overture",
@@ -33,25 +26,25 @@
             "class"
           ],
           "tree",
-          "#386641",
+          "#538400",
           "tree_row",
-          "#6a994e",
+          "#6b7f2a",
           "wood",
-          "#a7c957",
+          "#7fb356",
           "forest",
-          "#bc4749",
+          "#7fb356",
           "scrub",
-          "#f2e8cf",
+          "#adc487",
           "shrub",
-          "#457b9d",
+          "#adc487",
           "grassland",
-          "#1d3557",
+          "#95c68f",
           "wetland",
-          "#a8dadc",
+          "#8fc6c0",
           "grass",
-          "#e63946",
+          "#95c68f",
           "bare_rock",
-          "#2b9348",
+          "#b6b1a8",
           "#9e9e9e"
         ],
         "fill-opacity": 0.85
@@ -70,8 +63,20 @@
         "Polygon"
       ],
       "paint": {
-        "line-color": "#101418",
-        "line-width": 0.3
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
       }
     },
     {
@@ -94,25 +99,25 @@
             "class"
           ],
           "tree",
-          "#386641",
+          "#538400",
           "tree_row",
-          "#6a994e",
+          "#6b7f2a",
           "wood",
-          "#a7c957",
+          "#7fb356",
           "forest",
-          "#bc4749",
+          "#7fb356",
           "scrub",
-          "#f2e8cf",
+          "#adc487",
           "shrub",
-          "#457b9d",
+          "#adc487",
           "grassland",
-          "#1d3557",
+          "#95c68f",
           "wetland",
-          "#a8dadc",
+          "#8fc6c0",
           "grass",
-          "#e63946",
+          "#95c68f",
           "bare_rock",
-          "#2b9348",
+          "#b6b1a8",
           "#9e9e9e"
         ],
         "line-width": 1.1
@@ -138,29 +143,31 @@
             "class"
           ],
           "tree",
-          "#386641",
+          "#538400",
           "tree_row",
-          "#6a994e",
+          "#6b7f2a",
           "wood",
-          "#a7c957",
+          "#7fb356",
           "forest",
-          "#bc4749",
+          "#7fb356",
           "scrub",
-          "#f2e8cf",
+          "#adc487",
           "shrub",
-          "#457b9d",
+          "#adc487",
           "grassland",
-          "#1d3557",
+          "#95c68f",
           "wetland",
-          "#a8dadc",
+          "#8fc6c0",
           "grass",
-          "#e63946",
+          "#95c68f",
           "bare_rock",
-          "#2b9348",
+          "#b6b1a8",
           "#9e9e9e"
         ],
         "circle-radius": 2.4,
-        "circle-opacity": 0.9
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
       }
     }
   ]

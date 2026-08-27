@@ -83,105 +83,131 @@ WINDOWS: dict[str, tuple[float, float, float, float]] = {
 # holds 55 million rows.
 FULL_SCAN_ROWS = 10_000_000
 
-# Assigned centrally so sibling collections do not all read as the same
-# dataset in a card grid. Each is a distinct hue family.
-THEME_PALETTES: dict[str, list[str]] = {
-    "divisions": [
-        "#4c72b0",
-        "#dd8452",
-        "#55a868",
-        "#c44e52",
-        "#8172b3",
-        "#937860",
-        "#da8bc3",
-        "#e8c547",
-        "#ccb974",
-        "#64b5cd",
-    ],
-    "buildings": [
-        "#e8a33d",
-        "#c1553b",
-        "#7f5539",
-        "#b08968",
-        "#ddb892",
-        "#9c6644",
-        "#e6ccb2",
-        "#a68a64",
-        "#c2a878",
-        "#8a6f4a",
-    ],
-    "transportation": [
-        "#2a9d8f",
-        "#264653",
-        "#e9c46a",
-        "#f4a261",
-        "#e76f51",
-        "#457b9d",
-        "#1d3557",
-        "#a8dadc",
-        "#588157",
-        "#3a5a40",
-    ],
-    "places": [
-        "#b5179e",
-        "#7209b7",
-        "#560bad",
-        "#480ca8",
-        "#3a0ca3",
-        "#3f37c9",
-        "#4361ee",
-        "#4895ef",
-        "#4cc9f0",
-        "#f72585",
-    ],
-    "addresses": [
-        "#ff8fa3",
-        "#ff4d6d",
-        "#c9184a",
-        "#a4133c",
-        "#800f2f",
-        "#590d22",
-        "#ffb3c1",
-        "#ffccd5",
-        "#fff0f3",
-        "#e01e5a",
-    ],
-    "base": [
-        "#386641",
-        "#6a994e",
-        "#a7c957",
-        "#bc4749",
-        "#f2e8cf",
-        "#457b9d",
-        "#1d3557",
-        "#a8dadc",
-        "#e63946",
-        "#2b9348",
-    ],
+
+# These colours come from the Overture styles in the St. Louis Data Browser.
+# A category keeps the same meaning across collections. The generator fails if
+# measured data introduces an unmapped branch, rather than assigning a colour
+# from its row order and silently changing that meaning.
+def colour_map(specification: str) -> dict[str, str]:
+    return dict(pair.split(":", 1) for pair in specification.split())
+
+
+CATEGORY_COLOURS: dict[str, dict[str, dict[str, str]]] = {
+    "base/infrastructure": {
+        "subtype": colour_map(
+            "transportation:#9aa3a8 transit:#1e526b barrier:#b0a377 "
+            "pedestrian:#538400 power:#e89d07 bridge:#585f63 "
+            "waste_management:#b5651d emergency:#c03221 water:#4a9d9c "
+            "utility:#7c5295"
+        )
+    },
+    "base/land": {
+        "class": colour_map(
+            "tree:#538400 tree_row:#6b7f2a wood:#7fb356 forest:#7fb356 "
+            "scrub:#adc487 shrub:#adc487 grassland:#95c68f wetland:#8fc6c0 "
+            "grass:#95c68f bare_rock:#b6b1a8"
+        ),
+        "subtype": colour_map(
+            "tree:#538400 forest:#7fb356 shrub:#adc487 grass:#95c68f "
+            "wetland:#8fc6c0 rock:#b6b1a8 physical:#c9c25e sand:#e0d59f "
+            "land:#dfe6ea reef:#4a9d9c"
+        ),
+    },
+    "base/land_cover": {
+        "subtype": colour_map(
+            "shrub:#adc487 barren:#e0d59f forest:#7fb356 crop:#d6c977 "
+            "urban:#d0c4b0 grass:#95c68f wetland:#8fc6c0 mangrove:#4a9d9c"
+        )
+    },
+    "base/land_use": {
+        "subtype": colour_map(
+            "managed:#b8c9a0 recreation:#7fb356 residential:#e0b394 "
+            "park:#538400 agriculture:#d6c977 horticulture:#adc487 "
+            "developed:#d0c4b0 education:#e89d07 golf:#95c68f "
+            "pedestrian:#c9b970"
+        )
+    },
+    "base/water": {
+        "subtype": colour_map(
+            "human_made:#c9a0d6 stream:#5591b5 canal:#4a9d9c water:#a8d4e8 "
+            "pond:#7fb3d0 river:#1e6f9c reservoir:#8fbdd6 physical:#8fc6c0 "
+            "spring:#95d0c8 lake:#2874a6"
+        ),
+        "class": colour_map(
+            "swimming_pool:#c9a0d6 stream:#5591b5 water:#a8d4e8 "
+            "drain:#4a9d9c pond:#7fb3d0 river:#1e6f9c ditch:#b0a377 "
+            "basin:#8fbdd6 canal:#4a9d9c wastewater:#8b6f47"
+        ),
+    },
+    "divisions/division": {
+        "class": colour_map("hamlet:#b7bec2 village:#7fb3d0 town:#e89d07 city:#c03221"),
+        "subtype": colour_map(
+            "locality:#7fb3d0 neighborhood:#95c68f microhood:#c98bab "
+            "macrohood:#a99bd0 county:#e89d07 localadmin:#4a9d9c "
+            "region:#5591b5 country:#174054 dependency:#9aa3a8"
+        ),
+    },
+    "divisions/division_area": {
+        "subtype": colour_map(
+            "locality:#7fb3d0 neighborhood:#95c68f microhood:#c98bab "
+            "macrohood:#a99bd0 county:#e89d07 localadmin:#4a9d9c "
+            "region:#5591b5 country:#174054 dependency:#9aa3a8"
+        )
+    },
+    "divisions/division_boundary": {
+        "subtype": colour_map("county:#e89d07 region:#5591b5 country:#174054")
+    },
+    "transportation/segment": {
+        "class": colour_map(
+            "residential:#9aa3a8 service:#c9cfd3 footway:#538400 "
+            "tertiary:#b8b83c unclassified:#b7bec2 unknown:#c2c9cd "
+            "secondary:#d4b13f primary:#e89d07 path:#6b7f2a steps:#538400"
+        )
+    },
 }
 
+FLAT_COLOURS: dict[str, tuple[str, str]] = {
+    "addresses/address": ("#1e526b", "#5591b5"),
+    "base/bathymetry": ("#2874a6", "#174054"),
+    "base/infrastructure": ("#e89d07", "#7c5295"),
+    "base/land": ("#7fb356", "#538400"),
+    "base/land_cover": ("#95c68f", "#538400"),
+    "base/land_use": ("#e0b394", "#538400"),
+    "base/water": ("#2874a6", "#4a9d9c"),
+    "buildings/building": ("#b0a377", "#c6dbe8"),
+    "buildings/building_part": ("#5591b5", "#2874a6"),
+    "divisions/division": ("#e89d07", "#7fb3d0"),
+    "divisions/division_area": ("#7fb3d0", "#95c68f"),
+    "divisions/division_boundary": ("#174054", "#e89d07"),
+    "places/place": ("#c03221", "#d95f38"),
+    "transportation/connector": ("#c03221", "#d95f38"),
+    "transportation/segment": ("#1e526b", "#9aa3a8"),
+}
+
+PREFERRED_COLUMNS = {"base/land": "subtype"}
+
+POINT_RADII = {"division": 4.5}
 # A `step` expression paints an ordered quantity, so its colours must read as
 # ordered too. A categorical palette here would hide the ordering the column
 # carries.
 SEQUENTIAL_PALETTE: list[str] = [
-    "#d7f0f7",
-    "#b3e0ee",
-    "#8ecae6",
-    "#61b2d9",
-    "#3a95c7",
-    "#2678ae",
-    "#1b5c8f",
-    "#154470",
-    "#0f2e52",
-    "#081a33",
+    "#dfe6ea",
+    "#c9dfe8",
+    "#a8d4e8",
+    "#8fbdd6",
+    "#7fb3d0",
+    "#5591b5",
+    "#2874a6",
+    "#1e6f9c",
+    "#1e526b",
+    "#174054",
 ]
 
 # Reserved for values outside the match. No palette may contain it, or a
 # matched category reads as unmatched.
 FALLBACK_COLOR = "#9e9e9e"
 
-BACKGROUND = "#101418"
-OUTLINE = "#e8f1f2"
+OUTLINE = "#FFFFFF"
 MIN_CATEGORIES = 3
 MAX_CATEGORIES = 10
 # Above this a column is an identifier or free text rather than a legend, and
@@ -729,7 +755,7 @@ def paint_layers(
                 "source-layer": layer,
                 "paint": {
                     "fill-color": colour,
-                    "fill-opacity": 0.5 if flat else 0.85,
+                    "fill-opacity": 0.85,
                 },
             }
         )
@@ -741,7 +767,7 @@ def paint_layers(
                 "source-layer": layer,
                 "filter": ["==", ["geometry-type"], "Polygon"],
                 "paint": {
-                    "line-color": OUTLINE if flat else BACKGROUND,
+                    "line-color": OUTLINE,
                     # Zero below z6. A vector tile clips every polygon at its
                     # own boundary, so an outline draws that boundary too. At a
                     # global frame the tile grid then covers the map in a
@@ -782,8 +808,10 @@ def paint_layers(
                 "filter": ["==", ["geometry-type"], "Point"],
                 "paint": {
                     "circle-color": colour,
-                    "circle-radius": 2.4,
+                    "circle-radius": POINT_RADII.get(layer, 2.4),
                     "circle-opacity": 0.9,
+                    "circle-stroke-color": OUTLINE,
+                    "circle-stroke-width": 1.1 if layer == "division" else 0.8,
                 },
             }
         )
@@ -802,21 +830,25 @@ def style_document(
         "version": 8,
         "name": title,
         "sources": {"overture": source_block(record, facts)},
-        "layers": [
-            {
-                "id": "background",
-                "type": "background",
-                "paint": {"background-color": BACKGROUND},
-            },
-            *paint_layers(layer, record, colour, flat),
-        ],
+        # The browser composes data styles over its basemap. An opaque
+        # background here would hide that context.
+        "layers": paint_layers(layer, record, colour, flat),
     }
 
 
-def match_expression(column: str, values: list[Any], palette: list[str]) -> list[Any]:
+def match_expression(key: str, column: str, values: list[Any]) -> list[Any]:
+    mapping = CATEGORY_COLOURS.get(key, {}).get(column)
+    if mapping is None:
+        raise SystemExit(f"{key}: no semantic colours defined for '{column}'")
+    missing = [str(value) for value in values if str(value) not in mapping]
+    if missing:
+        raise SystemExit(
+            f"{key}: no semantic colour for {column} value(s): {', '.join(missing)}"
+        )
+
     expression: list[Any] = ["match", ["get", column]]
-    for index, value in enumerate(values):
-        expression.extend([value, palette[index % len(palette)]])
+    for value in values:
+        expression.extend([value, mapping[str(value)]])
     expression.append(FALLBACK_COLOR)
     return expression
 
@@ -835,12 +867,19 @@ def step_expression(column: str, breaks: list[float], palette: list[str]) -> lis
 
 
 def _assert_palettes_exclude_fallback() -> None:
-    palettes = {**THEME_PALETTES, "sequential": SEQUENTIAL_PALETTE}
-    for theme, palette in palettes.items():
+    palettes: dict[str, list[str]] = {"sequential": SEQUENTIAL_PALETTE}
+    palettes.update(
+        {f"{key}.flat": list(colours) for key, colours in FLAT_COLOURS.items()}
+    )
+    for key, columns in CATEGORY_COLOURS.items():
+        for column, mapping in columns.items():
+            palettes[f"{key}.{column}"] = list(mapping.values())
+
+    for label, palette in palettes.items():
         if FALLBACK_COLOR in palette:
             raise SystemExit(
-                f"{theme} palette contains the fallback colour "
-                f"{FALLBACK_COLOR}; a matched category would read as unmatched"
+                f"{label} colours contain the fallback {FALLBACK_COLOR}; "
+                "a matched category would read as unmatched"
             )
 
 
@@ -883,6 +922,15 @@ def graduate_by_zoom(style: dict[str, Any], minzoom: int, maxzoom: int) -> None:
             ]
 
 
+def remove_stale_styles(directory: Path, written: set[str]) -> None:
+    """Remove generated styles that the current choice no longer produces."""
+    fixed = {"default.json", "flat.json", "zoom.json"}
+    for path in directory.glob("*.json"):
+        generated = path.name in fixed or path.name.startswith("by_")
+        if generated and path.name not in written:
+            path.unlink()
+
+
 def write_flat_only(
     key: str,
     record: dict[str, Any],
@@ -912,6 +960,7 @@ def write_flat_only(
     graduate_by_zoom(graduated, facts["minzoom"], facts["maxzoom"])
     (directory / "zoom.json").write_text(json.dumps(graduated, indent=2) + "\n")
 
+    remove_stale_styles(directory, {"default.json", "zoom.json"})
     print("    wrote default.json, zoom.json", file=sys.stderr)
     return {
         "column": None,
@@ -943,7 +992,7 @@ def build(
     cache: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     theme, layer = key.split("/", 1)
-    palette = THEME_PALETTES.get(theme, THEME_PALETTES["base"])
+    palette = FLAT_COLOURS[key]
     facts = pmtiles_facts(record["pmtiles"], cache)
     if layer not in facts["layers"]:
         raise SystemExit(
@@ -966,6 +1015,9 @@ def build(
 
     categorical, numeric = screen(sampler, record["columns"])
     ranked = measure(sampler, categorical[:RANK_CANDIDATES])
+    preferred = PREFERRED_COLUMNS.get(key)
+    if preferred:
+        ranked.sort(key=lambda candidate: candidate.column != preferred)
     numeric_candidate = (
         None if ranked else measure_numeric(sampler, numeric[:RANK_CANDIDATES])
     )
@@ -1012,7 +1064,7 @@ def build(
                 f"{key}: only {len(values)} branches of '{chosen.column}' survive "
                 "verification, too few for a legend."
             )
-        colour = match_expression(chosen.column, values, palette)
+        colour = match_expression(key, chosen.column, values)
         column = chosen.column
         kind = "match"
         print(
@@ -1118,7 +1170,7 @@ def build(
                     record,
                     facts,
                     layer,
-                    match_expression(runner.column, runner_values, palette),
+                    match_expression(key, runner.column, runner_values),
                     f"{human(layer)} by {runner.column}",
                 ),
                 indent=2,
@@ -1131,6 +1183,7 @@ def build(
             f"    alternate on '{runner.column}': {', '.join(map(str, runner_values))}",
             file=sys.stderr,
         )
+    remove_stale_styles(directory, set(written))
 
     print(f"    wrote {', '.join(written)}", file=sys.stderr)
 
