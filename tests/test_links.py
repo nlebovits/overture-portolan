@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 
-from publish import load_config  # noqa: E402
+from catalog_config import load_config  # noqa: E402
 
 config = load_config()
 BASE = ROOT / config["publish_dir"]
