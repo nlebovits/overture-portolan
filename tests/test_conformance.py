@@ -33,7 +33,9 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from catalog_config import load_config  # noqa: E402
 
-ACCEPTED: set[str] = set()
+# Both rows are in docs/conformance.md, tracked by portolan-spec#183.
+# Never add an id here without the matching row there.
+ACCEPTED: set[str] = {"PTL-LIV-004", "PTL-LIV-005"}
 
 config = load_config()
 target = ROOT / config["publish_dir"]

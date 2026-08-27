@@ -34,7 +34,35 @@ something.
 
 ## Accepted deviations
 
-None.
+| Rule | Where | Why accepted | Tracking |
+|---|---|---|---|
+| PTL-LIV-004 | the published host | GitHub Pages sends no `Access-Control-Expose-Headers` and exposes no header configuration | portolan-spec#183 |
+| PTL-LIV-005 | the published host | GitHub Pages returns 405 to an OPTIONS preflight, and exposes no header configuration | portolan-spec#183 |
+
+Both findings concern range reads. A `Range` header is not CORS-safelisted, so a
+ranged fetch from a browser triggers a preflight, and a range reader needs
+`Content-Range`, `Accept-Ranges`, and `ETag` readable from script.
+
+Nothing on this host is range-read. It serves STAC JSON, Markdown, thumbnails,
+and style JSON. Each is small and each arrives through a simple GET, which
+triggers no preflight and needs no exposed headers. The GeoParquet and PMTiles
+sit on Overture's buckets, which serve range requests and cross-origin reads
+correctly, and which PORTO-CORE-073 exempts because this catalog does not control
+them.
+
+GitHub Pages does answer range requests correctly, verified on 2026-08-27. It
+returns 206 with `Content-Range` and `Accept-Ranges`. Only the two CORS elements
+that support a browser range read are absent.
+
+This constrains one design decision, recorded in
+[publication.md](publication.md): the catalog ships plain item JSON rather than a
+STAC-GeoParquet item mirror. An item mirror is a cloud-native asset, and to host
+one here would put a range-read file on a host that cannot serve a preflighted
+range request.
+
+[portolan-spec#183](https://github.com/portolan-sdi/portolan-spec/issues/183)
+proposes to scope these requirements to hosts that serve cloud-native assets.
+Both rows leave this table when it resolves, whichever way it resolves.
 
 <!--
 When you accept one, add a row and a section explaining it, like this:

@@ -33,3 +33,7 @@ __pycache__/
 *.pyc
 .venv/
 .ruff_cache/
+
+# Python bytecode from tools/
+__pycache__/
+*.pyc

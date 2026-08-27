@@ -1,0 +1,36 @@
+# Deploys catalog/ to GitHub Pages.
+#
+# Pages can only serve / or /docs when it deploys from a branch, and the
+# published catalog is catalog/. This workflow uploads that directory as the
+# Pages artifact instead, which also keeps the deployed state equal to the
+# repository state: a file that leaves catalog/ leaves the site.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: catalog
+      - id: deployment
+        uses: actions/deploy-pages@v4
