@@ -30,10 +30,13 @@ jobs:
       - name: Install the validators
         run: python -m pip install 'rashid==0.1.7' stac-check
 
+      # ruff covers the pyflakes rules the template shipped, and adds import
+      # order, modern syntax, and bugbear. Config is in ruff.toml.
       - name: Lint the tooling
         run: |
-          python -m pip install pyflakes
-          pyflakes tools/ tests/
+          python -m pip install ruff
+          ruff check tools/ tests/
+          ruff format --check tools/ tests/
 
       # CI_LIGHT exempts asset hrefs with a data suffix from the link check.
       # The checkout holds the metadata and not the bytes. Structural links

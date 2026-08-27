@@ -39,12 +39,8 @@ SOURCES = ROOT / "sources"
 
 PORTOLAN_SCHEMA = "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json"
 TABLE_EXT = "https://stac-extensions.github.io/table/v1.2.0/schema.json"
-ALTERNATE_EXT = (
-    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
-)
-WEB_MAP_LINKS_EXT = (
-    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
-)
+ALTERNATE_EXT = "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+WEB_MAP_LINKS_EXT = "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
 
 PARQUET_TYPE = "application/vnd.apache.parquet"
 PMTILES_TYPE = "application/vnd.pmtiles"
@@ -124,50 +120,77 @@ def build_collection(
     licence = "other" if mixed else record["license"]
 
     links: list[dict[str, Any]] = [
-        {"rel": "root", "href": "../../catalog.json",
-         "type": "application/json", "title": "Overture Maps"},
-        {"rel": "parent", "href": "../catalog.json",
-         "type": "application/json",
-         "title": THEME_TITLES.get(theme, theme.title())},
-        {"rel": "describedby", "href": "./README.md",
-         "type": "text/markdown", "title": "Collection README"},
-        {"rel": "agents", "href": "./AGENTS.md",
-         "type": "text/markdown", "title": "Collection agent guide"},
-        {"rel": "via", "href": f"{DOCS}/{theme}/{type_name}",
-         "type": "text/html",
-         "title": f"Overture documentation for {type_name}"},
-        {"rel": "canonical", "href": record["upstream_collection"],
-         "type": "application/json",
-         "title": "Overture STAC collection"},
+        {
+            "rel": "root",
+            "href": "../../catalog.json",
+            "type": "application/json",
+            "title": "Overture Maps",
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": THEME_TITLES.get(theme, theme.title()),
+        },
+        {
+            "rel": "describedby",
+            "href": "./README.md",
+            "type": "text/markdown",
+            "title": "Collection README",
+        },
+        {
+            "rel": "agents",
+            "href": "./AGENTS.md",
+            "type": "text/markdown",
+            "title": "Collection agent guide",
+        },
+        {
+            "rel": "via",
+            "href": f"{DOCS}/{theme}/{type_name}",
+            "type": "text/html",
+            "title": f"Overture documentation for {type_name}",
+        },
+        {
+            "rel": "canonical",
+            "href": record["upstream_collection"],
+            "type": "application/json",
+            "title": "Overture STAC collection",
+        },
     ]
     if mixed:
-        links.append({
-            "rel": "license", "href": ATTRIBUTION_URL, "type": "text/html",
-            "title": "Overture attribution and licence terms",
-        })
+        links.append(
+            {
+                "rel": "license",
+                "href": ATTRIBUTION_URL,
+                "type": "text/html",
+                "title": "Overture attribution and licence terms",
+            }
+        )
 
-    links.append({
-        "rel": "pmtiles",
-        "href": record["pmtiles"],
-        "type": PMTILES_TYPE,
-        "title": f"Overture {theme} vector tiles",
-        "pmtiles:layers": [type_name],
-    })
+    links.append(
+        {
+            "rel": "pmtiles",
+            "href": record["pmtiles"],
+            "type": PMTILES_TYPE,
+            "title": f"Overture {theme} vector tiles",
+            "pmtiles:layers": [type_name],
+        }
+    )
 
     for item in record["items"]:
-        links.append({
-            "rel": "item",
-            "href": f"./items/{item['id']}.json",
-            "type": "application/geo+json",
-            "title": f"Part {item['id']}, {item['rows']:,} rows",
-        })
+        links.append(
+            {
+                "rel": "item",
+                "href": f"./items/{item['id']}.json",
+                "type": "application/geo+json",
+                "title": f"Part {item['id']}, {item['rows']:,} rows",
+            }
+        )
 
     collection = {
         "type": "Collection",
         "stac_version": "1.1.0",
-        "stac_extensions": sorted(
-            [PORTOLAN_SCHEMA, TABLE_EXT, WEB_MAP_LINKS_EXT]
-        ),
+        "stac_extensions": sorted([PORTOLAN_SCHEMA, TABLE_EXT, WEB_MAP_LINKS_EXT]),
         "id": type_name,
         "title": record["title"] or type_name.replace("_", " ").title(),
         "description": record["description"] or "",
@@ -212,8 +235,7 @@ def build_collection(
     )
 
     for item in record["items"]:
-        write(directory / "items" / f"{item['id']}.json",
-              build_item(item, type_name))
+        write(directory / "items" / f"{item['id']}.json", build_item(item, type_name))
 
     return directory
 
@@ -246,12 +268,18 @@ def build_item(item: dict[str, Any], collection_id: str) -> dict[str, Any]:
             }
         },
         "links": [
-            {"rel": "root", "href": "../../../catalog.json",
-             "type": "application/json", "title": "Overture Maps"},
-            {"rel": "parent", "href": "../collection.json",
-             "type": "application/json"},
-            {"rel": "collection", "href": "../collection.json",
-             "type": "application/json"},
+            {
+                "rel": "root",
+                "href": "../../../catalog.json",
+                "type": "application/json",
+                "title": "Overture Maps",
+            },
+            {"rel": "parent", "href": "../collection.json", "type": "application/json"},
+            {
+                "rel": "collection",
+                "href": "../collection.json",
+                "type": "application/json",
+            },
         ],
     }
 
@@ -265,48 +293,70 @@ def build_theme(theme: str, type_names: list[str], release: str) -> None:
     (CATALOG / theme / "AGENTS.md").write_text(
         docs.theme_agents(theme, title, keys, release)
     )
-    write(CATALOG / theme / "catalog.json", {
-        "type": "Catalog",
-        "stac_version": "1.1.0",
-        "stac_extensions": [PORTOLAN_SCHEMA],
-        "id": theme,
-        "title": THEME_TITLES.get(theme, theme.title()),
-        "description": (
-            f"Overture Maps {THEME_TITLES.get(theme, theme)} theme. "
-            f"Holds {len(type_names)} collection"
-            f"{'s' if len(type_names) != 1 else ''}."
-        ),
-        "links": [
-            {"rel": "root", "href": "../catalog.json",
-             "type": "application/json", "title": "Overture Maps"},
-            {"rel": "parent", "href": "../catalog.json",
-             "type": "application/json", "title": "Overture Maps"},
-            {"rel": "describedby", "href": "./README.md",
-             "type": "text/markdown", "title": "Theme README"},
-            {"rel": "agents", "href": "./AGENTS.md",
-             "type": "text/markdown", "title": "Theme agent guide"},
-            *[
-                {"rel": "child", "href": f"./{name}/collection.json",
-                 "type": "application/json",
-                 "title": name.replace("_", " ").title()}
-                for name in sorted(type_names)
+    write(
+        CATALOG / theme / "catalog.json",
+        {
+            "type": "Catalog",
+            "stac_version": "1.1.0",
+            "stac_extensions": [PORTOLAN_SCHEMA],
+            "id": theme,
+            "title": THEME_TITLES.get(theme, theme.title()),
+            "description": (
+                f"Overture Maps {THEME_TITLES.get(theme, theme)} theme. "
+                f"Holds {len(type_names)} collection"
+                f"{'s' if len(type_names) != 1 else ''}."
+            ),
+            "links": [
+                {
+                    "rel": "root",
+                    "href": "../catalog.json",
+                    "type": "application/json",
+                    "title": "Overture Maps",
+                },
+                {
+                    "rel": "parent",
+                    "href": "../catalog.json",
+                    "type": "application/json",
+                    "title": "Overture Maps",
+                },
+                {
+                    "rel": "describedby",
+                    "href": "./README.md",
+                    "type": "text/markdown",
+                    "title": "Theme README",
+                },
+                {
+                    "rel": "agents",
+                    "href": "./AGENTS.md",
+                    "type": "text/markdown",
+                    "title": "Theme agent guide",
+                },
+                *[
+                    {
+                        "rel": "child",
+                        "href": f"./{name}/collection.json",
+                        "type": "application/json",
+                        "title": name.replace("_", " ").title(),
+                    }
+                    for name in sorted(type_names)
+                ],
             ],
-        ],
-    })
+        },
+    )
 
 
 def update_root(themes: list[str], release: str) -> None:
     """Add a child link per theme, and record the release in `updated`."""
     path = CATALOG / "catalog.json"
     root = json.loads(path.read_text())
-    keep = [
-        link for link in root["links"]
-        if link.get("rel") != "child"
-    ]
+    keep = [link for link in root["links"] if link.get("rel") != "child"]
     root["links"] = keep + [
-        {"rel": "child", "href": f"./{theme}/catalog.json",
-         "type": "application/json",
-         "title": THEME_TITLES.get(theme, theme.title())}
+        {
+            "rel": "child",
+            "href": f"./{theme}/catalog.json",
+            "type": "application/json",
+            "title": THEME_TITLES.get(theme, theme.title()),
+        }
         for theme in sorted(themes)
     ]
     root["updated"] = f"{release[:10]}T00:00:00Z"
@@ -315,11 +365,10 @@ def update_root(themes: list[str], release: str) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("-c", "--collection", action="append", metavar="THEME/TYPE")
     parser.add_argument(
-        "-c", "--collection", action="append", metavar="THEME/TYPE"
-    )
-    parser.add_argument(
-        "--clean", action="store_true",
+        "--clean",
+        action="store_true",
         help="remove generated theme directories before the build",
     )
     args = parser.parse_args()
@@ -330,7 +379,8 @@ def main() -> int:
 
     wanted = set(args.collection or [])
     selected = {
-        key: record for key, record in upstream["collections"].items()
+        key: record
+        for key, record in upstream["collections"].items()
         if not wanted or key in wanted
     }
     if not selected:
@@ -345,8 +395,7 @@ def main() -> int:
         directory = build_collection(key, record, meanings, release)
         by_theme.setdefault(theme, []).append(key.split("/", 1)[1])
         print(
-            f"  {key}: {len(record['items'])} items -> "
-            f"{directory.relative_to(ROOT)}",
+            f"  {key}: {len(record['items'])} items -> {directory.relative_to(ROOT)}",
             file=sys.stderr,
         )
 

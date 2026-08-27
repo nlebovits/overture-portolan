@@ -43,18 +43,78 @@ SOURCES = ROOT / "sources"
 # Assigned centrally so sibling collections do not all read as the same
 # dataset in a card grid. Each is a distinct hue family.
 THEME_PALETTES: dict[str, list[str]] = {
-    "divisions": ["#4c72b0", "#dd8452", "#55a868", "#c44e52", "#8172b3",
-                  "#937860", "#da8bc3", "#e8c547", "#ccb974", "#64b5cd"],
-    "buildings": ["#e8a33d", "#c1553b", "#7f5539", "#b08968", "#ddb892",
-                  "#9c6644", "#e6ccb2", "#a68a64", "#c2a878", "#8a6f4a"],
-    "transportation": ["#2a9d8f", "#264653", "#e9c46a", "#f4a261", "#e76f51",
-                       "#457b9d", "#1d3557", "#a8dadc", "#588157", "#3a5a40"],
-    "places": ["#b5179e", "#7209b7", "#560bad", "#480ca8", "#3a0ca3",
-               "#3f37c9", "#4361ee", "#4895ef", "#4cc9f0", "#f72585"],
-    "addresses": ["#ff8fa3", "#ff4d6d", "#c9184a", "#a4133c", "#800f2f",
-                  "#590d22", "#ffb3c1", "#ffccd5", "#fff0f3", "#e01e5a"],
-    "base": ["#386641", "#6a994e", "#a7c957", "#bc4749", "#f2e8cf",
-             "#457b9d", "#1d3557", "#a8dadc", "#e63946", "#2b9348"],
+    "divisions": [
+        "#4c72b0",
+        "#dd8452",
+        "#55a868",
+        "#c44e52",
+        "#8172b3",
+        "#937860",
+        "#da8bc3",
+        "#e8c547",
+        "#ccb974",
+        "#64b5cd",
+    ],
+    "buildings": [
+        "#e8a33d",
+        "#c1553b",
+        "#7f5539",
+        "#b08968",
+        "#ddb892",
+        "#9c6644",
+        "#e6ccb2",
+        "#a68a64",
+        "#c2a878",
+        "#8a6f4a",
+    ],
+    "transportation": [
+        "#2a9d8f",
+        "#264653",
+        "#e9c46a",
+        "#f4a261",
+        "#e76f51",
+        "#457b9d",
+        "#1d3557",
+        "#a8dadc",
+        "#588157",
+        "#3a5a40",
+    ],
+    "places": [
+        "#b5179e",
+        "#7209b7",
+        "#560bad",
+        "#480ca8",
+        "#3a0ca3",
+        "#3f37c9",
+        "#4361ee",
+        "#4895ef",
+        "#4cc9f0",
+        "#f72585",
+    ],
+    "addresses": [
+        "#ff8fa3",
+        "#ff4d6d",
+        "#c9184a",
+        "#a4133c",
+        "#800f2f",
+        "#590d22",
+        "#ffb3c1",
+        "#ffccd5",
+        "#fff0f3",
+        "#e01e5a",
+    ],
+    "base": [
+        "#386641",
+        "#6a994e",
+        "#a7c957",
+        "#bc4749",
+        "#f2e8cf",
+        "#457b9d",
+        "#1d3557",
+        "#a8dadc",
+        "#e63946",
+        "#2b9348",
+    ],
 }
 # Reserved for values outside the match. No palette may contain it, or a
 # matched category reads as unmatched.
@@ -75,8 +135,18 @@ MIN_COVERAGE = 0.80
 
 # Columns that are identifiers, geometry, or free text rather than categories.
 SKIP = {
-    "id", "geometry", "bbox", "names", "sources", "cartography", "version",
-    "theme", "type", "wikidata", "division_id", "parent_division_id",
+    "id",
+    "geometry",
+    "bbox",
+    "names",
+    "sources",
+    "cartography",
+    "version",
+    "theme",
+    "type",
+    "wikidata",
+    "division_id",
+    "parent_division_id",
 }
 
 
@@ -117,7 +187,7 @@ def pick_column(
         if not (MIN_CATEGORIES <= len(rows) <= 40):
             continue
         total = connection.execute(
-            f'SELECT count(*) FROM read_parquet(\'{glob}\') '
+            f"SELECT count(*) FROM read_parquet('{glob}') "
             f'WHERE "{column}" IS NOT NULL'
         ).fetchone()[0]
         if not total:
@@ -126,12 +196,15 @@ def pick_column(
         dominance = rows[0][1] / total
         coverage = sum(n for _, n in top) / total
         if dominance > MAX_DOMINANCE:
-            print(f"    skip {column}: top value holds {dominance:.1%}",
-                  file=sys.stderr)
+            print(
+                f"    skip {column}: top value holds {dominance:.1%}", file=sys.stderr
+            )
             continue
         if coverage < MIN_COVERAGE:
-            print(f"    skip {column}: top {len(top)} cover only "
-                  f"{coverage:.1%}", file=sys.stderr)
+            print(
+                f"    skip {column}: top {len(top)} cover only {coverage:.1%}",
+                file=sys.stderr,
+            )
             continue
         score = coverage * (1.0 - dominance)
         if best is None or score > best[0]:
@@ -154,14 +227,18 @@ def source_block(record: dict[str, Any], layer: str) -> dict[str, Any]:
         "maxzoom": record.get("pmtiles_maxzoom", 12),
         "attribution": (
             '<a href="https://overturemaps.org/">Overture Maps</a>, '
-            '&copy; OpenStreetMap contributors'
+            "&copy; OpenStreetMap contributors"
         ),
     }
 
 
 def categorical_style(
-    record: dict[str, Any], layer: str, column: str,
-    values: list[tuple[Any, int]], palette: list[str], title: str,
+    record: dict[str, Any],
+    layer: str,
+    column: str,
+    values: list[tuple[Any, int]],
+    palette: list[str],
+    title: str,
 ) -> dict[str, Any]:
     match: list[Any] = ["match", ["get", column]]
     for index, (value, _) in enumerate(values):
@@ -173,14 +250,25 @@ def categorical_style(
         "name": title,
         "sources": {"overture": source_block(record, layer)},
         "layers": [
-            {"id": "background", "type": "background",
-             "paint": {"background-color": BACKGROUND}},
-            {"id": f"{layer}-fill", "type": "fill", "source": "overture",
-             "source-layer": layer,
-             "paint": {"fill-color": match, "fill-opacity": 0.85}},
-            {"id": f"{layer}-outline", "type": "line", "source": "overture",
-             "source-layer": layer,
-             "paint": {"line-color": BACKGROUND, "line-width": 0.3}},
+            {
+                "id": "background",
+                "type": "background",
+                "paint": {"background-color": BACKGROUND},
+            },
+            {
+                "id": f"{layer}-fill",
+                "type": "fill",
+                "source": "overture",
+                "source-layer": layer,
+                "paint": {"fill-color": match, "fill-opacity": 0.85},
+            },
+            {
+                "id": f"{layer}-outline",
+                "type": "line",
+                "source": "overture",
+                "source-layer": layer,
+                "paint": {"line-color": BACKGROUND, "line-width": 0.3},
+            },
         ],
     }
 
@@ -193,14 +281,25 @@ def flat_style(
         "name": title,
         "sources": {"overture": source_block(record, layer)},
         "layers": [
-            {"id": "background", "type": "background",
-             "paint": {"background-color": BACKGROUND}},
-            {"id": f"{layer}-fill", "type": "fill", "source": "overture",
-             "source-layer": layer,
-             "paint": {"fill-color": colour, "fill-opacity": 0.5}},
-            {"id": f"{layer}-outline", "type": "line", "source": "overture",
-             "source-layer": layer,
-             "paint": {"line-color": palette_edge(colour), "line-width": 0.6}},
+            {
+                "id": "background",
+                "type": "background",
+                "paint": {"background-color": BACKGROUND},
+            },
+            {
+                "id": f"{layer}-fill",
+                "type": "fill",
+                "source": "overture",
+                "source-layer": layer,
+                "paint": {"fill-color": colour, "fill-opacity": 0.5},
+            },
+            {
+                "id": f"{layer}-outline",
+                "type": "line",
+                "source": "overture",
+                "source-layer": layer,
+                "paint": {"line-color": palette_edge(colour), "line-width": 0.6},
+            },
         ],
     }
 
@@ -253,17 +352,22 @@ def main() -> int:
         title = f"{layer.replace('_', ' ').title()} by {column}"
         (directory / "default.json").write_text(
             json.dumps(
-                categorical_style(record, layer, column, values, palette,
-                                  title),
+                categorical_style(record, layer, column, values, palette, title),
                 indent=2,
-            ) + "\n"
+            )
+            + "\n"
         )
         (directory / "flat.json").write_text(
             json.dumps(
-                flat_style(record, layer, palette[0],
-                           f"{layer.replace('_', ' ').title()}, single colour"),
+                flat_style(
+                    record,
+                    layer,
+                    palette[0],
+                    f"{layer.replace('_', ' ').title()}, single colour",
+                ),
                 indent=2,
-            ) + "\n"
+            )
+            + "\n"
         )
         print(f"    wrote {directory.relative_to(ROOT)}", file=sys.stderr)
     return 0

@@ -6,6 +6,7 @@ place and adding one is a deliberate edit. Run from anywhere:
 
     python3 tests/run_all.py
 """
+
 import subprocess
 import sys
 from pathlib import Path

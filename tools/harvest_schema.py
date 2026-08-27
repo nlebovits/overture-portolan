@@ -48,8 +48,7 @@ SCHEMA_TAG = "v1.18.0"
 SCHEMA_DIR = ROOT / "sources" / f"overture-schema-{SCHEMA_TAG}"
 SCHEMA_URL = f"https://github.com/OvertureMaps/schema/tree/{SCHEMA_TAG}/schema"
 SCHEMA_TARBALL = (
-    "https://github.com/OvertureMaps/schema/archive/refs/tags/"
-    f"{SCHEMA_TAG}.tar.gz"
+    f"https://github.com/OvertureMaps/schema/archive/refs/tags/{SCHEMA_TAG}.tar.gz"
 )
 
 # Every theme/type Overture publishes, and the order collections appear in.
@@ -81,9 +80,7 @@ AUTHORED: dict[str, str] = {
         "skip row groups that fall outside a query window, without decoding any "
         "geometry. See the GeoParquet 1.1 specification."
     ),
-    "geometry": (
-        "The feature geometry, stored as well-known binary in EPSG:4326."
-    ),
+    "geometry": ("The feature geometry, stored as well-known binary in EPSG:4326."),
     "names": (
         "Properties defining the names of a feature. The struct carries a "
         "primary name, optional common names by language, and optional rules. "
@@ -93,9 +90,7 @@ AUTHORED: dict[str, str] = {
         "Cartographic hints Overture supplies for rendering, such as the zoom "
         "range over which a feature should be drawn."
     ),
-    "id": (
-        "The stable Overture feature identifier, unique within the release."
-    ),
+    "id": ("The stable Overture feature identifier, unique within the release."),
 }
 
 # Columns the schema leaves undescribed where the meaning differs per
@@ -118,6 +113,7 @@ AUTHORED_PER_COLLECTION: dict[str, str] = {
     ),
 }
 
+
 def fetch_schema() -> None:
     """Download the pinned schema tag into sources/.
 
@@ -134,7 +130,7 @@ def fetch_schema() -> None:
         for member in archive.getmembers():
             if not member.isfile() or not member.name.startswith(prefix):
                 continue
-            target = SCHEMA_DIR / member.name[len(prefix):]
+            target = SCHEMA_DIR / member.name[len(prefix) :]
             target.parent.mkdir(parents=True, exist_ok=True)
             source = archive.extractfile(member)
             if source is not None:
@@ -249,12 +245,8 @@ def columns_for(theme: str, type_name: str) -> dict[str, dict[str, Any]]:
     out: dict[str, dict[str, Any]] = {}
     for name, spec in resolved.items():
         spec = spec if isinstance(spec, dict) else {}
-        per_collection = AUTHORED_PER_COLLECTION.get(
-            f"{theme}/{type_name}:{name}"
-        )
-        description = (
-            spec.get("description") or per_collection or AUTHORED.get(name)
-        )
+        per_collection = AUTHORED_PER_COLLECTION.get(f"{theme}/{type_name}:{name}")
+        description = spec.get("description") or per_collection or AUTHORED.get(name)
         if spec.get("description"):
             source = "overture-schema"
         elif description:
@@ -269,7 +261,8 @@ def columns_for(theme: str, type_name: str) -> dict[str, dict[str, Any]]:
         if values:
             entry["enum"] = [
                 {"value": v, "description": _tidy(comments[v])}
-                if v in comments else {"value": v}
+                if v in comments
+                else {"value": v}
                 for v in values
             ]
         out[name] = entry

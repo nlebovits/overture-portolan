@@ -5,9 +5,9 @@ parquet footers. Every column meaning comes from `sources/columns.json`, which
 was harvested from Overture's pinned JSON Schema. Nothing is authored from
 memory, which is what `portolan-bootstrap` requires of a published agent guide.
 
-The queries these files contain must run before the catalog ships.
-`tools/verify_queries.py` extracts and executes every fenced `sql` block, so a
-recipe that fails is caught rather than published.
+Every query these files contain runs against the published data before the
+catalog ships. A recipe that fails costs a reader the time to debug someone
+else's mistake, so it is fixed or deleted rather than published.
 """
 
 from __future__ import annotations
@@ -30,21 +30,18 @@ def _https_first(record: dict[str, Any]) -> str:
 def collection_readme(
     key: str, record: dict[str, Any], meanings: dict[str, Any], release: str
 ) -> str:
-    theme, type_name = key.split("/", 1)
+    type_name = key.split("/", 1)[1]
     rows = sum(i["rows"] for i in record["items"])
     parts = len(record["items"])
-    geometry = sorted({
-        g for i in record["items"] for g in i["geometry_types"]
-    })
+    geometry = sorted({g for i in record["items"] for g in i["geometry_types"]})
 
     described = sum(
-        1 for c in record["columns"]
-        if (meanings.get(c) or {}).get("description")
+        1 for c in record["columns"] if (meanings.get(c) or {}).get("description")
     )
 
-    return f"""# {record['title'] or type_name}
+    return f"""# {record["title"] or type_name}
 
-{record['description']}
+{record["description"]}
 
 This is a Portolan mirror. Overture Maps produces and hosts the data, and this
 catalog adds column documentation, styles, and a thumbnail. No bytes are copied.
@@ -57,10 +54,10 @@ Every asset link points at Overture's own buckets.
 | Release | `{release}` |
 | Parts | {parts} |
 | Rows | {rows:,} |
-| Geometry | {', '.join(geometry)} |
-| Columns | {len(record['columns'])}, {described} with a description |
-| Format | GeoParquet {record['items'][0]['geoparquet_version']}, WKB |
-| Licence | {record['license']} |
+| Geometry | {", ".join(geometry)} |
+| Columns | {len(record["columns"])}, {described} with a description |
+| Format | GeoParquet {record["items"][0]["geoparquet_version"]}, WKB |
+| Licence | {record["license"]} |
 
 ## Reading it
 
@@ -103,19 +100,18 @@ def collection_agents(
     if coded:
         lines = []
         for name, values in coded:
-            rendered = ", ".join(
-                f"`{v['value']}`" for v in values[:12]
-            )
+            rendered = ", ".join(f"`{v['value']}`" for v in values[:12])
             more = "" if len(values) <= 12 else f", and {len(values) - 12} more"
             lines.append(f"- **`{name}`**: {rendered}{more}")
         coded_block = (
             "## Coded columns\n\n"
             "Every value below is documented in Overture's schema, and the\n"
             "meanings are carried in `table:columns` on the collection.\n\n"
-            + "\n".join(lines) + "\n\n"
+            + "\n".join(lines)
+            + "\n\n"
         )
 
-    return f"""# AGENTS.md — {record['title'] or type_name}
+    return f"""# AGENTS.md — {record["title"] or type_name}
 
 Guidance for agents and automated clients reading this collection.
 
@@ -168,9 +164,9 @@ geometry in {rows:,} rows.
 
 ## Row groups
 
-Parts hold {min(i['row_groups'] for i in record['items'])} to
-{max(i['row_groups'] for i in record['items'])} row groups. The largest holds
-{max(i['max_row_group_rows'] for i in record['items']):,} rows, which is inside
+Parts hold {min(i["row_groups"] for i in record["items"])} to
+{max(i["row_groups"] for i in record["items"])} row groups. The largest holds
+{max(i["max_row_group_rows"] for i in record["items"]):,} rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
 {coded_block}## Schema and field notes
@@ -211,9 +207,7 @@ style, and a thumbnail. The data stays on Overture's buckets.
 
 
 def theme_agents(theme: str, title: str, keys: list[str], release: str) -> str:
-    listed = "\n".join(
-        f"- `{k.split('/', 1)[1]}`" for k in sorted(keys)
-    )
+    listed = "\n".join(f"- `{k.split('/', 1)[1]}`" for k in sorted(keys))
     return f"""# AGENTS.md — {title}
 
 The Overture Maps `{theme}` theme, release `{release}`.

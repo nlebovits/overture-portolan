@@ -37,7 +37,6 @@ import argparse
 import hashlib
 import json
 import math
-import struct
 import sys
 import urllib.error
 import urllib.request
@@ -77,8 +76,10 @@ WINDOWS: dict[str, tuple[float, float, float, float]] = {
 def mercator(lon: float, lat: float) -> tuple[float, float]:
     lat = max(-MAX_LAT, min(MAX_LAT, lat))
     x = EARTH_CIRC * lon / 360.0
-    y = EARTH_CIRC * math.log(math.tan(math.pi / 4 + math.radians(lat) / 2)) / (
-        2 * math.pi
+    y = (
+        EARTH_CIRC
+        * math.log(math.tan(math.pi / 4 + math.radians(lat) / 2))
+        / (2 * math.pi)
     )
     return x, y
 
@@ -188,15 +189,11 @@ def probe_styles(style: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]
     A symbol layer with no glyphs endpoint crashes MapLibre GL Native outright,
     so it is stripped from both.
     """
-    layers = [
-        layer for layer in style["layers"] if layer.get("type") != "symbol"
-    ]
+    layers = [layer for layer in style["layers"] if layer.get("type") != "symbol"]
     probe = {**style, "layers": layers}
     blank = {
         **style,
-        "layers": [
-            layer for layer in layers if layer.get("type") == "background"
-        ],
+        "layers": [layer for layer in layers if layer.get("type") == "background"],
     }
     return probe, blank
 
@@ -236,8 +233,7 @@ def main() -> int:
 
         window = WINDOWS.get(key)
         strategy = "window" if window else "full-extent"
-        source_box = list(window) if window else record[
-            "extent"]["spatial"]["bbox"][0]
+        source_box = list(window) if window else record["extent"]["spatial"]["bbox"][0]
         box, report = frame(source_box)
         print(
             f"  {key}: bbox={[round(v, 3) for v in box]} "
@@ -273,7 +269,7 @@ def main() -> int:
         "collection\tstrategy\tbbox\tzoom\tgate1\n" + "\n".join(records) + "\n"
     )
     print(
-        f"\nGate 2 is not automated. Look at every image before you publish.",
+        "\nGate 2 is not automated. Look at every image before you publish.",
         file=sys.stderr,
     )
     return 0

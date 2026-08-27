@@ -95,8 +95,7 @@ def harvest_item(s3: pafs.S3FileSystem, url: str) -> dict[str, Any]:
         "geometry": item.get("geometry"),
         "datetime": (item.get("properties") or {}).get("datetime"),
         "href": href,
-        "s3": f"s3://{PARQUET_BUCKET}/"
-              + href.split(".amazonaws.com/", 1)[1],
+        "s3": f"s3://{PARQUET_BUCKET}/" + href.split(".amazonaws.com/", 1)[1],
         "upstream_item": url,
     }
     record.update(footer(s3, href))
@@ -121,9 +120,7 @@ def harvest_collection(
         "description": collection.get("description"),
         "license": collection.get("license"),
         "extent": collection.get("extent"),
-        "columns": [
-            c["name"] for c in collection.get("table:columns", [])
-        ],
+        "columns": [c["name"] for c in collection.get("table:columns", [])],
         "upstream_collection": url,
         "pmtiles": f"{TILES_BASE}/{{release}}/{theme}.pmtiles",
         "items": items,
@@ -133,20 +130,20 @@ def harvest_collection(
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "-c", "--collection", action="append", metavar="THEME/TYPE",
+        "-c",
+        "--collection",
+        action="append",
+        metavar="THEME/TYPE",
         help="restrict to one collection; repeatable",
     )
     parser.add_argument("--workers", type=int, default=8)
-    parser.add_argument(
-        "--out", default=str(ROOT / "sources" / "upstream.json")
-    )
+    parser.add_argument("--out", default=str(ROOT / "sources" / "upstream.json"))
     args = parser.parse_args()
 
     root = fetch(STAC_ROOT)
     release = root["latest"]
     release_url = next(
-        link["href"] for link in links(root, "child")
-        if link.get("latest")
+        link["href"] for link in links(root, "child") if link.get("latest")
     )
     print(f"release {release}", file=sys.stderr)
 
@@ -155,13 +152,11 @@ def main() -> int:
     collections: dict[str, Any] = {}
 
     for theme_link in sorted(
-        links(fetch(release_url), "child"), key=lambda l: l["href"]
+        links(fetch(release_url), "child"), key=lambda link: link["href"]
     ):
         theme_doc = fetch(theme_link["href"])
         theme = theme_doc["id"]
-        for child in sorted(
-            links(theme_doc, "child"), key=lambda l: l["href"]
-        ):
+        for child in sorted(links(theme_doc, "child"), key=lambda link: link["href"]):
             url = child["href"]
             type_name = url.rstrip("/").split("/")[-2]
             key = f"{theme}/{type_name}"
@@ -182,9 +177,7 @@ def main() -> int:
         "docs_url": DOCS_URL,
         "collections": collections,
     }
-    Path(args.out).write_text(
-        json.dumps(upstream, indent=2, sort_keys=True) + "\n"
-    )
+    Path(args.out).write_text(json.dumps(upstream, indent=2, sort_keys=True) + "\n")
 
     fingerprint = {
         "release": release,
