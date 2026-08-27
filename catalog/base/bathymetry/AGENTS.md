@@ -1,4 +1,4 @@
-# AGENTS.md — bathymetry
+# AGENTS.md — Bathymetry
 
 Guidance for agents and automated clients reading this collection.
 
@@ -14,7 +14,7 @@ Overture Maps `base` theme, `bathymetry` type, release `2026-08-19.0`.
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
 
-## Accessing the data
+## Accessing the Data
 
 Read every part at once through the glob. The `s3://` form needs a
 partition-aware reader, and DuckDB is one:
@@ -33,7 +33,7 @@ SELECT count(*) AS rows
 FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=bathymetry/part-00000-cf17cfee-00e5-5871-9cab-7f48d910d28f-c000.zstd.parquet');
 ```
 
-## The bbox column is the fast path
+## The Bbox Column Is the Fast Path
 
 Every part carries a GeoParquet 1.1 `bbox` covering column, verified in the
 footer. Filter on it before any spatial predicate. The reader then skips whole
@@ -49,26 +49,26 @@ WHERE bbox.xmin BETWEEN -0.6 AND 0.4
 A query that calls `ST_Intersects` without a bbox filter first reads every
 geometry in 59,963 rows.
 
-## Row groups
+## Row Groups
 
 Parts hold 4 to
 4 row groups. The largest holds
 15,200 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
-## Known issues
+## Known Issues
 
 Read these before you trust a query against this collection.
 
 - **The rows are not spatially ordered.** rashid reports PTL-DAT-006 against release 2026-08-19.0: 59,963 rows in 4 row groups do not cluster spatially. A reader cannot skip any part of the file, so a bbox filter prunes nothing here and a spatial query reads the whole collection. Reproduce it with `python3 tests/test_data_pass.py base/bathymetry`, which takes about 13 seconds.
 
-## Schema and field notes
+## Schema and Field Notes
 
 The collection's `table:columns` carries a description for every documented
 column. Those descriptions are harvested from Overture's JSON Schema at tag
 `v1.18.0` rather than authored here, so they track upstream.
 
-## Related collections
+## Related Collections
 
 Every collection in this catalog shares the `id` column convention and the
 `bbox` covering column, so the access patterns above apply unchanged. See the

@@ -1,0 +1,62 @@
+# Run every published SQL recipe against Overture's current bytes each week.
+# This checks the documentation itself. The data pass checks GeoParquet rules.
+name: Agent queries
+
+on:
+  schedule:
+    # The data pass starts on Thursday. Keep these two remote checks separate.
+    - cron: "41 3 * * 5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-queries
+  cancel-in-progress: false
+
+jobs:
+  guides:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.list.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - id: list
+        name: List the query guides
+        run: python3 tests/test_agent_queries.py --github-output matrix
+
+  query:
+    needs: guides
+    name: ${{ matrix.guide }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        guide: ${{ fromJSON(needs.guides.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Keep the same version as the established phl-housing-demo query gate.
+      - name: Install DuckDB
+        run: |
+          curl -fsSL --retry 3 -o /tmp/duckdb.zip \
+            https://github.com/duckdb/duckdb/releases/download/v1.5.1/duckdb_cli-linux-amd64.zip
+          unzip -q /tmp/duckdb.zip -d /usr/local/bin
+          duckdb --version
+
+      - name: Run every documented query
+        env:
+          GUIDE: ${{ matrix.guide }}
+        run: python3 tests/test_agent_queries.py "$GUIDE"
