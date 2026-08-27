@@ -1,0 +1,122 @@
+{
+  "version": 8,
+  "name": "Land Use by subtype",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 13,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "land_use-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "land_use",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "managed",
+          "#386641",
+          "recreation",
+          "#6a994e",
+          "residential",
+          "#a7c957",
+          "park",
+          "#bc4749",
+          "agriculture",
+          "#f2e8cf",
+          "horticulture",
+          "#457b9d",
+          "developed",
+          "#1d3557",
+          "education",
+          "#a8dadc",
+          "golf",
+          "#e63946",
+          "pedestrian",
+          "#2b9348",
+          "#9e9e9e"
+        ],
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "land_use-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "land_use",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#101418",
+        "line-width": 0.3
+      }
+    },
+    {
+      "id": "land_use-line",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "land_use",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "LineString"
+      ],
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "managed",
+          "#386641",
+          "recreation",
+          "#6a994e",
+          "residential",
+          "#a7c957",
+          "park",
+          "#bc4749",
+          "agriculture",
+          "#f2e8cf",
+          "horticulture",
+          "#457b9d",
+          "developed",
+          "#1d3557",
+          "education",
+          "#a8dadc",
+          "golf",
+          "#e63946",
+          "pedestrian",
+          "#2b9348",
+          "#9e9e9e"
+        ],
+        "line-width": 1.1
+      }
+    }
+  ]
+}

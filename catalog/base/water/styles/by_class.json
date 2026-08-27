@@ -1,0 +1,179 @@
+{
+  "version": 8,
+  "name": "Water by class",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 13,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "water-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "class"
+          ],
+          "swimming_pool",
+          "#386641",
+          "stream",
+          "#6a994e",
+          "water",
+          "#a7c957",
+          "drain",
+          "#bc4749",
+          "pond",
+          "#f2e8cf",
+          "river",
+          "#457b9d",
+          "ditch",
+          "#1d3557",
+          "basin",
+          "#a8dadc",
+          "canal",
+          "#e63946",
+          "wastewater",
+          "#2b9348",
+          "#9e9e9e"
+        ],
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "water-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "water",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#101418",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "water-line",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "water",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "LineString"
+      ],
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "class"
+          ],
+          "swimming_pool",
+          "#386641",
+          "stream",
+          "#6a994e",
+          "water",
+          "#a7c957",
+          "drain",
+          "#bc4749",
+          "pond",
+          "#f2e8cf",
+          "river",
+          "#457b9d",
+          "ditch",
+          "#1d3557",
+          "basin",
+          "#a8dadc",
+          "canal",
+          "#e63946",
+          "wastewater",
+          "#2b9348",
+          "#9e9e9e"
+        ],
+        "line-width": 1.1
+      }
+    },
+    {
+      "id": "water-point",
+      "type": "circle",
+      "source": "overture",
+      "source-layer": "water",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Point"
+      ],
+      "paint": {
+        "circle-color": [
+          "match",
+          [
+            "get",
+            "class"
+          ],
+          "swimming_pool",
+          "#386641",
+          "stream",
+          "#6a994e",
+          "water",
+          "#a7c957",
+          "drain",
+          "#bc4749",
+          "pond",
+          "#f2e8cf",
+          "river",
+          "#457b9d",
+          "ditch",
+          "#1d3557",
+          "basin",
+          "#a8dadc",
+          "canal",
+          "#e63946",
+          "wastewater",
+          "#2b9348",
+          "#9e9e9e"
+        ],
+        "circle-radius": 2.4,
+        "circle-opacity": 0.9
+      }
+    }
+  ]
+}

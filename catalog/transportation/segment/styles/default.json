@@ -1,0 +1,68 @@
+{
+  "version": 8,
+  "name": "Segment by class",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/transportation.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 14,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "segment-line",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "segment",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "LineString"
+      ],
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "class"
+          ],
+          "residential",
+          "#2a9d8f",
+          "service",
+          "#264653",
+          "footway",
+          "#e9c46a",
+          "tertiary",
+          "#f4a261",
+          "unclassified",
+          "#e76f51",
+          "unknown",
+          "#457b9d",
+          "secondary",
+          "#1d3557",
+          "primary",
+          "#a8dadc",
+          "path",
+          "#588157",
+          "steps",
+          "#3a5a40",
+          "#9e9e9e"
+        ],
+        "line-width": 1.1
+      }
+    }
+  ]
+}

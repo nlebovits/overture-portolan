@@ -1,0 +1,63 @@
+{
+  "version": 8,
+  "name": "Building Part, scaled by zoom",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 14,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "building_part-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "building_part",
+      "paint": {
+        "fill-color": "#c1553b",
+        "fill-opacity": 0.5
+      }
+    },
+    {
+      "id": "building_part-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "building_part",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#e8f1f2",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          0,
+          0.4,
+          14,
+          2.4
+        ]
+      }
+    }
+  ]
+}

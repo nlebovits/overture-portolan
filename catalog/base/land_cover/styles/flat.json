@@ -1,0 +1,51 @@
+{
+  "version": 8,
+  "name": "Land Cover, single colour",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 13,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "land_cover-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "land_cover",
+      "paint": {
+        "fill-color": "#386641",
+        "fill-opacity": 0.5
+      }
+    },
+    {
+      "id": "land_cover-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "land_cover",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#e8f1f2",
+        "line-width": 0.6
+      }
+    }
+  ]
+}

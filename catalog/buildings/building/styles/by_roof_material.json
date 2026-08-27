@@ -1,0 +1,78 @@
+{
+  "version": 8,
+  "name": "Building by roof_material",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 14,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "building-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "building",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "roof_material"
+          ],
+          "roof_tiles",
+          "#e8a33d",
+          "metal",
+          "#c1553b",
+          "tar_paper",
+          "#7f5539",
+          "slate",
+          "#b08968",
+          "gravel",
+          "#ddb892",
+          "concrete",
+          "#9c6644",
+          "glass",
+          "#e6ccb2",
+          "grass",
+          "#a68a64",
+          "wood",
+          "#c2a878",
+          "copper",
+          "#8a6f4a",
+          "#9e9e9e"
+        ],
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "building-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "building",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#101418",
+        "line-width": 0.3
+      }
+    }
+  ]
+}

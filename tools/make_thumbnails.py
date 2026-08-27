@@ -57,20 +57,65 @@ TARGET_ASPECT = 1.5
 MARGIN = 0.05
 MAX_CONTEXT = 2.5
 SIZE = 1024
-PROBE_SIZE = 256
+# The skill probes at 256 for speed. That produces false negatives on sparse
+# point layers: a 2.4 px circle survives at 1024 and vanishes at 256, so the
+# probe matches the blank and the gate rejects a good image. Measured on
+# addresses/address over Amsterdam, which renders 222 KB of address points at
+# 1024 and reports FAIL-empty when probed at 256. A render costs about a
+# second, so correctness is worth the extra one.
+PROBE_SIZE = SIZE
 BLANK_TOLERANCE = 1.15
 BACKGROUND = "#101418"
 
-# Strategy B windows, per portolan-thumbnails. A collection lands here when its
-# full extent renders poorly, and the reason is recorded with it.
+# Strategy B, per portolan-thumbnails. A collection lands here when a full
+# extent frame renders blank or flat, and each entry records why.
 #
-# divisions/division_area: `subtype` is hierarchical, so a global frame shows
-# only `country` and paints one colour. A window at country-to-region scale
-# shows the administrative subdivisions the collection is actually about. The
-# centre is western Europe, where Overture's division coverage is densest.
-WINDOWS: dict[str, tuple[float, float, float, float]] = {
-    "divisions/division_area": (-1.2, 47.6, 11.8, 54.3),
+# Eight of the fifteen render blank globally. The reason is measurable: the
+# layer's own minzoom inside the PMTiles archive, which is not the archive's
+# range. A global frame sits near z2, so any layer whose data starts above that
+# draws nothing. Read with tools/survey_layers.py.
+#
+# Each entry is (centre longitude, centre latitude, zoom). The frame is derived
+# from the zoom, so it always clears the layer's floor.
+WINDOWS: dict[str, tuple[float, float, int]] = {
+    # Layer starts at z14. Amsterdam, dense and completely covered.
+    "addresses/address": (4.895, 52.370, 16),
+    "places/place": (4.895, 52.370, 16),
+    # Layer starts at z13.
+    "base/infrastructure": (2.343, 48.858, 14),
+    "transportation/connector": (2.343, 48.858, 14),
+    # Layer starts at z8.
+    "buildings/building_part": (4.895, 52.370, 13),
+    # Layer starts at z4. Close enough that thinning does not show as holes.
+    "buildings/building": (2.343, 48.858, 13),
+    "transportation/segment": (2.343, 48.858, 11),
+    # Renders globally, but `subtype` is hierarchical, so a global frame shows
+    # only `country` and paints one colour.
+    "divisions/division_area": (4.0, 50.9, 6),
+    # These render globally and read as one grey continent against one grey
+    # ocean. The categorical variety is regional, so a region shows it. South
+    # Scandinavia and the Baltic carry coast, lakes, rivers, forest, and
+    # farmland inside one frame.
+    "base/land": (16.0, 59.5, 6),
+    "base/water": (17.0, 59.35, 9),
+    "base/land_cover": (16.0, 59.5, 6),
+    "base/land_use": (16.0, 59.5, 8),
 }
+
+
+def window_bbox(lon: float, lat: float, zoom: int) -> list[float]:
+    """A 3:2 frame centred on a point, at the span one zoom level covers.
+
+    The skill's table at SIZE=1024: 78.3 km at z11, 39.1 at z12, 19.6 at z13,
+    9.8 at z14. This derives the same figure rather than hard-coding a bbox, so
+    a window that renders too coarse is fixed by changing one integer.
+    """
+    span = EARTH_CIRC * SIZE / (256 * 2**zoom)
+    cx, cy = mercator(lon, lat)
+    half_w, half_h = span / 2, span / (2 * TARGET_ASPECT)
+    lon0, lat0 = unmercator(cx - half_w, cy - half_h)
+    lon1, lat1 = unmercator(cx + half_w, cy + half_h)
+    return [lon0, lat0, lon1, lat1]
 
 
 def mercator(lon: float, lat: float) -> tuple[float, float]:
@@ -119,6 +164,19 @@ def frame(bbox: list[float]) -> tuple[list[float], dict[str, Any]]:
         pad = (min(width / TARGET_ASPECT, data_h * MAX_CONTEXT) - height) / 2
         if pad > 0:
             y0, y1 = y0 - pad, y1 + pad
+
+    # Padding alone cannot reach 3:2 on a worldwide extent. The data already
+    # spans the frame, so MAX_CONTEXT caps the growth and the image stays
+    # nearly square. base/land and base/water both came out at 1024x868 and
+    # 1024x775 before this. Crop the taller axis instead, centred, which is
+    # what a world map does anyway. Cropping is not distortion: nothing is
+    # stretched, and the discarded band is the emptiest part of the frame.
+    width, height = x1 - x0, y1 - y0
+    if width / height < TARGET_ASPECT:
+        keep = width / TARGET_ASPECT
+        centre = (y0 + y1) / 2
+        y0, y1 = centre - keep / 2, centre + keep / 2
+        warnings.append(f"cropped-y to reach {TARGET_ASPECT}:1")
 
     # Clamp by shifting, never by squashing.
     half = EARTH_CIRC / 2
@@ -233,8 +291,17 @@ def main() -> int:
 
         window = WINDOWS.get(key)
         strategy = "window" if window else "full-extent"
-        source_box = list(window) if window else record["extent"]["spatial"]["bbox"][0]
-        box, report = frame(source_box)
+        if window:
+            box, report = (
+                window_bbox(*window),
+                {
+                    "aspect": TARGET_ASPECT,
+                    "fill": 1.0,
+                    "warnings": [],
+                },
+            )
+        else:
+            box, report = frame(record["extent"]["spatial"]["bbox"][0])
         print(
             f"  {key}: bbox={[round(v, 3) for v in box]} "
             f"aspect={report['aspect']} fill={report['fill']} "
@@ -245,10 +312,31 @@ def main() -> int:
             print(f"    warn {warning}", file=sys.stderr)
 
         verdict, detail = gate_one(style, box)
+
+        # The skill budgets three retries per collection. A blank frame on a
+        # windowed collection almost always means the frame sits a level or two
+        # below where the layer carries data, so step in rather than give up.
+        # The layer floor in the archive is where data starts, not where it
+        # reads: addresses/address declares z14 and needs z16 to show anything.
+        if verdict == "FAIL-empty" and window:
+            for step in (1, 2, 3):
+                deeper = (window[0], window[1], window[2] + step)
+                box = window_bbox(*deeper)
+                verdict, detail = gate_one(style, box)
+                print(f"    retry at z{deeper[2]}: {verdict}", file=sys.stderr)
+                if verdict != "FAIL-empty":
+                    print(
+                        f"    NOTE: {key} needs z{deeper[2]}, not "
+                        f"z{window[2]}. Update WINDOWS.",
+                        file=sys.stderr,
+                    )
+                    window = deeper
+                    break
+
         print(f"    gate 1: {verdict}, {detail}", file=sys.stderr)
         if verdict == "FAIL-empty":
             sys.exit(
-                f"{key}: nothing rendered in the frame. Check the "
+                f"{key}: nothing rendered after three retries. Check the "
                 "source-layer name, the zoom range, and the bbox."
             )
 
