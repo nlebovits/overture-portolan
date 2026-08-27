@@ -66,15 +66,18 @@ python3 tests/run_all.py
 
 | Gate | What it checks |
 |---|---|
-| `test_setup.py` | Template placeholders are all edited, or all untouched |
 | `test_links.py` | Every relative link and asset href resolves |
-| `test_publish.py` | Nothing outside `catalog/` can be uploaded |
-| `test_upload_data.py` | Only staged files with an allowed suffix upload |
+| `test_upstream_alive.py` | Every remote `data` and `visual` href answers 2xx |
 | `test_stac_valid.py` | Valid STAC 1.1.0, via `stac-check` |
 | `test_conformance.py` | Portolan conformance, via `rashid` |
 
-The two validator gates skip when their tools are absent, so a clean checkout
-runs with no setup. CI installs both and enforces them.
+The two validator gates fail when their tools are absent. A skip reports a
+green run for a catalog that no validator read. Each failure names the one
+command that installs the tool.
+
+One gate runs outside that set. `test_live_hosting.py` probes the deployed
+host for HTTP range support and CORS, which needs a URL that a pull request
+does not have. `.github/workflows/pages.yml` runs it after each deploy.
 
 ## What this template does not decide
 

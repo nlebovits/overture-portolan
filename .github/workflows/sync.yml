@@ -1,0 +1,170 @@
+# Follows a new Overture release into a pull request.
+#
+# Overture ships a release each month. Part filenames carry a UUID, so every
+# asset href changes on every release even when the schema and the row counts
+# do not. A catalog that cites a pruned release serves nothing.
+#
+# This workflow regenerates the catalog and opens a pull request. It never
+# pushes to main. A human reads the diff, because the generator restates
+# upstream facts and a release can change what those facts are.
+#
+# Styles and thumbnails are not part of the sync. They need a browser engine
+# to render and a human to look at the result, and they do not go stale when
+# an href does.
+name: Sync
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  # Keep this. GitHub disables a schedule trigger after 60 days of repository
+  # inactivity, and a slipped Overture release would lose the schedule with no
+  # warning. This is the manual way back.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # One field decides whether the rest of this workflow runs. The STAC
+      # root carries "latest", and sources/fingerprint.json records the
+      # release the catalog describes now.
+      - id: release
+        name: Compare the latest release against the fingerprint
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import urllib.request
+
+          URL = "https://stac.overturemaps.org/catalog.json"
+          with urllib.request.urlopen(URL, timeout=60) as response:
+              latest = json.load(response)["latest"]
+          have = json.load(open("sources/fingerprint.json"))["release"]
+
+          print(f"latest={latest}")
+          print(f"have={have}")
+          print(f"changed={str(latest != have).lower()}")
+          PY
+
+      - name: Report an unchanged release
+        if: steps.release.outputs.changed == 'false'
+        env:
+          HAVE: ${{ steps.release.outputs.have }}
+        run: echo "Overture release ${HAVE} is current."
+
+      - name: Install the harvest and gate dependencies
+        if: steps.release.outputs.changed == 'true'
+        run: python -m pip install pyarrow 'rashid==0.1.7' stac-check
+
+      # sources/fingerprint.json is the committed baseline, and
+      # tools/harvest_overture.py overwrites it in place. Keep a copy first, so
+      # the gate has something to diff against.
+      - name: Keep the committed fingerprint as the baseline
+        if: steps.release.outputs.changed == 'true'
+        run: cp sources/fingerprint.json /tmp/fingerprint.baseline.json
+
+      - name: Harvest the column descriptions
+        if: steps.release.outputs.changed == 'true'
+        run: python3 tools/harvest_schema.py > sources/columns.json
+
+      - name: Harvest the Overture STAC and the parquet footers
+        if: steps.release.outputs.changed == 'true'
+        run: python3 tools/harvest_overture.py
+
+      - name: Build the catalog
+        if: steps.release.outputs.changed == 'true'
+        run: python3 tools/build_catalog.py
+
+      # Fails on a collection, a column, a licence, or a GeoParquet version
+      # that moved, and on a row group above the PORTO-DAT-008 cap. Item
+      # counts only go in the report, because ordinary releases move them.
+      - name: Fingerprint gate
+        if: steps.release.outputs.changed == 'true'
+        run: |
+          python3 tools/check_fingerprint.py \
+            --baseline /tmp/fingerprint.baseline.json \
+            --current sources/fingerprint.json \
+            --report /tmp/fingerprint.md
+
+      # CI_LIGHT exempts asset hrefs with a data suffix from the file-exists
+      # check, because this runner holds the metadata and not the bytes.
+      # tests/test_upstream_alive.py still sends a HEAD to every remote data
+      # and visual href, which is the check that matters after a release.
+      - name: Catalog gates
+        if: steps.release.outputs.changed == 'true'
+        env:
+          CI_LIGHT: "1"
+        run: python3 tests/run_all.py
+
+      - name: Open the pull request
+        if: steps.release.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LATEST: ${{ steps.release.outputs.latest }}
+          HAVE: ${{ steps.release.outputs.have }}
+        run: |
+          branch="sync/overture-${LATEST}"
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add catalog sources/fingerprint.json
+          if git diff --cached --quiet; then
+            echo "The release moved but the catalog did not. Nothing to open."
+            exit 0
+          fi
+          git commit -m "feat: follow Overture release ${LATEST}"
+          git push --force origin "$branch"
+          {
+            echo "## What changed"
+            echo
+            cat /tmp/fingerprint.md
+            echo
+            echo "## Why"
+            echo
+            echo "Overture ships a release each month. Part filenames carry a"
+            echo "UUID, so every asset href changes on every release. The"
+            echo "catalog cited release \`${HAVE}\`. Overture removes that"
+            echo "release."
+            echo
+            echo "## Verification"
+            echo
+            echo "The sync ran the gates before it opened this pull request."
+            echo "Read the workflow log for the output:"
+            echo
+            echo '```'
+            echo "python3 tools/check_fingerprint.py \\"
+            echo "  --baseline /tmp/fingerprint.baseline.json \\"
+            echo "  --current sources/fingerprint.json"
+            echo "CI_LIGHT=1 python3 tests/run_all.py"
+            echo '```'
+            echo
+            echo "\`tests/test_upstream_alive.py\` sends a HEAD to every"
+            echo "distinct remote data and visual href in \`catalog/\`. Each"
+            echo "one answered 2xx on release \`${LATEST}\`."
+          } > /tmp/body.md
+          # A re-run force-pushes the same branch. The open pull request
+          # already points at it, so update the body instead of failing.
+          if [ -n "$(gh pr list --head "$branch" --state open --json number \
+              --jq '.[].number')" ]; then
+            gh pr edit "$branch" --body-file /tmp/body.md
+          else
+            gh pr create \
+              --base main \
+              --head "$branch" \
+              --title "feat: follow Overture release ${LATEST}" \
+              --body-file /tmp/body.md
+          fi

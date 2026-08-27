@@ -246,12 +246,31 @@ def build_collection(
         docs.collection_agents(key, record, meanings, release)
     )
 
+    # A single-file collection carries its data at collection level, so it
+    # writes no items at all. `written` stays empty, and the prune below then
+    # removes every item file a previous release left behind. That is the
+    # multi-part-to-single-part transition, which Overture does make:
+    # buildings/building_part went 3 parts to 1 between the only two releases
+    # available.
+    written = set()
     if not single:
         for item in record["items"]:
-            write(
-                directory / "items" / f"{item['id']}.json",
-                build_item(item, type_name),
-            )
+            path = directory / "items" / f"{item['id']}.json"
+            write(path, build_item(item, type_name))
+            written.add(path)
+
+    # Overture repartitions between releases, so a collection can hold fewer
+    # parts than it did. An item file left from the last release keeps a href
+    # into a pruned release directory, and the collection no longer links it.
+    # Nothing else deletes it: only --clean removes a theme, and that also
+    # removes the thumbnails and styles, which the sync does not regenerate.
+    items_dir = directory / "items"
+    for stale in sorted(items_dir.glob("*.json")):
+        if stale not in written:
+            stale.unlink()
+            print(f"    removed stale {stale.relative_to(ROOT)}", file=sys.stderr)
+    if items_dir.is_dir() and not any(items_dir.iterdir()):
+        items_dir.rmdir()
 
     return directory
 
@@ -372,8 +391,24 @@ def build_item(item: dict[str, Any], collection_id: str) -> dict[str, Any]:
     }
 
 
+def theme_children(theme: str) -> list[str]:
+    """Every collection on disk under a theme, sorted.
+
+    Read from the filesystem rather than from what this run built. A `-c` build
+    touches one collection, and its theme catalog must still link the rest.
+    """
+    root = CATALOG / theme
+    return sorted(path.parent.name for path in root.glob("*/collection.json"))
+
+
+def catalog_themes() -> list[str]:
+    """Every theme on disk, sorted. Same reason as `theme_children`."""
+    return sorted(path.parent.name for path in CATALOG.glob("*/catalog.json"))
+
+
 def build_theme(theme: str, type_names: list[str], release: str) -> None:
     title = THEME_TITLES.get(theme, theme.title())
+    type_names = theme_children(theme) or type_names
     keys = [f"{theme}/{name}" for name in type_names]
     (CATALOG / theme / "README.md").write_text(
         docs.theme_readme(theme, title, keys, release)
@@ -433,8 +468,8 @@ def build_theme(theme: str, type_names: list[str], release: str) -> None:
     )
 
 
-def update_root(themes: list[str], release: str) -> None:
-    """Add a child link per theme, and record the release in `updated`."""
+def update_root(release: str) -> None:
+    """Link every theme on disk, and record the release in `updated`."""
     path = CATALOG / "catalog.json"
     root = json.loads(path.read_text())
     keep = [link for link in root["links"] if link.get("rel") != "child"]
@@ -445,7 +480,7 @@ def update_root(themes: list[str], release: str) -> None:
             "type": "application/json",
             "title": THEME_TITLES.get(theme, theme.title()),
         }
-        for theme in sorted(themes)
+        for theme in catalog_themes()
     ]
     root["updated"] = f"{release[:10]}T00:00:00Z"
     write(path, root)
@@ -493,7 +528,7 @@ def main() -> int:
     for theme, type_names in sorted(by_theme.items()):
         build_theme(theme, type_names, release)
 
-    update_root(sorted(by_theme), release)
+    update_root(release)
     if CLAMPED:
         print(
             f"\n{len(CLAMPED)} bbox value(s) clamped to the WGS84 range. "
