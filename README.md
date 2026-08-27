@@ -1,110 +1,58 @@
-# Portolan Catalog Template
+# Overture Maps Portolan Catalog
 
-A starting point for a [Portolan](https://www.portolan-sdi.org/) catalog whose
-metadata lives in git. Click **Use this template**, work through
-[SETUP.md](SETUP.md), and you have a repository whose CI validates every change
-before it publishes.
+This repository maintains a Portolan mirror of Overture Maps release
+`2026-08-19.0`. It publishes metadata, documentation, styles, and thumbnails.
+The data stays in Overture's public buckets.
 
-**`catalog/` is the published catalog.** Everything in it is published.
-Everything outside it never is. That boundary is the whole publish contract,
-and `tools/publish.py` has no flag or config key that widens it.
+The live catalog starts at
+<https://nlebovits.github.io/overture-portolan/catalog.json>.
 
-## Three kinds of file
+## Use the Catalog
 
-| Kind | Where | Example |
-|---|---|---|
-| Tracked and published | inside `catalog/` | STAC JSON, `README.md`, `AGENTS.md`, thumbnails, logos |
-| Tracked, never published | outside `catalog/` | `tools/`, `tests/`, `docs/`, this README, `catalog.publish.yaml` |
-| Neither | gitignored | GeoParquet, COGs, PMTiles, credentials |
+Start with the [catalog README](catalog/README.md) for coverage, licenses, and
+provenance. Read the [catalog agent guide](catalog/AGENTS.md) for tested DuckDB
+queries, join keys, and data limits.
 
-The data lives in object storage next to the published metadata. The
-repository references it by URL and never stores it.
+Each collection also has a README and an agent guide. Those files record its
+row count, columns, access paths, and known issues.
 
-## Layout
+## Repository Structure
 
-| Path | What it is |
+| Path | Purpose |
 |---|---|
-| `catalog/` | The published tree, synced 1:1 to object storage |
-| `catalog.publish.yaml` | Where it publishes, and under what public URL |
-| `tools/publish.py` | The sync. Dry run by default |
-| `tools/upload_data.py` | The data upload. Dry run by default |
-| `tests/` | The gates CI runs on every pull request |
-| `docs/conformance.md` | Any validator finding this catalog accepts, and why |
-| `SETUP.md` | The checklist. Delete it when you are done |
+| `catalog/` | The complete published catalog |
+| `sources/` | Authored and harvested generator inputs |
+| `tools/` | Catalog, style, thumbnail, and harvest tools |
+| `tests/` | Catalog and remote-data checks |
+| `docs/` | Publication and conformance decisions |
 
-## Publish
+The scripts in `tools/` generate `catalog/`. Edit a generator or its input
+instead of generated JSON. Never add Overture data files to this repository.
 
-```bash
-python3 tools/publish.py            # dry run: what would change
-python3 tools/publish.py --confirm  # upload; needs AWS credentials
-```
+## Verification
 
-It never deletes. Removing a file from `catalog/` does not unpublish it, so
-delete the object yourself if that is what you meant.
-
-## Upload the data
-
-The data is too large for git, so it lives outside `catalog/`.
-`tools/upload_data.py` carries it to the same bucket prefix. Set `data_dir` in
-`catalog.publish.yaml` to the directory that holds it.
-
-```bash
-python3 tools/upload_data.py            # dry run: what would change
-python3 tools/upload_data.py --confirm  # upload; needs AWS credentials
-```
-
-Both scripts share one set of rules. `upload_data.py` imports the sentinel
-guard, the content types, the change detection, and the upload pool from
-`publish.py`. It changes one thing, the directory it walks. Only the suffixes
-in its allow-list upload, so staged scratch files stay out of the bucket.
-
-## Test
+Run the pull request gates:
 
 ```bash
 python3 tests/run_all.py
 ```
 
-| Gate | What it checks |
-|---|---|
-| `test_links.py` | Every relative link and asset href resolves |
-| `test_upstream_alive.py` | Every remote `data` and `visual` href answers 2xx |
-| `test_stac_valid.py` | Valid STAC 1.1.0, via `stac-check` |
-| `test_conformance.py` | Portolan conformance, via `rashid` |
-
-The two validator gates fail when their tools are absent. A skip reports a
-green run for a catalog that no validator read. Each failure names the one
-command that installs the tool.
-
-Two gates run outside that set, because neither fits a pull request.
-
-`test_live_hosting.py` probes the deployed host for HTTP range support and
-CORS, which needs a URL that a pull request does not have.
-`.github/workflows/pages.yml` runs it after each deploy.
-
-`test_data_pass.py` reads the bytes of every `data` asset over HTTP range and
-checks the GeoParquet rules. One collection is one run:
+The weekly data pass reads every GeoParquet asset. A separate weekly workflow
+runs every SQL block in the 16 published query guides:
 
 ```bash
-python3 tests/test_data_pass.py divisions/division_area
+python3 tests/test_agent_queries.py
 ```
 
-The catalog cites 987 parts at about 7 seconds each, so the whole pass is about
-2 hours. `.github/workflows/data-pass.yml` runs it every week, one job per
-collection, and files an issue when it finds an error. It reports and it does
-not gate: the bytes belong to Overture, and a finding can name data this
-repository cannot fix. See [docs/conformance.md](docs/conformance.md).
+That command needs the DuckDB CLI and network access to Overture's buckets.
 
-## What this template does not decide
+## Publication
 
-How a published catalog points back at the repository that maintains it. Three
-encodings are in use across real catalogs and none is standardized, so this
-template ships none of them rather than freezing one in by default. The
-tradeoffs are in
-[portolan-spec#145](https://github.com/portolan-sdi/portolan-spec/issues/145)
-and in the
-[git-backed catalogs guidance](https://github.com/portolan-sdi/portolan-spec/blob/main/specs/best-practices/git-backed-catalogs.md).
+A push to `main` deploys `catalog/` to GitHub Pages. The site hosts metadata
+only. Read [the publication decision](docs/publication.md) before any hosting,
+item-shape, or asset-format change.
 
 ## License
 
-Apache-2.0, covering the tooling in this repository. The data you catalog
-carries its own license, which belongs in `catalog/README.md`.
+Apache-2.0 covers this repository's code and metadata. Overture data uses the
+licenses listed in the [catalog README](catalog/README.md#license).

@@ -1,4 +1,4 @@
-# AGENTS.md — division_area
+# AGENTS.md — Division Area
 
 Guidance for agents and automated clients reading this collection.
 
@@ -14,7 +14,7 @@ Overture Maps `divisions` theme, `division_area` type, release `2026-08-19.0`.
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
 
-## Accessing the data
+## Accessing the Data
 
 Read every part at once through the glob. The `s3://` form needs a
 partition-aware reader, and DuckDB is one:
@@ -33,7 +33,7 @@ SELECT count(*) AS rows
 FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=divisions/type=division_area/part-00000-f96e181e-fc0f-5b29-a7c1-054128d2640e-c000.zstd.parquet');
 ```
 
-## The bbox column is the fast path
+## The Bbox Column Is the Fast Path
 
 Every part carries a GeoParquet 1.1 `bbox` covering column, verified in the
 footer. Filter on it before any spatial predicate. The reader then skips whole
@@ -49,14 +49,14 @@ WHERE bbox.xmin BETWEEN -0.6 AND 0.4
 A query that calls `ST_Intersects` without a bbox filter first reads every
 geometry in 1,074,177 rows.
 
-## Row groups
+## Row Groups
 
 Parts hold 32 to
 128 row groups. The largest holds
 4,556 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
-## Coded columns
+## Coded Columns
 
 Every value below is documented in Overture's schema, and the
 meanings are carried in `table:columns` on the collection.
@@ -64,13 +64,13 @@ meanings are carried in `table:columns` on the collection.
 - **`subtype`**: `country`, `dependency`, `macroregion`, `region`, `macrocounty`, `county`, `localadmin`, `locality`, `borough`, `macrohood`, `neighborhood`, `microhood`
 - **`class`**: `land`, `maritime`
 
-## Schema and field notes
+## Schema and Field Notes
 
 The collection's `table:columns` carries a description for every documented
 column. Those descriptions are harvested from Overture's JSON Schema at tag
 `v1.18.0` rather than authored here, so they track upstream.
 
-## Related collections
+## Related Collections
 
 Every collection in this catalog shares the `id` column convention and the
 `bbox` covering column, so the access patterns above apply unchanged. See the

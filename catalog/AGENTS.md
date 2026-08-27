@@ -93,7 +93,7 @@ An agent that walks `rel="item"` links to find data will find nothing in those
 four and will report them as empty. Read the collection's own `assets.data`
 first, and fall back to items only when it is absent.
 
-## The bbox Covering Column Is The Fast Path
+## The Bbox Covering Column Is the Fast Path
 
 Every part carries a GeoParquet 1.1 `bbox` covering column, a struct of `xmin`,
 `ymin`, `xmax`, and `ymax`. Each of the four is a plain double with min and max

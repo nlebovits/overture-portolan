@@ -84,7 +84,7 @@ def collection_readme(
         1 for c in record["columns"] if (meanings.get(c) or {}).get("description")
     )
 
-    return f"""# {record["title"] or type_name}
+    return f"""# {type_name.replace("_", " ").title()}
 
 {record["description"]}
 
@@ -97,7 +97,7 @@ This is a Portolan mirror. Overture Maps produces and hosts the data, and this
 catalog adds column documentation, styles, and a thumbnail. No bytes are copied.
 Every asset link points at Overture's own buckets.
 
-## What is here
+## What Is Here
 
 | | |
 |---|---|
@@ -109,7 +109,7 @@ Every asset link points at Overture's own buckets.
 | Format | GeoParquet {record["items"][0]["geoparquet_version"]}, WKB |
 | Licence | {record["license"]} |
 
-## Reading it
+## Reading It
 
 The data is GeoParquet on a public bucket. No credentials are needed.
 
@@ -122,7 +122,7 @@ FROM read_parquet('{_glob(record)}');
 See [AGENTS.md](AGENTS.md) for join keys, the bbox pruning pattern, and more
 queries.
 
-## Where this came from
+## Where This Came From
 
 Overture Maps publishes this data under release `{release}`. Column meanings
 come from Overture's JSON Schema at tag `v1.18.0`. Both are linked from the
@@ -133,7 +133,7 @@ Attribution follows [Overture's terms](https://docs.overturemaps.org/attribution
 
 
 def _known_issues(key: str) -> str:
-    """The `## Known issues` section, or nothing when there is none."""
+    """The `## Known Issues` section, or nothing when there is none."""
     entries = list(KNOWN_ISSUES.get(key, []))
     if key in SAMPLED_LEGENDS:
         entries.append(
@@ -148,7 +148,7 @@ def _known_issues(key: str) -> str:
         return ""
     body = "\n\n".join(f"- {e}" for e in entries)
     return (
-        "## Known issues\n\n"
+        "## Known Issues\n\n"
         "Read these before you trust a query against this collection.\n\n"
         f"{body}\n\n"
     )
@@ -176,14 +176,14 @@ def collection_agents(
             more = "" if len(values) <= 12 else f", and {len(values) - 12} more"
             lines.append(f"- **`{name}`**: {rendered}{more}")
         coded_block = (
-            "## Coded columns\n\n"
+            "## Coded Columns\n\n"
             "Every value below is documented in Overture's schema, and the\n"
             "meanings are carried in `table:columns` on the collection.\n\n"
             + "\n".join(lines)
             + "\n\n"
         )
 
-    return f"""# AGENTS.md — {record["title"] or type_name}
+    return f"""# AGENTS.md — {type_name.replace("_", " ").title()}
 
 Guidance for agents and automated clients reading this collection.
 
@@ -199,7 +199,7 @@ Overture Maps `{theme}` theme, `{type_name}` type, release `{release}`.
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
 
-## Accessing the data
+## Accessing the Data
 
 Read every part at once through the glob. The `s3://` form needs a
 partition-aware reader, and DuckDB is one:
@@ -218,7 +218,7 @@ SELECT count(*) AS rows
 FROM read_parquet('{_https_first(record)}');
 ```
 
-## The bbox column is the fast path
+## The Bbox Column Is the Fast Path
 
 Every part carries a GeoParquet 1.1 `bbox` covering column, verified in the
 footer. Filter on it before any spatial predicate. The reader then skips whole
@@ -234,20 +234,20 @@ WHERE bbox.xmin BETWEEN -0.6 AND 0.4
 A query that calls `ST_Intersects` without a bbox filter first reads every
 geometry in {rows:,} rows.
 
-## Row groups
+## Row Groups
 
 Parts hold {min(i["row_groups"] for i in record["items"])} to
 {max(i["row_groups"] for i in record["items"])} row groups. The largest holds
 {max(i["max_row_group_rows"] for i in record["items"]):,} rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
-{coded_block}{_known_issues(key)}## Schema and field notes
+{coded_block}{_known_issues(key)}## Schema and Field Notes
 
 The collection's `table:columns` carries a description for every documented
 column. Those descriptions are harvested from Overture's JSON Schema at tag
 `v1.18.0` rather than authored here, so they track upstream.
 
-## Related collections
+## Related Collections
 
 Every collection in this catalog shares the `id` column convention and the
 `bbox` covering column, so the access patterns above apply unchanged. See the

@@ -1,4 +1,4 @@
-# AGENTS.md — connector
+# AGENTS.md — Connector
 
 Guidance for agents and automated clients reading this collection.
 
@@ -14,7 +14,7 @@ Overture Maps `transportation` theme, `connector` type, release `2026-08-19.0`.
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
 
-## Accessing the data
+## Accessing the Data
 
 Read every part at once through the glob. The `s3://` form needs a
 partition-aware reader, and DuckDB is one:
@@ -33,7 +33,7 @@ SELECT count(*) AS rows
 FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=connector/part-00000-f24b99e7-98a1-52d5-8cdc-5b83492c5aa6-c000.zstd.parquet');
 ```
 
-## The bbox column is the fast path
+## The Bbox Column Is the Fast Path
 
 Every part carries a GeoParquet 1.1 `bbox` covering column, verified in the
 footer. Filter on it before any spatial predicate. The reader then skips whole
@@ -49,20 +49,20 @@ WHERE bbox.xmin BETWEEN -0.6 AND 0.4
 A query that calls `ST_Intersects` without a bbox filter first reads every
 geometry in 419,540,493 rows.
 
-## Row groups
+## Row Groups
 
 Parts hold 256 to
 256 row groups. The largest holds
 90,422 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
-## Schema and field notes
+## Schema and Field Notes
 
 The collection's `table:columns` carries a description for every documented
 column. Those descriptions are harvested from Overture's JSON Schema at tag
 `v1.18.0` rather than authored here, so they track upstream.
 
-## Related collections
+## Related Collections
 
 Every collection in this catalog shares the `id` column convention and the
 `bbox` covering column, so the access patterns above apply unchanged. See the

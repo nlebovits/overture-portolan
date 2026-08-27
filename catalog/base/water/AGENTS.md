@@ -1,4 +1,4 @@
-# AGENTS.md — water
+# AGENTS.md — Water
 
 Guidance for agents and automated clients reading this collection.
 
@@ -14,7 +14,7 @@ Overture Maps `base` theme, `water` type, release `2026-08-19.0`.
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
 
-## Accessing the data
+## Accessing the Data
 
 Read every part at once through the glob. The `s3://` form needs a
 partition-aware reader, and DuckDB is one:
@@ -33,7 +33,7 @@ SELECT count(*) AS rows
 FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=water/part-00000-657ff415-9469-558e-81dc-ee7077d02b23-c000.zstd.parquet');
 ```
 
-## The bbox column is the fast path
+## The Bbox Column Is the Fast Path
 
 Every part carries a GeoParquet 1.1 `bbox` covering column, verified in the
 footer. Filter on it before any spatial predicate. The reader then skips whole
@@ -49,14 +49,14 @@ WHERE bbox.xmin BETWEEN -0.6 AND 0.4
 A query that calls `ST_Intersects` without a bbox filter first reads every
 geometry in 65,738,273 rows.
 
-## Row groups
+## Row Groups
 
 Parts hold 128 to
 256 row groups. The largest holds
 22,750 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
-## Coded columns
+## Coded Columns
 
 Every value below is documented in Overture's schema, and the
 meanings are carried in `table:columns` on the collection.
@@ -64,19 +64,19 @@ meanings are carried in `table:columns` on the collection.
 - **`subtype`**: `canal`, `human_made`, `lake`, `ocean`, `physical`, `pond`, `reservoir`, `river`, `spring`, `stream`, `wastewater`, `water`
 - **`class`**: `basin`, `bay`, `blowhole`, `canal`, `cape`, `ditch`, `dock`, `drain`, `fairway`, `fish_pass`, `fishpond`, `geyser`, and 23 more
 
-## Known issues
+## Known Issues
 
 Read these before you trust a query against this collection.
 
 - **The legend comes from a sample.** Style categories were measured over bbox windows rather than a full scan, because a full `GROUP BY` on this collection costs minutes. A sample proves a category is present and never proves one is absent, so a category that occurs only outside those windows is missing from the legend. The windows are in `sources/style_sampling.json`.
 
-## Schema and field notes
+## Schema and Field Notes
 
 The collection's `table:columns` carries a description for every documented
 column. Those descriptions are harvested from Overture's JSON Schema at tag
 `v1.18.0` rather than authored here, so they track upstream.
 
-## Related collections
+## Related Collections
 
 Every collection in this catalog shares the `id` column convention and the
 `bbox` covering column, so the access patterns above apply unchanged. See the
