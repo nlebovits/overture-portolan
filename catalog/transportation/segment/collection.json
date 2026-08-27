@@ -1,0 +1,1757 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "segment",
+  "title": "Segment",
+  "description": "Overture's segment collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -85.05113220214844,
+          -86.91345977783203,
+          19.04844856262207
+        ],
+        [
+          -156.06089782714844,
+          18.547945022583008,
+          -86.93226623535156,
+          20.91951560974121
+        ],
+        [
+          -178.29600524902344,
+          20.385608673095703,
+          -100.0282211303711,
+          31.705581665039062
+        ],
+        [
+          -100.52130126953125,
+          18.126440048217773,
+          -86.88568878173828,
+          30.72323226928711
+        ],
+        [
+          -121.08454132080078,
+          29.833040237426758,
+          -111.17488098144531,
+          35.660728454589844
+        ],
+        [
+          -112.68376159667969,
+          29.541732788085938,
+          -97.79561614990234,
+          35.812313079833984
+        ],
+        [
+          -98.4068603515625,
+          29.656658172607422,
+          -94.47515106201172,
+          35.74376678466797
+        ],
+        [
+          -95.28614807128906,
+          29.740009307861328,
+          -86.8097915649414,
+          35.851280212402344
+        ],
+        [
+          -86.0010757446289,
+          -79.81500244140625,
+          -56.03534698486328,
+          -33.010746002197266
+        ],
+        [
+          -80.10869598388672,
+          -33.92355728149414,
+          -55.83247375488281,
+          -17.24378204345703
+        ],
+        [
+          -85.14534759521484,
+          -15.075851440429688,
+          -75.20452117919922,
+          9.634017944335938
+        ],
+        [
+          -75.68258666992188,
+          -17.598064422607422,
+          -54.71532440185547,
+          9.9712495803833
+        ],
+        [
+          -87.07305908203125,
+          9.60142993927002,
+          -81.259521484375,
+          32.66928482055664
+        ],
+        [
+          -86.98353576660156,
+          31.71251678466797,
+          -81.14339447021484,
+          35.79634475708008
+        ],
+        [
+          -81.4680404663086,
+          9.091720581054688,
+          -59.42183303833008,
+          25.791166305541992
+        ],
+        [
+          -82.16133880615234,
+          25.076473236083984,
+          -64.64786529541016,
+          35.779991149902344
+        ],
+        [
+          -180.0,
+          37.03314971923828,
+          -121.92865753173828,
+          71.99706268310547
+        ],
+        [
+          -122.5360107421875,
+          35.39324188232422,
+          -118.20111083984375,
+          76.24700164794922
+        ],
+        [
+          -118.7987060546875,
+          35.21388244628906,
+          -100.86029815673828,
+          41.68610382080078
+        ],
+        [
+          -118.98371887207031,
+          41.29873275756836,
+          -100.04006958007812,
+          78.79680633544922
+        ],
+        [
+          -102.60810852050781,
+          35.20339584350586,
+          -92.86581420898438,
+          41.64472961425781
+        ],
+        [
+          -93.77239990234375,
+          35.2275276184082,
+          -86.31609344482422,
+          41.58977508544922
+        ],
+        [
+          -101.90171813964844,
+          41.203521728515625,
+          -86.29188537597656,
+          43.83154296875
+        ],
+        [
+          -102.34986877441406,
+          43.117679595947266,
+          -86.45085906982422,
+          79.41559600830078
+        ],
+        [
+          -87.0671615600586,
+          35.360382080078125,
+          -82.4823989868164,
+          41.17629623413086
+        ],
+        [
+          -83.10169219970703,
+          35.26182174682617,
+          -78.51717376708984,
+          40.93783950805664
+        ],
+        [
+          -78.9206771850586,
+          35.304927825927734,
+          -76.31554412841797,
+          41.003910064697266
+        ],
+        [
+          -76.7412338256836,
+          35.51539611816406,
+          -72.3877182006836,
+          40.94139862060547
+        ],
+        [
+          -87.07762908935547,
+          40.74492263793945,
+          -75.84730529785156,
+          42.94930648803711
+        ],
+        [
+          -76.06602478027344,
+          40.74338912963867,
+          -69.9295883178711,
+          42.76442337036133
+        ],
+        [
+          -86.5406494140625,
+          42.5691032409668,
+          -59.883846282958984,
+          44.25645446777344
+        ],
+        [
+          -87.63971710205078,
+          43.651268005371094,
+          -53.95954132080078,
+          82.52540588378906
+        ],
+        [
+          -56.21924591064453,
+          -35.02665328979492,
+          -49.08918762207031,
+          -21.34990119934082
+        ],
+        [
+          -49.77688217163086,
+          -77.87741088867188,
+          18.43536949157715,
+          -21.732070922851562
+        ],
+        [
+          -56.183738708496094,
+          -21.816505432128906,
+          -44.11625671386719,
+          -8.173763275146484
+        ],
+        [
+          -44.71693801879883,
+          -21.840669631958008,
+          13.47031307220459,
+          -8.044856071472168
+        ],
+        [
+          -60.05482482910156,
+          -8.972030639648438,
+          -17.436832427978516,
+          15.139437675476074
+        ],
+        [
+          -17.44881820678711,
+          -7.991604328155518,
+          -1.6936579942703247,
+          15.137862205505371
+        ],
+        [
+          -1.9870870113372803,
+          -7.54709529876709,
+          13.57422161102295,
+          7.965573310852051
+        ],
+        [
+          -2.0837626457214355,
+          7.585930824279785,
+          13.159274101257324,
+          15.146357536315918
+        ],
+        [
+          -31.266542434692383,
+          14.875067710876465,
+          -6.276186466217041,
+          43.7107048034668
+        ],
+        [
+          -8.231233596801758,
+          14.91836929321289,
+          -4.137167453765869,
+          43.7891731262207
+        ],
+        [
+          -5.803938865661621,
+          14.847716331481934,
+          5.3430023193359375,
+          43.400856018066406
+        ],
+        [
+          -5.569845199584961,
+          40.30785369873047,
+          0.7023084163665771,
+          45.702728271484375
+        ],
+        [
+          -5.520031929016113,
+          14.938034057617188,
+          14.748420715332031,
+          44.41051483154297
+        ],
+        [
+          0.4767160415649414,
+          36.88628005981445,
+          13.390865325927734,
+          44.412899017333984
+        ],
+        [
+          -0.2633270025253296,
+          43.407283782958984,
+          7.261482238769531,
+          45.642677307128906
+        ],
+        [
+          7.13247537612915,
+          42.69511795043945,
+          13.566716194152832,
+          45.751678466796875
+        ],
+        [
+          -56.33957290649414,
+          43.354827880859375,
+          -2.9133965969085693,
+          81.60579681396484
+        ],
+        [
+          -8.326191902160645,
+          43.35489273071289,
+          1.5780326128005981,
+          59.390045166015625
+        ],
+        [
+          -6.341562747955322,
+          45.587947845458984,
+          2.1850199699401855,
+          52.26375198364258
+        ],
+        [
+          -2.9740819931030273,
+          51.72047424316406,
+          -0.17235469818115234,
+          60.8548583984375
+        ],
+        [
+          -0.3387764096260071,
+          45.53236770629883,
+          3.0672552585601807,
+          50.788360595703125
+        ],
+        [
+          2.362975835800171,
+          45.510128021240234,
+          6.17116641998291,
+          50.67225646972656
+        ],
+        [
+          -0.3172382116317749,
+          50.478546142578125,
+          6.156022548675537,
+          51.684810638427734
+        ],
+        [
+          -6.770715236663818,
+          51.340965270996094,
+          9.97558879852295,
+          62.59132385253906
+        ],
+        [
+          6.005497455596924,
+          45.480857849121094,
+          9.241438865661621,
+          48.216243743896484
+        ],
+        [
+          6.097189426422119,
+          48.071720123291016,
+          9.208067893981934,
+          50.38250732421875
+        ],
+        [
+          9.102261543273926,
+          45.43305969238281,
+          13.151498794555664,
+          48.36817169189453
+        ],
+        [
+          9.1373872756958,
+          48.23623275756836,
+          13.05218505859375,
+          50.445762634277344
+        ],
+        [
+          6.076738357543945,
+          50.345848083496094,
+          8.568453788757324,
+          52.69715118408203
+        ],
+        [
+          8.353955268859863,
+          50.27878952026367,
+          13.09079360961914,
+          52.62998962402344
+        ],
+        [
+          6.102452278137207,
+          52.46110916137695,
+          13.15771484375,
+          55.76531982421875
+        ],
+        [
+          5.150783061981201,
+          54.316802978515625,
+          13.703041076660156,
+          78.97254180908203
+        ],
+        [
+          14.938664436340332,
+          -69.00971984863281,
+          70.55697631835938,
+          -25.46784019470215
+        ],
+        [
+          13.008962631225586,
+          -26.471336364746094,
+          63.5015754699707,
+          -19.000041961669922
+        ],
+        [
+          12.64845085144043,
+          -20.650890350341797,
+          33.62989807128906,
+          -2.942934513092041
+        ],
+        [
+          32.81795883178711,
+          -19.613529205322266,
+          72.49187469482422,
+          -3.597804546356201
+        ],
+        [
+          12.659729957580566,
+          -3.9210026264190674,
+          36.06291198730469,
+          2.3665835857391357
+        ],
+        [
+          12.7249755859375,
+          2.0217225551605225,
+          37.23779296875,
+          25.30352210998535
+        ],
+        [
+          35.78176498413086,
+          -4.027677059173584,
+          44.08024978637695,
+          24.46603775024414
+        ],
+        [
+          43.60009765625,
+          -0.7032539248466492,
+          73.89834594726562,
+          24.33244514465332
+        ],
+        [
+          12.777230262756348,
+          23.670080184936523,
+          28.23201560974121,
+          41.151187896728516
+        ],
+        [
+          23.61015510559082,
+          24.210355758666992,
+          33.08928298950195,
+          39.78681182861328
+        ],
+        [
+          30.501737594604492,
+          23.976116180419922,
+          41.95960998535156,
+          33.08615493774414
+        ],
+        [
+          30.561006546020508,
+          31.456390380859375,
+          42.29832077026367,
+          39.86807632446289
+        ],
+        [
+          41.03482437133789,
+          24.027843475341797,
+          53.35710906982422,
+          33.48485565185547
+        ],
+        [
+          40.96826934814453,
+          32.93824005126953,
+          52.84760665893555,
+          39.9230842590332
+        ],
+        [
+          52.11968994140625,
+          24.10903549194336,
+          67.9834976196289,
+          39.98287582397461
+        ],
+        [
+          65.7708511352539,
+          23.95111656188965,
+          74.44365692138672,
+          39.713661193847656
+        ],
+        [
+          12.25469970703125,
+          38.22626495361328,
+          21.719175338745117,
+          46.75844955444336
+        ],
+        [
+          12.870993614196777,
+          46.60272979736328,
+          17.303855895996094,
+          49.96700668334961
+        ],
+        [
+          13.49001693725586,
+          38.22626495361328,
+          24.011363983154297,
+          46.158607482910156
+        ],
+        [
+          17.134159088134766,
+          45.95464324951172,
+          23.941478729248047,
+          49.90205383300781
+        ],
+        [
+          12.926525115966797,
+          49.714752197265625,
+          18.79566192626953,
+          52.587928771972656
+        ],
+        [
+          18.20393180847168,
+          49.8224983215332,
+          24.04759407043457,
+          52.7162971496582
+        ],
+        [
+          9.747319221496582,
+          52.441436767578125,
+          23.974876403808594,
+          56.63716506958008
+        ],
+        [
+          10.860480308532715,
+          53.9414176940918,
+          25.223249435424805,
+          78.77104187011719
+        ],
+        [
+          22.745616912841797,
+          39.11431884765625,
+          28.964441299438477,
+          50.22996520996094
+        ],
+        [
+          27.457822799682617,
+          39.25453567504883,
+          41.65725326538086,
+          50.24074935913086
+        ],
+        [
+          19.73771095275879,
+          50.07935333251953,
+          37.16629409790039,
+          60.11581039428711
+        ],
+        [
+          22.847078323364258,
+          57.87580490112305,
+          36.0045051574707,
+          76.5097885131836
+        ],
+        [
+          30.6079044342041,
+          39.455623626708984,
+          44.915130615234375,
+          51.73758316040039
+        ],
+        [
+          44.52918243408203,
+          38.13272476196289,
+          73.80707550048828,
+          52.30512619018555
+        ],
+        [
+          34.799156188964844,
+          48.812015533447266,
+          49.0858268737793,
+          69.135009765625
+        ],
+        [
+          46.48446273803711,
+          51.47468566894531,
+          74.80606842041016,
+          81.18116760253906
+        ],
+        [
+          76.19261932373047,
+          -80.4163818359375,
+          109.77357482910156,
+          -2.6138381958007812
+        ],
+        [
+          73.3865737915039,
+          -6.1037983894348145,
+          109.95575714111328,
+          4.662539005279541
+        ],
+        [
+          72.19241333007812,
+          3.9082536697387695,
+          80.96504974365234,
+          12.515100479125977
+        ],
+        [
+          80.83824920654297,
+          3.348264694213867,
+          109.08412170410156,
+          12.62899398803711
+        ],
+        [
+          110.4980239868164,
+          -82.42407989501953,
+          180.0,
+          -33.3619384765625
+        ],
+        [
+          110.83909606933594,
+          -34.265228271484375,
+          180.0,
+          -7.950026988983154
+        ],
+        [
+          106.8817367553711,
+          -8.226261138916016,
+          113.9425277709961,
+          9.563365936279297
+        ],
+        [
+          112.66560363769531,
+          -9.00833797454834,
+          178.69566345214844,
+          14.625860214233398
+        ],
+        [
+          73.34367370605469,
+          11.251558303833008,
+          79.7342529296875,
+          17.56179428100586
+        ],
+        [
+          72.84908294677734,
+          16.745471954345703,
+          79.3912582397461,
+          23.217193603515625
+        ],
+        [
+          77.99241638183594,
+          11.334451675415039,
+          82.29037475585938,
+          23.180137634277344
+        ],
+        [
+          80.29988861083984,
+          11.307239532470703,
+          96.89976501464844,
+          24.11650848388672
+        ],
+        [
+          97.64686584472656,
+          10.541949272155762,
+          105.47657775878906,
+          16.574481964111328
+        ],
+        [
+          96.47440338134766,
+          14.967466354370117,
+          105.785888671875,
+          23.44107437133789
+        ],
+        [
+          105.22368621826172,
+          10.805932998657227,
+          109.28707885742188,
+          23.09859848022461
+        ],
+        [
+          108.28372955322266,
+          8.498598098754883,
+          166.65615844726562,
+          23.283472061157227
+        ],
+        [
+          72.93562316894531,
+          22.84308433532715,
+          79.03953552246094,
+          28.991559982299805
+        ],
+        [
+          77.54813385009766,
+          22.95490264892578,
+          84.99811553955078,
+          28.83588409423828
+        ],
+        [
+          84.54586029052734,
+          22.824832916259766,
+          90.51371765136719,
+          28.75592613220215
+        ],
+        [
+          90.35737609863281,
+          22.5631046295166,
+          117.99483489990234,
+          29.20806312561035
+        ],
+        [
+          73.1001205444336,
+          28.01624870300293,
+          77.17718505859375,
+          33.6021842956543
+        ],
+        [
+          76.82041931152344,
+          27.769880294799805,
+          117.29263305664062,
+          34.455482482910156
+        ],
+        [
+          73.25514221191406,
+          32.15579605102539,
+          116.89271545410156,
+          40.91119384765625
+        ],
+        [
+          72.37909698486328,
+          39.01626205444336,
+          118.06517791748047,
+          79.55472564697266
+        ],
+        [
+          114.82587432861328,
+          22.616132736206055,
+          121.75609588623047,
+          34.85727310180664
+        ],
+        [
+          121.18476104736328,
+          23.038076400756836,
+          135.4225616455078,
+          35.116851806640625
+        ],
+        [
+          116.45574188232422,
+          33.90658187866211,
+          133.339111328125,
+          37.68484878540039
+        ],
+        [
+          115.42466735839844,
+          36.97629165649414,
+          133.502685546875,
+          73.92095947265625
+        ],
+        [
+          130.98590087890625,
+          31.335527420043945,
+          139.76852416992188,
+          35.69652557373047
+        ],
+        [
+          134.5958709716797,
+          24.281816482543945,
+          153.98573303222656,
+          35.76956558227539
+        ],
+        [
+          130.62899780273438,
+          34.48369598388672,
+          141.81866455078125,
+          75.99922180175781
+        ],
+        [
+          139.06422424316406,
+          35.665626525878906,
+          180.0,
+          77.10956573486328
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "subtype",
+      "description": "Broad category of transportation segment."
+    },
+    {
+      "name": "class",
+      "description": "Captures the kind of rail segment."
+    },
+    {
+      "name": "subclass",
+      "description": "Refines expected usage of the segment, must not overlap."
+    },
+    {
+      "name": "subclass_rules",
+      "description": "Set of subclasses scoped along segment"
+    },
+    {
+      "name": "connectors",
+      "description": "List of connectors which this segment is physically connected to and their relative location. Each connector is a possible routing decision point, meaning it defines a place along the segment in which there is possibility to transition to other segments which share the same connector."
+    },
+    {
+      "name": "road_surface",
+      "description": "Physical surface of the road. May either be specified as a single global value for the segment, or as an array of surface rules."
+    },
+    {
+      "name": "road_flags",
+      "description": "Set of boolean attributes applicable to roads. May be specified either as a single flag array of flag values, or as an array of flag rules."
+    },
+    {
+      "name": "rail_flags",
+      "description": "Set of boolean attributes applicable to railways. May be specified either as a single flag array of flag values, or as an array of flag rules."
+    },
+    {
+      "name": "width_rules",
+      "description": "Edge-to-edge width of the road modeled by this segment, in meters. Examples: (1) If this segment models a carriageway without sidewalk, this value represents the edge-to-edge width of the carriageway, inclusive of any shoulder. (2) If this segment models a sidewalk by itself, this value represents the edge-to-edge width of the sidewalk. (3) If this segment models a combined sidewalk and carriageway, this value represents the edge-to-edge width inclusive of sidewalk."
+    },
+    {
+      "name": "level_rules",
+      "description": "Defines the Z-order, i.e. stacking order, of the road segment."
+    },
+    {
+      "name": "access_restrictions",
+      "description": "Rules governing access to this road segment"
+    },
+    {
+      "name": "speed_limits",
+      "description": "Rules governing speed on this road segment"
+    },
+    {
+      "name": "prohibited_transitions",
+      "description": "Rules preventing transitions from this segment to another segment."
+    },
+    {
+      "name": "routes",
+      "description": "Routes this segment belongs to"
+    },
+    {
+      "name": "destinations",
+      "description": "Describes objects that can be reached by following a transportation segment in the same way those objects are described on signposts or ground writing that a traveller following the segment would observe in the real world. This allows navigation systems to refer to signs and observable writing that a traveller actually sees."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "geometry",
+      "description": "Segment's geometry which MUST be a LineSting as defined by GeoJSON schema."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/transportation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture transportation vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole transportation theme. This collection's features are in the `segment` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    },
+    "style-by-class": {
+      "href": "./styles/by_class.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By class"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Transportation"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/transportation/segment",
+      "type": "text/html",
+      "title": "Overture documentation for segment"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/transportation/segment/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/transportation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture transportation vector tiles",
+      "pmtiles:layers": [
+        "segment"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 2,728,305 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 2,714,852 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 2,727,087 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 2,705,384 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 2,766,234 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 2,740,739 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 2,724,980 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 2,707,267 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00008.json",
+      "type": "application/geo+json",
+      "title": "Part 00008, 2,686,685 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00009.json",
+      "type": "application/geo+json",
+      "title": "Part 00009, 2,664,510 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00010.json",
+      "type": "application/geo+json",
+      "title": "Part 00010, 2,712,526 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00011.json",
+      "type": "application/geo+json",
+      "title": "Part 00011, 2,669,494 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00012.json",
+      "type": "application/geo+json",
+      "title": "Part 00012, 2,702,760 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00013.json",
+      "type": "application/geo+json",
+      "title": "Part 00013, 2,718,724 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00014.json",
+      "type": "application/geo+json",
+      "title": "Part 00014, 2,703,910 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00015.json",
+      "type": "application/geo+json",
+      "title": "Part 00015, 2,718,439 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00016.json",
+      "type": "application/geo+json",
+      "title": "Part 00016, 2,704,828 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00017.json",
+      "type": "application/geo+json",
+      "title": "Part 00017, 2,673,288 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00018.json",
+      "type": "application/geo+json",
+      "title": "Part 00018, 2,703,012 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00019.json",
+      "type": "application/geo+json",
+      "title": "Part 00019, 2,720,095 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00020.json",
+      "type": "application/geo+json",
+      "title": "Part 00020, 2,718,616 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00021.json",
+      "type": "application/geo+json",
+      "title": "Part 00021, 2,728,620 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00022.json",
+      "type": "application/geo+json",
+      "title": "Part 00022, 2,731,174 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00023.json",
+      "type": "application/geo+json",
+      "title": "Part 00023, 2,740,233 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00024.json",
+      "type": "application/geo+json",
+      "title": "Part 00024, 2,726,523 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00025.json",
+      "type": "application/geo+json",
+      "title": "Part 00025, 2,759,504 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00026.json",
+      "type": "application/geo+json",
+      "title": "Part 00026, 2,700,692 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00027.json",
+      "type": "application/geo+json",
+      "title": "Part 00027, 2,723,159 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00028.json",
+      "type": "application/geo+json",
+      "title": "Part 00028, 2,751,781 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00029.json",
+      "type": "application/geo+json",
+      "title": "Part 00029, 2,685,964 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00030.json",
+      "type": "application/geo+json",
+      "title": "Part 00030, 2,699,536 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00031.json",
+      "type": "application/geo+json",
+      "title": "Part 00031, 2,718,444 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00032.json",
+      "type": "application/geo+json",
+      "title": "Part 00032, 2,711,607 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00033.json",
+      "type": "application/geo+json",
+      "title": "Part 00033, 2,740,261 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00034.json",
+      "type": "application/geo+json",
+      "title": "Part 00034, 2,762,866 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00035.json",
+      "type": "application/geo+json",
+      "title": "Part 00035, 2,759,686 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00036.json",
+      "type": "application/geo+json",
+      "title": "Part 00036, 2,736,271 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00037.json",
+      "type": "application/geo+json",
+      "title": "Part 00037, 2,748,899 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00038.json",
+      "type": "application/geo+json",
+      "title": "Part 00038, 2,729,089 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00039.json",
+      "type": "application/geo+json",
+      "title": "Part 00039, 2,718,113 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00040.json",
+      "type": "application/geo+json",
+      "title": "Part 00040, 2,726,851 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00041.json",
+      "type": "application/geo+json",
+      "title": "Part 00041, 2,696,162 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00042.json",
+      "type": "application/geo+json",
+      "title": "Part 00042, 2,746,377 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00043.json",
+      "type": "application/geo+json",
+      "title": "Part 00043, 2,711,222 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00044.json",
+      "type": "application/geo+json",
+      "title": "Part 00044, 2,703,001 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00045.json",
+      "type": "application/geo+json",
+      "title": "Part 00045, 2,711,939 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00046.json",
+      "type": "application/geo+json",
+      "title": "Part 00046, 2,744,523 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00047.json",
+      "type": "application/geo+json",
+      "title": "Part 00047, 2,765,778 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00048.json",
+      "type": "application/geo+json",
+      "title": "Part 00048, 2,660,836 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00049.json",
+      "type": "application/geo+json",
+      "title": "Part 00049, 2,656,088 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00050.json",
+      "type": "application/geo+json",
+      "title": "Part 00050, 2,665,026 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00051.json",
+      "type": "application/geo+json",
+      "title": "Part 00051, 2,669,551 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00052.json",
+      "type": "application/geo+json",
+      "title": "Part 00052, 2,699,490 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00053.json",
+      "type": "application/geo+json",
+      "title": "Part 00053, 2,672,040 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00054.json",
+      "type": "application/geo+json",
+      "title": "Part 00054, 2,676,691 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00055.json",
+      "type": "application/geo+json",
+      "title": "Part 00055, 2,690,642 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00056.json",
+      "type": "application/geo+json",
+      "title": "Part 00056, 2,731,424 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00057.json",
+      "type": "application/geo+json",
+      "title": "Part 00057, 2,732,377 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00058.json",
+      "type": "application/geo+json",
+      "title": "Part 00058, 2,705,559 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00059.json",
+      "type": "application/geo+json",
+      "title": "Part 00059, 2,688,100 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00060.json",
+      "type": "application/geo+json",
+      "title": "Part 00060, 2,723,943 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00061.json",
+      "type": "application/geo+json",
+      "title": "Part 00061, 2,731,811 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00062.json",
+      "type": "application/geo+json",
+      "title": "Part 00062, 2,737,324 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00063.json",
+      "type": "application/geo+json",
+      "title": "Part 00063, 2,762,881 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00064.json",
+      "type": "application/geo+json",
+      "title": "Part 00064, 2,715,724 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00065.json",
+      "type": "application/geo+json",
+      "title": "Part 00065, 2,762,567 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00066.json",
+      "type": "application/geo+json",
+      "title": "Part 00066, 2,738,986 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00067.json",
+      "type": "application/geo+json",
+      "title": "Part 00067, 2,750,857 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00068.json",
+      "type": "application/geo+json",
+      "title": "Part 00068, 2,751,840 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00069.json",
+      "type": "application/geo+json",
+      "title": "Part 00069, 2,746,041 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00070.json",
+      "type": "application/geo+json",
+      "title": "Part 00070, 2,759,903 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00071.json",
+      "type": "application/geo+json",
+      "title": "Part 00071, 2,763,392 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00072.json",
+      "type": "application/geo+json",
+      "title": "Part 00072, 2,767,959 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00073.json",
+      "type": "application/geo+json",
+      "title": "Part 00073, 2,781,082 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00074.json",
+      "type": "application/geo+json",
+      "title": "Part 00074, 2,789,657 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00075.json",
+      "type": "application/geo+json",
+      "title": "Part 00075, 2,792,843 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00076.json",
+      "type": "application/geo+json",
+      "title": "Part 00076, 2,785,959 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00077.json",
+      "type": "application/geo+json",
+      "title": "Part 00077, 2,781,538 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00078.json",
+      "type": "application/geo+json",
+      "title": "Part 00078, 2,771,833 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00079.json",
+      "type": "application/geo+json",
+      "title": "Part 00079, 2,804,585 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00080.json",
+      "type": "application/geo+json",
+      "title": "Part 00080, 2,809,124 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00081.json",
+      "type": "application/geo+json",
+      "title": "Part 00081, 2,761,354 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00082.json",
+      "type": "application/geo+json",
+      "title": "Part 00082, 2,783,707 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00083.json",
+      "type": "application/geo+json",
+      "title": "Part 00083, 2,804,405 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00084.json",
+      "type": "application/geo+json",
+      "title": "Part 00084, 2,798,393 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00085.json",
+      "type": "application/geo+json",
+      "title": "Part 00085, 2,795,472 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00086.json",
+      "type": "application/geo+json",
+      "title": "Part 00086, 2,795,811 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00087.json",
+      "type": "application/geo+json",
+      "title": "Part 00087, 2,777,445 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00088.json",
+      "type": "application/geo+json",
+      "title": "Part 00088, 2,786,865 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00089.json",
+      "type": "application/geo+json",
+      "title": "Part 00089, 2,796,617 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00090.json",
+      "type": "application/geo+json",
+      "title": "Part 00090, 2,797,340 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00091.json",
+      "type": "application/geo+json",
+      "title": "Part 00091, 2,783,073 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00092.json",
+      "type": "application/geo+json",
+      "title": "Part 00092, 2,769,231 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00093.json",
+      "type": "application/geo+json",
+      "title": "Part 00093, 2,741,834 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00094.json",
+      "type": "application/geo+json",
+      "title": "Part 00094, 2,760,038 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00095.json",
+      "type": "application/geo+json",
+      "title": "Part 00095, 2,771,251 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00096.json",
+      "type": "application/geo+json",
+      "title": "Part 00096, 2,739,724 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00097.json",
+      "type": "application/geo+json",
+      "title": "Part 00097, 2,730,133 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00098.json",
+      "type": "application/geo+json",
+      "title": "Part 00098, 2,707,615 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00099.json",
+      "type": "application/geo+json",
+      "title": "Part 00099, 2,707,558 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00100.json",
+      "type": "application/geo+json",
+      "title": "Part 00100, 2,686,855 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00101.json",
+      "type": "application/geo+json",
+      "title": "Part 00101, 2,681,591 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00102.json",
+      "type": "application/geo+json",
+      "title": "Part 00102, 2,715,398 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00103.json",
+      "type": "application/geo+json",
+      "title": "Part 00103, 2,695,989 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00104.json",
+      "type": "application/geo+json",
+      "title": "Part 00104, 2,764,821 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00105.json",
+      "type": "application/geo+json",
+      "title": "Part 00105, 2,732,011 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00106.json",
+      "type": "application/geo+json",
+      "title": "Part 00106, 2,762,729 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00107.json",
+      "type": "application/geo+json",
+      "title": "Part 00107, 2,799,888 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00108.json",
+      "type": "application/geo+json",
+      "title": "Part 00108, 2,710,339 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00109.json",
+      "type": "application/geo+json",
+      "title": "Part 00109, 2,767,530 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00110.json",
+      "type": "application/geo+json",
+      "title": "Part 00110, 2,770,174 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00111.json",
+      "type": "application/geo+json",
+      "title": "Part 00111, 2,829,320 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00112.json",
+      "type": "application/geo+json",
+      "title": "Part 00112, 2,728,194 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00113.json",
+      "type": "application/geo+json",
+      "title": "Part 00113, 2,756,665 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00114.json",
+      "type": "application/geo+json",
+      "title": "Part 00114, 2,745,793 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00115.json",
+      "type": "application/geo+json",
+      "title": "Part 00115, 2,754,072 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00116.json",
+      "type": "application/geo+json",
+      "title": "Part 00116, 2,766,505 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00117.json",
+      "type": "application/geo+json",
+      "title": "Part 00117, 2,797,413 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00118.json",
+      "type": "application/geo+json",
+      "title": "Part 00118, 2,730,576 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00119.json",
+      "type": "application/geo+json",
+      "title": "Part 00119, 2,732,944 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00120.json",
+      "type": "application/geo+json",
+      "title": "Part 00120, 2,735,185 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00121.json",
+      "type": "application/geo+json",
+      "title": "Part 00121, 2,735,578 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00122.json",
+      "type": "application/geo+json",
+      "title": "Part 00122, 2,768,057 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00123.json",
+      "type": "application/geo+json",
+      "title": "Part 00123, 2,748,093 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00124.json",
+      "type": "application/geo+json",
+      "title": "Part 00124, 2,783,140 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00125.json",
+      "type": "application/geo+json",
+      "title": "Part 00125, 2,776,166 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00126.json",
+      "type": "application/geo+json",
+      "title": "Part 00126, 2,757,564 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00127.json",
+      "type": "application/geo+json",
+      "title": "Part 00127, 2,761,239 rows"
+    }
+  ]
+}

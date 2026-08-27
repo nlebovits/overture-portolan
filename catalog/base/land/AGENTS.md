@@ -1,0 +1,91 @@
+# AGENTS.md — land
+
+Guidance for agents and automated clients reading this collection.
+
+Every claim here is measured from the data or quoted from Overture's published
+schema. Nothing is inferred. If you cannot point at where a fact came from, it
+does not belong in this file.
+
+## Overview
+
+Overture Maps `base` theme, `land` type, release `2026-08-19.0`.
+47 GeoParquet parts holding 75,614,496 rows. Geometry is WKB in EPSG:4326.
+
+This catalog holds metadata only. Every `data` asset href points at
+`overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
+
+## Accessing the data
+
+Read every part at once through the glob. The `s3://` form needs a
+partition-aware reader, and DuckDB is one:
+
+```sql
+INSTALL spatial; LOAD spatial;
+SELECT count(*) AS rows
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land/*.parquet');
+```
+
+Over plain HTTPS, address one part at a time. A glob cannot expand over HTTPS,
+because expansion needs a directory listing:
+
+```sql
+SELECT count(*) AS rows
+FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land/part-00000-d9ffa38d-0236-5b5d-a3d5-b6c667d37dfb-c000.zstd.parquet');
+```
+
+## The bbox column is the fast path
+
+Every part carries a GeoParquet 1.1 `bbox` covering column, verified in the
+footer. Filter on it before any spatial predicate. The reader then skips whole
+row groups without decoding geometry.
+
+```sql
+SELECT count(*) AS rows
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land/*.parquet')
+WHERE bbox.xmin BETWEEN -0.6 AND 0.4
+  AND bbox.ymin BETWEEN 51.2 AND 51.8;
+```
+
+A query that calls `ST_Intersects` without a bbox filter first reads every
+geometry in 75,614,496 rows.
+
+## Row groups
+
+Parts hold 64 to
+256 row groups. The largest holds
+25,588 rows, which is inside
+the 150,000 cap Portolan sets, so range reads stay small.
+
+## Coded columns
+
+Every value below is documented in Overture's schema, and the
+meanings are carried in `table:columns` on the collection.
+
+- **`subtype`**: `crater`, `desert`, `forest`, `glacier`, `grass`, `land`, `physical`, `reef`, `rock`, `sand`, `shrub`, `tree`, and 1 more
+- **`class`**: `archipelago`, `bare_rock`, `beach`, `cave_entrance`, `cliff`, `desert`, `dune`, `fell`, `forest`, `glacier`, `grass`, `grassland`, and 30 more
+- **`surface`**: `asphalt`, `cobblestone`, `compacted`, `concrete`, `concrete_plates`, `dirt`, `earth`, `fine_gravel`, `grass`, `gravel`, `ground`, `paved`, and 12 more
+
+## Known issues
+
+Read these before you trust a query against this collection.
+
+- **The legend comes from a sample.** Style categories were measured over bbox windows rather than a full scan, because a full `GROUP BY` on this collection costs minutes. A sample proves a category is present and never proves one is absent, so a category that occurs only outside those windows is missing from the legend. The windows are in `sources/style_sampling.json`.
+
+## Schema and field notes
+
+The collection's `table:columns` carries a description for every documented
+column. Those descriptions are harvested from Overture's JSON Schema at tag
+`v1.18.0` rather than authored here, so they track upstream.
+
+## Related collections
+
+Every collection in this catalog shares the `id` column convention and the
+`bbox` covering column, so the access patterns above apply unchanged. See the
+[catalog agent guide](../../AGENTS.md).
+
+## Rendering
+
+The `visual` asset is Overture's prebuilt PMTiles archive for the whole `base`
+theme. This collection's features are in the `land` layer. Declare
+`minzoom` and `maxzoom` on the vector source, or MapLibre requests a tile the
+archive does not hold and draws nothing.

@@ -1,0 +1,78 @@
+{
+  "version": 8,
+  "name": "Building by subtype",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 14,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#101418"
+      }
+    },
+    {
+      "id": "building-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "building",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "residential",
+          "#e8a33d",
+          "commercial",
+          "#c1553b",
+          "outbuilding",
+          "#7f5539",
+          "education",
+          "#b08968",
+          "industrial",
+          "#ddb892",
+          "civic",
+          "#9c6644",
+          "religious",
+          "#e6ccb2",
+          "transportation",
+          "#a68a64",
+          "service",
+          "#c2a878",
+          "medical",
+          "#8a6f4a",
+          "#9e9e9e"
+        ],
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "building-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "building",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#101418",
+        "line-width": 0.3
+      }
+    }
+  ]
+}

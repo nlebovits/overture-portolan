@@ -57,20 +57,52 @@ TARGET_ASPECT = 1.5
 MARGIN = 0.05
 MAX_CONTEXT = 2.5
 SIZE = 1024
-PROBE_SIZE = 256
+# The skill probes at 256 for speed. That produces false negatives on sparse
+# point layers: a 2.4 px circle survives at 1024 and vanishes at 256, so the
+# probe matches the blank and the gate rejects a good image. Measured on
+# addresses/address over Amsterdam, which renders 222 KB of address points at
+# 1024 and reports FAIL-empty when probed at 256. A render costs about a
+# second, so correctness is worth the extra one.
+PROBE_SIZE = SIZE
 BLANK_TOLERANCE = 1.15
-BACKGROUND = "#101418"
+BACKGROUND = "#f4f1ea"
 
-# Strategy B windows, per portolan-thumbnails. A collection lands here when its
-# full extent renders poorly, and the reason is recorded with it.
-#
-# divisions/division_area: `subtype` is hierarchical, so a global frame shows
-# only `country` and paints one colour. A window at country-to-region scale
-# shows the administrative subdivisions the collection is actually about. The
-# centre is western Europe, where Overture's division coverage is densest.
-WINDOWS: dict[str, tuple[float, float, float, float]] = {
-    "divisions/division_area": (-1.2, 47.6, 11.8, 54.3),
+# Each entry is (centre longitude, centre latitude, zoom). The frame is derived
+# from the zoom, so it always clears the layer's floor. The locations and scales
+# are art-directed together: regional frames explain broad themes, while city
+# and neighbourhood frames make dense feature layers readable.
+WINDOWS: dict[str, tuple[float, float, int]] = {
+    "addresses/address": (4.895, 52.370, 16),
+    "places/place": (4.895, 52.370, 16),
+    "base/infrastructure": (2.343, 48.858, 14),
+    "transportation/connector": (2.343, 48.858, 14),
+    "buildings/building_part": (13.405, 52.520, 14),
+    "buildings/building": (2.343, 48.858, 14),
+    "transportation/segment": (2.343, 48.858, 12),
+    "divisions/division_area": (4.0, 50.9, 6),
+    "divisions/division": (4.0, 50.9, 8),
+    "divisions/division_boundary": (4.0, 50.9, 6),
+    "base/land": (16.0, 59.5, 9),
+    "base/water": (17.0, 59.35, 9),
+    "base/land_cover": (16.0, 59.5, 6),
+    "base/land_use": (2.343, 48.858, 11),
+    "base/bathymetry": (-30.0, 25.0, 3),
 }
+
+
+def window_bbox(lon: float, lat: float, zoom: int) -> list[float]:
+    """A 3:2 frame centred on a point, at the span one zoom level covers.
+
+    The skill's table at SIZE=1024: 78.3 km at z11, 39.1 at z12, 19.6 at z13,
+    9.8 at z14. This derives the same figure rather than hard-coding a bbox, so
+    a window that renders too coarse is fixed by changing one integer.
+    """
+    span = EARTH_CIRC * SIZE / (256 * 2**zoom)
+    cx, cy = mercator(lon, lat)
+    half_w, half_h = span / 2, span / (2 * TARGET_ASPECT)
+    lon0, lat0 = unmercator(cx - half_w, cy - half_h)
+    lon1, lat1 = unmercator(cx + half_w, cy + half_h)
+    return [lon0, lat0, lon1, lat1]
 
 
 def mercator(lon: float, lat: float) -> tuple[float, float]:
@@ -120,6 +152,19 @@ def frame(bbox: list[float]) -> tuple[list[float], dict[str, Any]]:
         if pad > 0:
             y0, y1 = y0 - pad, y1 + pad
 
+    # Padding alone cannot reach 3:2 on a worldwide extent. The data already
+    # spans the frame, so MAX_CONTEXT caps the growth and the image stays
+    # nearly square. base/land and base/water both came out at 1024x868 and
+    # 1024x775 before this. Crop the taller axis instead, centred, which is
+    # what a world map does anyway. Cropping is not distortion: nothing is
+    # stretched, and the discarded band is the emptiest part of the frame.
+    width, height = x1 - x0, y1 - y0
+    if width / height < TARGET_ASPECT:
+        keep = width / TARGET_ASPECT
+        centre = (y0 + y1) / 2
+        y0, y1 = centre - keep / 2, centre + keep / 2
+        warnings.append(f"cropped-y to reach {TARGET_ASPECT}:1")
+
     # Clamp by shifting, never by squashing.
     half = EARTH_CIRC / 2
     for lo, hi, axis in ((x0, x1, "x"), (y0, y1, "y")):
@@ -158,6 +203,90 @@ def pmtiles_zooms(url: str) -> tuple[int, int]:
     return header[100], header[101]
 
 
+def catalog_source(key: str) -> dict[str, Any]:
+    """A generated Overture source, copied for use as thumbnail context."""
+    theme, layer = key.split("/", 1)
+    style_path = CATALOG / theme / layer / "styles" / "default.json"
+    style = json.loads(style_path.read_text())
+    return json.loads(json.dumps(style["sources"]["overture"]))
+
+
+def thumbnail_style(
+    style: dict[str, Any], key: str, window_zoom: int | None
+) -> dict[str, Any]:
+    """Compose the transparent data style over a quiet Overture basemap.
+
+    Published styles stay transparent, like the St. Louis Overture references,
+    so an interactive browser can supply its own basemap. A static thumbnail
+    has no browser beneath it, so this renderer adds pale water, buildings, and
+    roads from the same release-pinned Overture archives. No third-party map is
+    introduced.
+    """
+    sources = dict(style["sources"])
+    layers: list[dict[str, Any]] = [
+        {
+            "id": "context-background",
+            "type": "background",
+            "paint": {"background-color": BACKGROUND},
+        }
+    ]
+
+    if key not in {"base/bathymetry", "base/water"}:
+        sources["context-base"] = catalog_source("base/water")
+        layers.append(
+            {
+                "id": "context-water",
+                "type": "fill",
+                "source": "context-base",
+                "source-layer": "water",
+                "filter": ["==", ["geometry-type"], "Polygon"],
+                "paint": {"fill-color": "#c9dfe8", "fill-opacity": 0.75},
+            }
+        )
+
+    if window_zoom is not None and window_zoom >= 12 and key != "buildings/building":
+        sources["context-buildings"] = catalog_source("buildings/building")
+        layers.append(
+            {
+                "id": "context-buildings",
+                "type": "fill",
+                "source": "context-buildings",
+                "source-layer": "building",
+                "paint": {"fill-color": "#e3e0da", "fill-opacity": 0.8},
+            }
+        )
+
+    if (
+        window_zoom is not None
+        and window_zoom >= 10
+        and key != "transportation/segment"
+    ):
+        sources["context-transportation"] = catalog_source("transportation/segment")
+        layers.append(
+            {
+                "id": "context-roads",
+                "type": "line",
+                "source": "context-transportation",
+                "source-layer": "segment",
+                "paint": {
+                    "line-color": "#c9cfd3",
+                    "line-opacity": 0.8,
+                    "line-width": [
+                        "interpolate",
+                        ["linear"],
+                        ["zoom"],
+                        8,
+                        0.25,
+                        14,
+                        1.0,
+                    ],
+                },
+            }
+        )
+
+    return {**style, "sources": sources, "layers": [*layers, *style["layers"]]}
+
+
 def render(style: dict[str, Any], bbox: list[float], size: int) -> bytes:
     body = json.dumps({"style": style}).encode()
     url = (
@@ -184,16 +313,17 @@ def render(style: dict[str, Any], bbox: list[float], size: int) -> bytes:
 
 
 def probe_styles(style: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
-    """The probe and blank styles Gate 1 compares.
+    """The target-plus-context probe and context-only blank styles.
 
     A symbol layer with no glyphs endpoint crashes MapLibre GL Native outright,
-    so it is stripped from both.
+    so it is stripped from both. Context stays in the blank. Otherwise a valid
+    basemap would let an empty target layer pass Gate 1.
     """
     layers = [layer for layer in style["layers"] if layer.get("type") != "symbol"]
     probe = {**style, "layers": layers}
     blank = {
         **style,
-        "layers": [layer for layer in layers if layer.get("type") == "background"],
+        "layers": [layer for layer in layers if layer.get("source") != "overture"],
     }
     return probe, blank
 
@@ -233,8 +363,18 @@ def main() -> int:
 
         window = WINDOWS.get(key)
         strategy = "window" if window else "full-extent"
-        source_box = list(window) if window else record["extent"]["spatial"]["bbox"][0]
-        box, report = frame(source_box)
+        if window:
+            box, report = (
+                window_bbox(*window),
+                {
+                    "aspect": TARGET_ASPECT,
+                    "fill": 1.0,
+                    "warnings": [],
+                },
+            )
+        else:
+            box, report = frame(record["extent"]["spatial"]["bbox"][0])
+        style = thumbnail_style(style, key, window[2] if window else None)
         print(
             f"  {key}: bbox={[round(v, 3) for v in box]} "
             f"aspect={report['aspect']} fill={report['fill']} "
@@ -245,10 +385,31 @@ def main() -> int:
             print(f"    warn {warning}", file=sys.stderr)
 
         verdict, detail = gate_one(style, box)
+
+        # The skill budgets three retries per collection. A blank frame on a
+        # windowed collection almost always means the frame sits a level or two
+        # below where the layer carries data, so step in rather than give up.
+        # The layer floor in the archive is where data starts, not where it
+        # reads: addresses/address declares z14 and needs z16 to show anything.
+        if verdict == "FAIL-empty" and window:
+            for step in (1, 2, 3):
+                deeper = (window[0], window[1], window[2] + step)
+                box = window_bbox(*deeper)
+                verdict, detail = gate_one(style, box)
+                print(f"    retry at z{deeper[2]}: {verdict}", file=sys.stderr)
+                if verdict != "FAIL-empty":
+                    print(
+                        f"    NOTE: {key} needs z{deeper[2]}, not "
+                        f"z{window[2]}. Update WINDOWS.",
+                        file=sys.stderr,
+                    )
+                    window = deeper
+                    break
+
         print(f"    gate 1: {verdict}, {detail}", file=sys.stderr)
         if verdict == "FAIL-empty":
             sys.exit(
-                f"{key}: nothing rendered in the frame. Check the "
+                f"{key}: nothing rendered after three retries. Check the "
                 "source-layer name, the zoom range, and the bbox."
             )
 

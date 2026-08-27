@@ -1,0 +1,753 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "land",
+  "title": "Land",
+  "description": "Overture's land collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          -74.13166809082031,
+          31.858028411865234
+        ],
+        [
+          -120.46002960205078,
+          29.678895950317383,
+          -77.89229583740234,
+          34.185611724853516
+        ],
+        [
+          -124.00064849853516,
+          33.678443908691406,
+          -101.99935150146484,
+          40.392845153808594
+        ],
+        [
+          -102.33551025390625,
+          33.59693908691406,
+          -77.57744598388672,
+          41.147613525390625
+        ],
+        [
+          -79.36528015136719,
+          -90.0,
+          -54.00252914428711,
+          7.253518581390381
+        ],
+        [
+          -83.87913513183594,
+          -90.0,
+          -7.942702770233154,
+          -19.99949836730957
+        ],
+        [
+          -84.95209503173828,
+          -20.720928192138672,
+          -45.493553161621094,
+          40.00050354003906
+        ],
+        [
+          -46.00053405761719,
+          -20.352083206176758,
+          -7.506153106689453,
+          40.00050354003906
+        ],
+        [
+          -180.0,
+          39.40138626098633,
+          -115.2916259765625,
+          77.56116485595703
+        ],
+        [
+          -127.08988952636719,
+          35.38908004760742,
+          -93.38890075683594,
+          79.38713073730469
+        ],
+        [
+          -105.03938293457031,
+          39.701332092285156,
+          -82.4183349609375,
+          45.78955078125
+        ],
+        [
+          -105.7451400756836,
+          43.99949645996094,
+          -79.44206237792969,
+          82.4809341430664
+        ],
+        [
+          -83.00067901611328,
+          39.673038482666016,
+          -73.64623260498047,
+          43.0673828125
+        ],
+        [
+          -91.90878295898438,
+          42.78075408935547,
+          -61.09130859375,
+          83.13709259033203
+        ],
+        [
+          -82.58759307861328,
+          40.541900634765625,
+          -63.713233947753906,
+          83.18974304199219
+        ],
+        [
+          -74.39339447021484,
+          39.71244430541992,
+          -5.8103508949279785,
+          83.70144653320312
+        ],
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          43.790428161621094
+        ],
+        [
+          -8.068609237670898,
+          41.950782775878906,
+          9.054840087890625,
+          47.51240158081055
+        ],
+        [
+          -5.151290416717529,
+          45.54245376586914,
+          5.512307643890381,
+          49.39858627319336
+        ],
+        [
+          4.999244689941406,
+          45.53836441040039,
+          9.690740585327148,
+          49.21858215332031
+        ],
+        [
+          -8.02851676940918,
+          48.7556266784668,
+          5.0008039474487305,
+          52.129234313964844
+        ],
+        [
+          4.8244757652282715,
+          48.99949264526367,
+          7.0008039474487305,
+          52.0755729675293
+        ],
+        [
+          6.669371128082275,
+          48.99949264526367,
+          9.02542781829834,
+          52.077083587646484
+        ],
+        [
+          -179.14785766601562,
+          51.21420669555664,
+          179.77297973632812,
+          55.36467361450195
+        ],
+        [
+          4.668335914611816,
+          51.99949264526367,
+          9.000822067260742,
+          53.7199821472168
+        ],
+        [
+          -10.479888916015625,
+          49.95869064331055,
+          9.025445938110352,
+          58.67208480834961
+        ],
+        [
+          -180.0,
+          54.99949264526367,
+          180.0,
+          71.5881576538086
+        ],
+        [
+          8.896615028381348,
+          -90.0,
+          33.0064582824707,
+          4.3044753074646
+        ],
+        [
+          8.130843162536621,
+          3.831284284591675,
+          30.319622039794922,
+          41.25907897949219
+        ],
+        [
+          7.288609981536865,
+          37.915794372558594,
+          18.5205135345459,
+          46.3078727722168
+        ],
+        [
+          13.427571296691895,
+          36.38533401489258,
+          30.08954620361328,
+          46.09228515625
+        ],
+        [
+          5.0455732345581055,
+          43.40773010253906,
+          16.605836868286133,
+          49.00050735473633
+        ],
+        [
+          9.945743560791016,
+          43.99949645996094,
+          14.028854370117188,
+          49.00050735473633
+        ],
+        [
+          13.489900588989258,
+          43.99949645996094,
+          16.526763916015625,
+          49.00050735473633
+        ],
+        [
+          15.99924373626709,
+          43.3990592956543,
+          30.581592559814453,
+          50.758636474609375
+        ],
+        [
+          29.50450325012207,
+          -90.0,
+          106.45987701416016,
+          32.1542854309082
+        ],
+        [
+          29.92464256286621,
+          26.863296508789062,
+          106.0007553100586,
+          49.136009216308594
+        ],
+        [
+          105.20953369140625,
+          -90.0,
+          180.0,
+          -5.875503063201904
+        ],
+        [
+          103.75761413574219,
+          -10.701692581176758,
+          177.3539581298828,
+          50.92305374145508
+        ],
+        [
+          8.617765426635742,
+          48.51301193237305,
+          14.000823020935059,
+          53.00050735473633
+        ],
+        [
+          13.24220085144043,
+          47.46847915649414,
+          21.80487060546875,
+          53.00050735473633
+        ],
+        [
+          8.074393272399902,
+          52.61152267456055,
+          20.42477035522461,
+          58.00050735473633
+        ],
+        [
+          8.410364151000977,
+          57.352596282958984,
+          22.146339416503906,
+          80.82901000976562
+        ],
+        [
+          19.999135971069336,
+          48.455623626708984,
+          32.198204040527344,
+          55.00050735473633
+        ],
+        [
+          17.711456298828125,
+          54.716896057128906,
+          32.300941467285156,
+          80.82901000976562
+        ],
+        [
+          29.75836181640625,
+          48.637672424316406,
+          51.8023681640625,
+          80.94965362548828
+        ],
+        [
+          44.90631866455078,
+          45.89268493652344,
+          180.0,
+          81.85905456542969
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "subtype",
+      "description": "Further description of the type of land cover, such as forest, glacier, grass, or a physical feature, such as a mountain peak."
+    },
+    {
+      "name": "class",
+      "description": "Further classification of type of landcover"
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "source_tags",
+      "description": "Any attributes/tags from the original source data that should be passed through."
+    },
+    {
+      "name": "level",
+      "description": "Z-order of the feature where 0 is visual level"
+    },
+    {
+      "name": "wikidata",
+      "description": "A wikidata ID if available, as found on https://www.wikidata.org/."
+    },
+    {
+      "name": "surface",
+      "description": "Surface material, mostly from the OSM tag, with some normalization."
+    },
+    {
+      "name": "elevation",
+      "description": "Elevation above sea level (in meters) of the feature."
+    },
+    {
+      "name": "geometry",
+      "description": "The feature geometry, stored as well-known binary in EPSG:4326."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture base vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole base theme. This collection's features are in the `land` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    },
+    "style-by-class": {
+      "href": "./styles/by_class.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By class"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Base"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/base/land",
+      "type": "text/html",
+      "title": "Overture documentation for land"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/base/land/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture base vector tiles",
+      "pmtiles:layers": [
+        "land"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 1,194,028 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 1,209,380 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 1,216,728 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 1,225,684 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 1,211,668 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 1,206,604 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 1,203,413 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 1,196,939 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00008.json",
+      "type": "application/geo+json",
+      "title": "Part 00008, 1,190,449 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00009.json",
+      "type": "application/geo+json",
+      "title": "Part 00009, 1,179,994 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00010.json",
+      "type": "application/geo+json",
+      "title": "Part 00010, 1,176,661 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00011.json",
+      "type": "application/geo+json",
+      "title": "Part 00011, 1,203,298 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00012.json",
+      "type": "application/geo+json",
+      "title": "Part 00012, 1,193,859 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00013.json",
+      "type": "application/geo+json",
+      "title": "Part 00013, 1,191,493 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00014.json",
+      "type": "application/geo+json",
+      "title": "Part 00014, 1,184,666 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00015.json",
+      "type": "application/geo+json",
+      "title": "Part 00015, 1,174,629 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00016.json",
+      "type": "application/geo+json",
+      "title": "Part 00016, 2,366,821 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00017.json",
+      "type": "application/geo+json",
+      "title": "Part 00017, 2,310,490 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00018.json",
+      "type": "application/geo+json",
+      "title": "Part 00018, 2,328,438 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00019.json",
+      "type": "application/geo+json",
+      "title": "Part 00019, 2,305,390 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00020.json",
+      "type": "application/geo+json",
+      "title": "Part 00020, 2,373,741 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00021.json",
+      "type": "application/geo+json",
+      "title": "Part 00021, 1,204,372 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00022.json",
+      "type": "application/geo+json",
+      "title": "Part 00022, 1,211,451 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00023.json",
+      "type": "application/geo+json",
+      "title": "Part 00023, 1,184,567 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00024.json",
+      "type": "application/geo+json",
+      "title": "Part 00024, 1,190,134 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00025.json",
+      "type": "application/geo+json",
+      "title": "Part 00025, 1,199,386 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00026.json",
+      "type": "application/geo+json",
+      "title": "Part 00026, 1,194,637 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00027.json",
+      "type": "application/geo+json",
+      "title": "Part 00027, 1,196,304 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00028.json",
+      "type": "application/geo+json",
+      "title": "Part 00028, 1,198,130 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00029.json",
+      "type": "application/geo+json",
+      "title": "Part 00029, 1,206,244 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00030.json",
+      "type": "application/geo+json",
+      "title": "Part 00030, 1,187,475 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00031.json",
+      "type": "application/geo+json",
+      "title": "Part 00031, 1,205,005 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00032.json",
+      "type": "application/geo+json",
+      "title": "Part 00032, 1,205,345 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00033.json",
+      "type": "application/geo+json",
+      "title": "Part 00033, 1,213,772 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00034.json",
+      "type": "application/geo+json",
+      "title": "Part 00034, 1,193,021 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00035.json",
+      "type": "application/geo+json",
+      "title": "Part 00035, 2,331,915 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00036.json",
+      "type": "application/geo+json",
+      "title": "Part 00036, 2,309,994 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00037.json",
+      "type": "application/geo+json",
+      "title": "Part 00037, 2,305,819 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00038.json",
+      "type": "application/geo+json",
+      "title": "Part 00038, 2,321,019 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00039.json",
+      "type": "application/geo+json",
+      "title": "Part 00039, 2,355,558 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00040.json",
+      "type": "application/geo+json",
+      "title": "Part 00040, 2,357,612 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00041.json",
+      "type": "application/geo+json",
+      "title": "Part 00041, 2,365,240 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00042.json",
+      "type": "application/geo+json",
+      "title": "Part 00042, 2,325,264 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00043.json",
+      "type": "application/geo+json",
+      "title": "Part 00043, 2,354,853 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00044.json",
+      "type": "application/geo+json",
+      "title": "Part 00044, 2,339,444 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00045.json",
+      "type": "application/geo+json",
+      "title": "Part 00045, 2,320,269 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00046.json",
+      "type": "application/geo+json",
+      "title": "Part 00046, 2,293,293 rows"
+    }
+  ]
+}

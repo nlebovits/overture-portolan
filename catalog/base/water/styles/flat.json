@@ -1,0 +1,93 @@
+{
+  "version": 8,
+  "name": "Water, single colour",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 13,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "water-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#2874a6",
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "water-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "water",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.6
+        ]
+      }
+    },
+    {
+      "id": "water-line",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "water",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "LineString"
+      ],
+      "paint": {
+        "line-color": "#2874a6",
+        "line-width": 1.1
+      }
+    },
+    {
+      "id": "water-point",
+      "type": "circle",
+      "source": "overture",
+      "source-layer": "water",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Point"
+      ],
+      "paint": {
+        "circle-color": "#2874a6",
+        "circle-radius": 2.4,
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
+      }
+    }
+  ]
+}

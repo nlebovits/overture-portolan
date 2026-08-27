@@ -1,0 +1,49 @@
+{
+  "version": 8,
+  "name": "Address, scaled by zoom",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/addresses.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 14,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "address-point",
+      "type": "circle",
+      "source": "overture",
+      "source-layer": "address",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Point"
+      ],
+      "paint": {
+        "circle-color": "#5591b5",
+        "circle-radius": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          0,
+          1.0,
+          14,
+          4.0
+        ],
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
+      }
+    }
+  ]
+}

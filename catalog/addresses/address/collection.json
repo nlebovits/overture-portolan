@@ -1,0 +1,567 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "address",
+  "title": "Address",
+  "description": "Overture's address collection",
+  "license": "other",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -176.87454223632812,
+          -90.0,
+          -74.34680938720703,
+          19.551755905151367
+        ],
+        [
+          -112.11558532714844,
+          19.551753997802734,
+          -80.15618133544922,
+          25.685359954833984
+        ],
+        [
+          -117.25234985351562,
+          25.68535804748535,
+          -94.66195678710938,
+          32.71639633178711
+        ],
+        [
+          -94.6619644165039,
+          25.68535804748535,
+          -80.03135681152344,
+          32.716392517089844
+        ],
+        [
+          -73.84783935546875,
+          -54.93804931640625,
+          -48.21263885498047,
+          -25.450353622436523
+        ],
+        [
+          -70.49208068847656,
+          -25.450355529785156,
+          -44.73466873168945,
+          -22.85915184020996
+        ],
+        [
+          -70.32845306396484,
+          -22.85915184020996,
+          -44.73466873168945,
+          -15.792075157165527
+        ],
+        [
+          -74.3467788696289,
+          -15.792076110839844,
+          -44.73466873168945,
+          18.36546516418457
+        ],
+        [
+          -166.5913543701172,
+          33.37537384033203,
+          -118.40435791015625,
+          69.45416259765625
+        ],
+        [
+          -118.40436553955078,
+          32.716392517089844,
+          -106.58966827392578,
+          67.82850646972656
+        ],
+        [
+          -106.58967590332031,
+          32.716392517089844,
+          -86.75520324707031,
+          39.61201477050781
+        ],
+        [
+          -106.58967590332031,
+          39.61201095581055,
+          -86.75520324707031,
+          69.12234497070312
+        ],
+        [
+          -86.75521087646484,
+          32.716392517089844,
+          -80.10950469970703,
+          40.69673156738281
+        ],
+        [
+          -80.10951232910156,
+          33.843955993652344,
+          -72.99677276611328,
+          40.69673156738281
+        ],
+        [
+          -86.75520324707031,
+          40.69672775268555,
+          -73.99520874023438,
+          62.42005920410156
+        ],
+        [
+          -73.9952163696289,
+          40.69672775268555,
+          -44.81249237060547,
+          77.78645324707031
+        ],
+        [
+          -44.73466873168945,
+          -23.357683181762695,
+          -38.69398880004883,
+          -16.085683822631836
+        ],
+        [
+          -44.73466873168945,
+          -16.085683822631836,
+          -34.80746841430664,
+          -7.540288925170898
+        ],
+        [
+          -44.73466873168945,
+          -7.540288925170898,
+          -8.447969436645508,
+          42.313385009765625
+        ],
+        [
+          -8.447970390319824,
+          35.26670837402344,
+          8.649450302124023,
+          42.31338882446289
+        ],
+        [
+          -44.66902160644531,
+          42.313385009765625,
+          2.3103480339050293,
+          70.74456787109375
+        ],
+        [
+          2.3103489875793457,
+          42.31340026855469,
+          4.70227575302124,
+          61.570640563964844
+        ],
+        [
+          4.702275276184082,
+          42.32289123535156,
+          8.649459838867188,
+          50.70931625366211
+        ],
+        [
+          4.702275276184082,
+          50.709312438964844,
+          8.649459838867188,
+          63.87409973144531
+        ],
+        [
+          8.649459838867188,
+          35.495548248291016,
+          21.2343692779541,
+          43.72700500488281
+        ],
+        [
+          8.649458885192871,
+          43.72700119018555,
+          21.234375,
+          47.53369903564453
+        ],
+        [
+          8.649458885192871,
+          47.533695220947266,
+          21.234375,
+          51.67070388793945
+        ],
+        [
+          8.649458885192871,
+          51.67070007324219,
+          21.234375,
+          78.33843994140625
+        ],
+        [
+          45.0474853515625,
+          -41.008636474609375,
+          144.619140625,
+          31.941871643066406
+        ],
+        [
+          144.61912536621094,
+          -46.90901565551758,
+          178.54525756835938,
+          -14.667433738708496
+        ],
+        [
+          21.234373092651367,
+          31.941877365112305,
+          135.2063446044922,
+          71.16976165771484
+        ],
+        [
+          135.2063446044922,
+          33.05898666381836,
+          145.62013244628906,
+          45.44873809814453
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "street",
+      "description": "The street name associated with this address. The street name can include the street \"type\" or street suffix, e.g., Main Street. Ideally this is fully spelled out and not abbreviated but we acknowledge that many address datasets abbreviate the street name so it is acceptable."
+    },
+    {
+      "name": "number",
+      "description": "The house number for this address. This field may not strictly be a number. Values such as \"74B\", \"189 1/2\", \"208.5\" are common as the number part of an address and they are not part of the \"unit\" of this address."
+    },
+    {
+      "name": "unit",
+      "description": "The suite/unit/apartment/floor number"
+    },
+    {
+      "name": "postcode",
+      "description": "The postcode for the address"
+    },
+    {
+      "name": "postal_city",
+      "description": "In some countries or regions, a mailing address may need to specify a different city name than the city that actually contains the address coordinates. This optional field can be used to specify the alternate city name to use. Example from US National Address Database: 716 East County Road, Winchester, Indiana has \"Ridgeville\" as its postal city Another example in Slovenia: Tomaj 71, 6221 Dutovlje, Slovenia"
+    },
+    {
+      "name": "address_levels",
+      "description": "The administrative levels present in an address. The number of values in this list and their meaning is country-dependent. For example, in the United States we expect two values: the state and the municipality. In other countries there might be only one. Other countries could have three or more. The array is ordered with the highest levels first. Note: when a level is not known - most likely because the data provider has not supplied it and we have not derived it from another source, the array element container must be present, but the \"value\" field should be omitted"
+    },
+    {
+      "name": "country",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    {
+      "name": "geometry",
+      "description": "An address geometry MUST be a Point as defined by GeoJSON schema."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/addresses.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture addresses vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole addresses theme. This collection's features are in the `address` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    },
+    "style-zoom": {
+      "href": "./styles/zoom.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "By zoom level"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Addresses"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/addresses/address",
+      "type": "text/html",
+      "title": "Overture documentation for address"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/addresses/address/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licence terms"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/addresses.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture addresses vector tiles",
+      "pmtiles:layers": [
+        "address"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 14,909,464 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 14,889,150 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 14,845,363 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 14,823,323 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 14,677,148 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 14,800,786 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 14,809,383 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 14,790,781 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00008.json",
+      "type": "application/geo+json",
+      "title": "Part 00008, 14,925,864 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00009.json",
+      "type": "application/geo+json",
+      "title": "Part 00009, 14,771,858 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00010.json",
+      "type": "application/geo+json",
+      "title": "Part 00010, 14,823,888 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00011.json",
+      "type": "application/geo+json",
+      "title": "Part 00011, 14,858,781 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00012.json",
+      "type": "application/geo+json",
+      "title": "Part 00012, 14,832,735 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00013.json",
+      "type": "application/geo+json",
+      "title": "Part 00013, 14,737,765 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00014.json",
+      "type": "application/geo+json",
+      "title": "Part 00014, 14,780,641 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00015.json",
+      "type": "application/geo+json",
+      "title": "Part 00015, 14,790,752 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00016.json",
+      "type": "application/geo+json",
+      "title": "Part 00016, 14,607,278 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00017.json",
+      "type": "application/geo+json",
+      "title": "Part 00017, 14,666,888 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00018.json",
+      "type": "application/geo+json",
+      "title": "Part 00018, 14,829,157 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00019.json",
+      "type": "application/geo+json",
+      "title": "Part 00019, 14,706,386 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00020.json",
+      "type": "application/geo+json",
+      "title": "Part 00020, 14,753,616 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00021.json",
+      "type": "application/geo+json",
+      "title": "Part 00021, 14,683,907 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00022.json",
+      "type": "application/geo+json",
+      "title": "Part 00022, 14,668,480 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00023.json",
+      "type": "application/geo+json",
+      "title": "Part 00023, 14,666,764 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00024.json",
+      "type": "application/geo+json",
+      "title": "Part 00024, 14,910,127 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00025.json",
+      "type": "application/geo+json",
+      "title": "Part 00025, 14,893,399 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00026.json",
+      "type": "application/geo+json",
+      "title": "Part 00026, 14,827,456 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00027.json",
+      "type": "application/geo+json",
+      "title": "Part 00027, 14,783,537 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00028.json",
+      "type": "application/geo+json",
+      "title": "Part 00028, 14,675,343 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00029.json",
+      "type": "application/geo+json",
+      "title": "Part 00029, 14,511,485 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00030.json",
+      "type": "application/geo+json",
+      "title": "Part 00030, 14,820,017 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00031.json",
+      "type": "application/geo+json",
+      "title": "Part 00031, 14,725,638 rows"
+    }
+  ]
+}

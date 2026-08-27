@@ -66,15 +66,33 @@ python3 tests/run_all.py
 
 | Gate | What it checks |
 |---|---|
-| `test_setup.py` | Template placeholders are all edited, or all untouched |
 | `test_links.py` | Every relative link and asset href resolves |
-| `test_publish.py` | Nothing outside `catalog/` can be uploaded |
-| `test_upload_data.py` | Only staged files with an allowed suffix upload |
+| `test_upstream_alive.py` | Every remote `data` and `visual` href answers 2xx |
 | `test_stac_valid.py` | Valid STAC 1.1.0, via `stac-check` |
 | `test_conformance.py` | Portolan conformance, via `rashid` |
 
-The two validator gates skip when their tools are absent, so a clean checkout
-runs with no setup. CI installs both and enforces them.
+The two validator gates fail when their tools are absent. A skip reports a
+green run for a catalog that no validator read. Each failure names the one
+command that installs the tool.
+
+Two gates run outside that set, because neither fits a pull request.
+
+`test_live_hosting.py` probes the deployed host for HTTP range support and
+CORS, which needs a URL that a pull request does not have.
+`.github/workflows/pages.yml` runs it after each deploy.
+
+`test_data_pass.py` reads the bytes of every `data` asset over HTTP range and
+checks the GeoParquet rules. One collection is one run:
+
+```bash
+python3 tests/test_data_pass.py divisions/division_area
+```
+
+The catalog cites 987 parts at about 7 seconds each, so the whole pass is about
+2 hours. `.github/workflows/data-pass.yml` runs it every week, one job per
+collection, and files an issue when it finds an error. It reports and it does
+not gate: the bytes belong to Overture, and a finding can name data this
+repository cannot fix. See [docs/conformance.md](docs/conformance.md).
 
 ## What this template does not decide
 

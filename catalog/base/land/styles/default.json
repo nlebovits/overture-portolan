@@ -1,0 +1,174 @@
+{
+  "version": 8,
+  "name": "Land by subtype",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 13,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "land-fill",
+      "type": "fill",
+      "source": "overture",
+      "source-layer": "land",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "tree",
+          "#538400",
+          "forest",
+          "#7fb356",
+          "shrub",
+          "#adc487",
+          "grass",
+          "#95c68f",
+          "wetland",
+          "#8fc6c0",
+          "rock",
+          "#b6b1a8",
+          "physical",
+          "#c9c25e",
+          "sand",
+          "#e0d59f",
+          "land",
+          "#dfe6ea",
+          "reef",
+          "#4a9d9c",
+          "#9e9e9e"
+        ],
+        "fill-opacity": 0.85
+      }
+    },
+    {
+      "id": "land-outline",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "land",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
+      "paint": {
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "land-line",
+      "type": "line",
+      "source": "overture",
+      "source-layer": "land",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "LineString"
+      ],
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "tree",
+          "#538400",
+          "forest",
+          "#7fb356",
+          "shrub",
+          "#adc487",
+          "grass",
+          "#95c68f",
+          "wetland",
+          "#8fc6c0",
+          "rock",
+          "#b6b1a8",
+          "physical",
+          "#c9c25e",
+          "sand",
+          "#e0d59f",
+          "land",
+          "#dfe6ea",
+          "reef",
+          "#4a9d9c",
+          "#9e9e9e"
+        ],
+        "line-width": 1.1
+      }
+    },
+    {
+      "id": "land-point",
+      "type": "circle",
+      "source": "overture",
+      "source-layer": "land",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Point"
+      ],
+      "paint": {
+        "circle-color": [
+          "match",
+          [
+            "get",
+            "subtype"
+          ],
+          "tree",
+          "#538400",
+          "forest",
+          "#7fb356",
+          "shrub",
+          "#adc487",
+          "grass",
+          "#95c68f",
+          "wetland",
+          "#8fc6c0",
+          "rock",
+          "#b6b1a8",
+          "physical",
+          "#c9c25e",
+          "sand",
+          "#e0d59f",
+          "land",
+          "#dfe6ea",
+          "reef",
+          "#4a9d9c",
+          "#9e9e9e"
+        ],
+        "circle-radius": 2.4,
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 0.8
+      }
+    }
+  ]
+}

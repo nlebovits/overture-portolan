@@ -16,6 +16,51 @@ from typing import Any
 
 DUCKDB_SETUP = "INSTALL spatial; LOAD spatial;"
 
+# What a consumer would otherwise find the hard way. Every entry is measured,
+# and every one names the release it was measured against. These describe
+# Overture's data, not this mirror: the mirror copies no bytes and can only
+# report what it read.
+KNOWN_ISSUES: dict[str, list[str]] = {
+    "base/bathymetry": [
+        "**The rows are not spatially ordered.** rashid reports PTL-DAT-006 "
+        "against release 2026-08-19.0: 59,963 rows in 4 row groups do not "
+        "cluster spatially. A reader cannot skip any part of the file, so a "
+        "bbox filter prunes nothing here and a spatial query reads the whole "
+        "collection. Reproduce it with `python3 tests/test_data_pass.py "
+        "base/bathymetry`, which takes about 13 seconds.",
+    ],
+    "base/land_cover": [
+        "**Overture reports bboxes outside the WGS84 range.** Its STAC gives "
+        "longitudes of 180.00022888183594 and -180.00022888183594, which "
+        "PTL-BBX-001 rejects. This catalog clamps them to \u00b1180 and logs "
+        "every clamp. The excess is about 25 metres at the equator, so the "
+        "clamp loses nothing a consumer can use. Overture's own STAC still "
+        "carries the original values.",
+    ],
+    "buildings/building": [
+        "**Most attributes are null, so this collection carries no legend.** "
+        "Measured over central Paris on release 2026-08-19.0, 354,621 rows: "
+        "`facade_material` is present on 0.4%, `subtype` on 25.7%, `class` on "
+        "25.4%, and `roof_material` on none. No column describes enough of "
+        "the data to colour a map by, so the default style is a single "
+        "colour. Filter on an attribute only after you have counted its "
+        "nulls.",
+    ],
+}
+
+# Style legends on these collections come from a sample, not a full scan. A
+# category that occurs only outside every sample window is missing from the
+# legend. The sample windows are recorded in sources/style_sampling.json.
+SAMPLED_LEGENDS = {
+    "base/infrastructure",
+    "base/land",
+    "base/land_cover",
+    "base/land_use",
+    "base/water",
+    "buildings/building",
+    "transportation/segment",
+}
+
 
 def _glob(record: dict[str, Any]) -> str:
     """The S3 glob covering every part of a collection."""
@@ -85,6 +130,28 @@ collection metadata as `via` and `canonical`.
 
 Attribution follows [Overture's terms](https://docs.overturemaps.org/attribution/).
 """
+
+
+def _known_issues(key: str) -> str:
+    """The `## Known issues` section, or nothing when there is none."""
+    entries = list(KNOWN_ISSUES.get(key, []))
+    if key in SAMPLED_LEGENDS:
+        entries.append(
+            "**The legend comes from a sample.** Style categories were "
+            "measured over bbox windows rather than a full scan, because a "
+            "full `GROUP BY` on this collection costs minutes. A sample "
+            "proves a category is present and never proves one is absent, so "
+            "a category that occurs only outside those windows is missing "
+            "from the legend. The windows are in `sources/style_sampling.json`."
+        )
+    if not entries:
+        return ""
+    body = "\n\n".join(f"- {e}" for e in entries)
+    return (
+        "## Known issues\n\n"
+        "Read these before you trust a query against this collection.\n\n"
+        f"{body}\n\n"
+    )
 
 
 def collection_agents(
@@ -174,7 +241,7 @@ Parts hold {min(i["row_groups"] for i in record["items"])} to
 {max(i["max_row_group_rows"] for i in record["items"]):,} rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
-{coded_block}## Schema and field notes
+{coded_block}{_known_issues(key)}## Schema and field notes
 
 The collection's `table:columns` carries a description for every documented
 column. Those descriptions are harvested from Overture's JSON Schema at tag

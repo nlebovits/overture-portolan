@@ -7,7 +7,7 @@
     "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
   ],
   "id": "division_area",
-  "title": "division_area",
+  "title": "Division Area",
   "description": "Overture's division_area collection",
   "license": "ODbL-1.0",
   "providers": [
@@ -173,6 +173,14 @@
         "default"
       ],
       "title": "Default style"
+    },
+    "style-flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Single colour"
     }
   },
   "links": [

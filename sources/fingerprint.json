@@ -1,5 +1,260 @@
 {
   "collections": {
+    "addresses/address": {
+      "columns": [
+        "id",
+        "street",
+        "number",
+        "unit",
+        "postcode",
+        "postal_city",
+        "address_levels",
+        "country",
+        "geometry",
+        "sources",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 32,
+      "license": "other",
+      "max_row_group_rows": 97727,
+      "row_group_cap": 150000
+    },
+    "base/bathymetry": {
+      "columns": [
+        "id",
+        "depth",
+        "cartography",
+        "geometry",
+        "sources",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 1,
+      "license": "CC0-1.0",
+      "max_row_group_rows": 15200,
+      "row_group_cap": 150000
+    },
+    "base/infrastructure": {
+      "columns": [
+        "id",
+        "geometry",
+        "sources",
+        "names",
+        "level",
+        "wikidata",
+        "source_tags",
+        "subtype",
+        "class",
+        "height",
+        "surface",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 16,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 67105,
+      "row_group_cap": 150000
+    },
+    "base/land": {
+      "columns": [
+        "id",
+        "names",
+        "subtype",
+        "class",
+        "sources",
+        "source_tags",
+        "level",
+        "wikidata",
+        "surface",
+        "elevation",
+        "geometry",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 47,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 25588,
+      "row_group_cap": 150000
+    },
+    "base/land_cover": {
+      "columns": [
+        "id",
+        "subtype",
+        "cartography",
+        "geometry",
+        "sources",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 128,
+      "license": "CC-BY-4.0",
+      "max_row_group_rows": 19590,
+      "row_group_cap": 150000
+    },
+    "base/land_use": {
+      "columns": [
+        "id",
+        "geometry",
+        "sources",
+        "names",
+        "level",
+        "wikidata",
+        "source_tags",
+        "subtype",
+        "class",
+        "elevation",
+        "surface",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 32,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 34812,
+      "row_group_cap": 150000
+    },
+    "base/water": {
+      "columns": [
+        "id",
+        "names",
+        "subtype",
+        "class",
+        "sources",
+        "source_tags",
+        "level",
+        "wikidata",
+        "is_intermittent",
+        "is_salt",
+        "geometry",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 32,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 22750,
+      "row_group_cap": 150000
+    },
+    "buildings/building": {
+      "columns": [
+        "id",
+        "names",
+        "sources",
+        "level",
+        "height",
+        "min_height",
+        "is_underground",
+        "num_floors",
+        "num_floors_underground",
+        "min_floor",
+        "subtype",
+        "class",
+        "facade_color",
+        "facade_material",
+        "roof_material",
+        "roof_shape",
+        "roof_direction",
+        "roof_orientation",
+        "roof_color",
+        "roof_height",
+        "geometry",
+        "has_parts",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 512,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 57772,
+      "row_group_cap": 150000
+    },
+    "buildings/building_part": {
+      "columns": [
+        "id",
+        "names",
+        "height",
+        "min_height",
+        "is_underground",
+        "num_floors",
+        "num_floors_underground",
+        "min_floor",
+        "facade_color",
+        "facade_material",
+        "roof_material",
+        "roof_shape",
+        "roof_direction",
+        "roof_orientation",
+        "roof_color",
+        "roof_height",
+        "level",
+        "sources",
+        "geometry",
+        "building_id",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 1,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 24949,
+      "row_group_cap": 150000
+    },
+    "divisions/division": {
+      "columns": [
+        "id",
+        "geometry",
+        "country",
+        "sources",
+        "subtype",
+        "admin_level",
+        "class",
+        "names",
+        "wikidata",
+        "perspectives",
+        "local_type",
+        "region",
+        "hierarchies",
+        "parent_division_id",
+        "norms",
+        "population",
+        "capital_division_ids",
+        "capital_of_divisions",
+        "cartography",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 1,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 27258,
+      "row_group_cap": 150000
+    },
     "divisions/division_area": {
       "columns": [
         "id",
@@ -23,6 +278,108 @@
       "items": 8,
       "license": "ODbL-1.0",
       "max_row_group_rows": 4556,
+      "row_group_cap": 150000
+    },
+    "divisions/division_boundary": {
+      "columns": [
+        "id",
+        "geometry",
+        "division_ids",
+        "subtype",
+        "admin_level",
+        "class",
+        "sources",
+        "perspectives",
+        "is_disputed",
+        "is_land",
+        "is_territorial",
+        "country",
+        "region",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 1,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 1584,
+      "row_group_cap": 150000
+    },
+    "places/place": {
+      "columns": [
+        "id",
+        "geometry",
+        "categories",
+        "confidence",
+        "websites",
+        "emails",
+        "socials",
+        "phones",
+        "brand",
+        "addresses",
+        "names",
+        "sources",
+        "operating_status",
+        "basic_category",
+        "taxonomy",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 16,
+      "license": "other",
+      "max_row_group_rows": 31025,
+      "row_group_cap": 150000
+    },
+    "transportation/connector": {
+      "columns": [
+        "id",
+        "sources",
+        "geometry",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 32,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 90422,
+      "row_group_cap": 150000
+    },
+    "transportation/segment": {
+      "columns": [
+        "id",
+        "names",
+        "subtype",
+        "class",
+        "subclass",
+        "subclass_rules",
+        "connectors",
+        "road_surface",
+        "road_flags",
+        "rail_flags",
+        "width_rules",
+        "level_rules",
+        "access_restrictions",
+        "speed_limits",
+        "prohibited_transitions",
+        "routes",
+        "destinations",
+        "sources",
+        "geometry",
+        "version",
+        "bbox"
+      ],
+      "geoparquet": [
+        "1.1.0"
+      ],
+      "items": 128,
+      "license": "ODbL-1.0",
+      "max_row_group_rows": 32074,
       "row_group_cap": 150000
     }
   },

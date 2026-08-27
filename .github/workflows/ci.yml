@@ -18,20 +18,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      # rashid takes a floor, not a pin. A pin goes stale the day the template
-      # is created and every repo made from it inherits the stale version. A
-      # floor takes each new 0.1.x release and still refuses a rashid that does
-      # not carry the rules tests/test_conformance.py asserts. The gate checks
-      # the same range at run time, so a local rashid cannot be older.
-      #
-      # stac-check stays unpinned on purpose. The stac-check exemption in
-      # docs/conformance.md expires when the upstream crash stops. That only
-      # happens if CI takes each new release.
+      # The pins and the reason for each one are in requirements-ci.txt.
+      # sync.yml and data-pass.yml read the same file, so one validator runs
+      # every gate. tools/check_rashid_release.py watches the rashid pin.
       - name: Install the validators
-        run: python -m pip install 'rashid==0.1.7' stac-check
+        run: python -m pip install -r requirements-ci.txt
 
-      # ruff covers the pyflakes rules the template shipped, and adds import
-      # order, modern syntax, and bugbear. Config is in ruff.toml.
       - name: Lint the tooling
         run: |
           python -m pip install ruff

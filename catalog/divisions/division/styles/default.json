@@ -1,0 +1,52 @@
+{
+  "version": 8,
+  "name": "Division by class",
+  "sources": {
+    "overture": {
+      "type": "vector",
+      "tiles": [
+        "pmtiles://https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles/{z}/{x}/{y}"
+      ],
+      "minzoom": 0,
+      "maxzoom": 12,
+      "attribution": "<a href=\"https://overturemaps.org/\">Overture Maps</a>, &copy; OpenStreetMap contributors"
+    }
+  },
+  "layers": [
+    {
+      "id": "division-point",
+      "type": "circle",
+      "source": "overture",
+      "source-layer": "division",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Point"
+      ],
+      "paint": {
+        "circle-color": [
+          "match",
+          [
+            "get",
+            "class"
+          ],
+          "hamlet",
+          "#b7bec2",
+          "village",
+          "#7fb3d0",
+          "town",
+          "#e89d07",
+          "city",
+          "#c03221",
+          "#9e9e9e"
+        ],
+        "circle-radius": 4.5,
+        "circle-opacity": 0.9,
+        "circle-stroke-color": "#FFFFFF",
+        "circle-stroke-width": 1.1
+      }
+    }
+  ]
+}

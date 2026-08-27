@@ -14,13 +14,6 @@
   },
   "layers": [
     {
-      "id": "background",
-      "type": "background",
-      "paint": {
-        "background-color": "#101418"
-      }
-    },
-    {
       "id": "division_area-fill",
       "type": "fill",
       "source": "overture",
@@ -33,23 +26,23 @@
             "subtype"
           ],
           "locality",
-          "#4c72b0",
+          "#7fb3d0",
           "neighborhood",
-          "#dd8452",
+          "#95c68f",
           "microhood",
-          "#55a868",
+          "#c98bab",
           "macrohood",
-          "#c44e52",
+          "#a99bd0",
           "county",
-          "#8172b3",
+          "#e89d07",
           "localadmin",
-          "#937860",
+          "#4a9d9c",
           "region",
-          "#da8bc3",
+          "#5591b5",
           "country",
-          "#e8c547",
+          "#174054",
           "dependency",
-          "#ccb974",
+          "#9aa3a8",
           "#9e9e9e"
         ],
         "fill-opacity": 0.85
@@ -60,9 +53,28 @@
       "type": "line",
       "source": "overture",
       "source-layer": "division_area",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ],
       "paint": {
-        "line-color": "#101418",
-        "line-width": 0.3
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0,
+          7,
+          0.3
+        ]
       }
     }
   ]

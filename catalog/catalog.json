@@ -49,9 +49,39 @@
     },
     {
       "rel": "child",
+      "href": "./addresses/catalog.json",
+      "type": "application/json",
+      "title": "Addresses"
+    },
+    {
+      "rel": "child",
+      "href": "./base/catalog.json",
+      "type": "application/json",
+      "title": "Base"
+    },
+    {
+      "rel": "child",
+      "href": "./buildings/catalog.json",
+      "type": "application/json",
+      "title": "Buildings"
+    },
+    {
+      "rel": "child",
       "href": "./divisions/catalog.json",
       "type": "application/json",
       "title": "Divisions"
+    },
+    {
+      "rel": "child",
+      "href": "./places/catalog.json",
+      "type": "application/json",
+      "title": "Places"
+    },
+    {
+      "rel": "child",
+      "href": "./transportation/catalog.json",
+      "type": "application/json",
+      "title": "Transportation"
     }
   ],
   "updated": "2026-08-19T00:00:00Z"

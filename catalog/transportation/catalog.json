@@ -1,0 +1,48 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json"
+  ],
+  "id": "transportation",
+  "title": "Transportation",
+  "description": "Overture Maps Transportation theme. Holds 2 collections.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Theme README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Theme agent guide"
+    },
+    {
+      "rel": "child",
+      "href": "./connector/collection.json",
+      "type": "application/json",
+      "title": "Connector"
+    },
+    {
+      "rel": "child",
+      "href": "./segment/collection.json",
+      "type": "application/json",
+      "title": "Segment"
+    }
+  ]
+}
