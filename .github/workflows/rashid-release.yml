@@ -1,0 +1,150 @@
+# Watches PyPI for the rashid release that replaces the git pin.
+#
+# `requirements-ci.txt` pins rashid to the merge commit of
+# portolan-sdi/rashid#167. That fix is merged and it is not released. The pin
+# carries a comment that says to switch to the release, and a comment reminds
+# nobody. This workflow does the watching.
+#
+# Dependabot cannot do this work. It does not read a `pip install` inside a
+# workflow `run:` step, and it cannot move a requirement from a git URL to a
+# PyPI version. It takes over after this workflow opens its one pull request,
+# which is why the pin now lives in a requirements file.
+#
+# The schedule is Tuesday, because sync.yml runs on Monday and data-pass.yml
+# runs on Thursday. Each red run then names its own workflow.
+name: Rashid release
+
+on:
+  schedule:
+    - cron: "23 7 * * 2"
+  # Keep this. GitHub disables a schedule trigger after 60 days of repository
+  # inactivity, and this is the manual way back.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rashid-release
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Exits 2 when the pin holds neither known shape. A check that matches
+      # nothing would report "no release is due" every week forever.
+      - id: check
+        name: Compare the pin against PyPI
+        run: python3 tools/check_rashid_release.py
+
+      - name: Report a current pin
+        if: steps.check.outputs.available == 'false'
+        run: echo "No rashid release is above the pin."
+
+      - name: Open the pull request
+        if: steps.check.outputs.available == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.check.outputs.version }}
+        run: |
+          branch="deps/rashid-${VERSION}"
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          python3 tools/check_rashid_release.py --apply
+          git add requirements-ci.txt
+          if git diff --cached --quiet; then
+            echo "The pin already reads rashid==${VERSION}. Nothing to open."
+            exit 0
+          fi
+          git commit -m "build: pin rashid to ${VERSION}"
+          git push --force origin "$branch"
+          {
+            echo "## What changed"
+            echo
+            echo "\`requirements-ci.txt\` pins rashid to \`${VERSION}\` from"
+            echo "PyPI. It pinned a git commit before this change."
+            echo
+            echo "## Why"
+            echo
+            echo "The git pin is the merge commit of"
+            echo "portolan-sdi/rashid#167. That fix is merged and it was not"
+            echo "released. rashid \`${VERSION}\` is now on PyPI, so the pin"
+            echo "can name a release."
+            echo
+            echo "A version pin also lets Dependabot keep rashid current."
+            echo "Dependabot cannot read a git URL, so it did nothing until"
+            echo "now. Delete \`tools/check_rashid_release.py\` and"
+            echo "\`.github/workflows/rashid-release.yml\` after this merges."
+            echo
+            echo "## Verification"
+            echo
+            echo "CI installs from \`requirements-ci.txt\` and runs every"
+            echo "gate against \`catalog/\`. Confirm the data pass with the"
+            echo "new release before you merge:"
+            echo
+            echo '```'
+            echo "gh workflow run data-pass.yml"
+            echo '```'
+          } > /tmp/body.md
+          if [ -n "$(gh pr list --head "$branch" --state open --json number \
+              --jq '.[].number')" ]; then
+            gh pr edit "$branch" --body-file /tmp/body.md
+          else
+            gh pr create \
+              --base main \
+              --head "$branch" \
+              --title "build: pin rashid to ${VERSION}" \
+              --body-file /tmp/body.md
+          fi
+
+      # A scheduled run that fails is easy to miss. The check exits 2 when the
+      # pin changed shape, which is the case that must not stay quiet.
+      - name: Report a pin this check cannot read
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLE: "The rashid pin check cannot read the pin"
+          RUN_URL: >-
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{
+            github.run_id }}
+        run: |
+          {
+            echo "\`tools/check_rashid_release.py\` failed on"
+            echo "$(date -u +%Y-%m-%d)."
+            echo
+            echo "It reads one rashid pin from \`requirements-ci.txt\`, in one"
+            echo "of two shapes: a git URL with a 40-character commit, or"
+            echo "\`rashid==X.Y.Z\`. A pin in another shape stops the check."
+            echo "The check fails rather than reports that no release is due."
+            echo
+            echo "Fix the pin, or fix the tool to read the new shape."
+            echo
+            echo "Run: ${RUN_URL}"
+            echo
+            echo "## Verification"
+            echo
+            echo '```'
+            echo "python3 tools/check_rashid_release.py"
+            echo '```'
+          } > /tmp/body.md
+          number=$(gh issue list --state open --limit 100 \
+            --json number,title \
+            --jq "first(.[] | select(.title == \"${TITLE}\") | .number)")
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body-file /tmp/body.md
+          else
+            gh issue create --title "${TITLE}" --body-file /tmp/body.md
+          fi

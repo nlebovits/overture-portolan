@@ -121,6 +121,23 @@ re-applied as a last pass.
 add a third without a matching row in `docs/conformance.md` giving the rule,
 where it fires, why it is accepted, and the issue that tracks its removal.
 
+### The weekly data pass reports, it does not gate
+
+`.github/workflows/data-pass.yml` reads the bytes of every `data` asset once a
+week, one job per collection. It files an issue on a failure and nothing
+downstream reads the result. Overture owns those bytes, so a finding can name
+data this repository cannot fix. Never make this workflow a required check,
+and never move a data finding into `ACCEPTED`, which gates a pull request that
+this pass does not run on. `docs/conformance.md` records what it found.
+
+### One rashid pin, in one file
+
+`requirements-ci.txt` holds the validator pins. `ci.yml`, `sync.yml`, and
+`data-pass.yml` all install from it, so one validator runs every gate. The
+rashid line holds one of two exact shapes, and
+`tools/check_rashid_release.py` fails when it holds a third. Read the comment
+in the file before you edit that line.
+
 ### Published agent guides
 
 Every claim in a `catalog/**/AGENTS.md` is either quoted from a source or

@@ -75,9 +75,24 @@ The two validator gates fail when their tools are absent. A skip reports a
 green run for a catalog that no validator read. Each failure names the one
 command that installs the tool.
 
-One gate runs outside that set. `test_live_hosting.py` probes the deployed
-host for HTTP range support and CORS, which needs a URL that a pull request
-does not have. `.github/workflows/pages.yml` runs it after each deploy.
+Two gates run outside that set, because neither fits a pull request.
+
+`test_live_hosting.py` probes the deployed host for HTTP range support and
+CORS, which needs a URL that a pull request does not have.
+`.github/workflows/pages.yml` runs it after each deploy.
+
+`test_data_pass.py` reads the bytes of every `data` asset over HTTP range and
+checks the GeoParquet rules. One collection is one run:
+
+```bash
+python3 tests/test_data_pass.py divisions/division_area
+```
+
+The catalog cites 987 parts at about 7 seconds each, so the whole pass is about
+2 hours. `.github/workflows/data-pass.yml` runs it every week, one job per
+collection, and files an issue when it finds an error. It reports and it does
+not gate: the bytes belong to Overture, and a finding can name data this
+repository cannot fix. See [docs/conformance.md](docs/conformance.md).
 
 ## What this template does not decide
 

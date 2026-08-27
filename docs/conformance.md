@@ -38,16 +38,96 @@ command. A skip would report a green run for a catalog that no validator read.
 The floor is 0.1.5 because rules PTL-LNK-007, PTL-LNK-008, PTL-LNK-009 and
 PTL-AST-006 do not exist below it. The gate asserts all four. An older rashid
 reports a pass for a catalog that it never checked against them. The same range
-is in `portolan-cli/pyproject.toml` and in the CI install step.
+is in `portolan-cli/pyproject.toml`.
 
 The upper bound stops an unreviewed 0.2 rule set from changing what this gate
 means. Raise both bounds together when you move to 0.2, and read the new rules
 first.
 
+## The rashid pin and the watch on it
+
+The version the gates actually install is in `requirements-ci.txt`. Three
+workflows read that file: `ci.yml`, `sync.yml`, and `data-pass.yml`. One file
+keeps all three on one validator, because a gate must not mean one thing on a
+pull request and a different thing in a weekly run.
+
+The pin is a git commit, not a release. It names the merge commit of
+[rashid#167](https://github.com/portolan-sdi/rashid/pull/167), which moves
+PTL-DAT-006 off a per-row read and onto footer statistics. Measured on one
+remote Overture part on 2026-08-27, that takes the data pass from 48.5 seconds
+to 7.1 seconds. The fix is merged and it is not released.
+
+`tools/check_rashid_release.py` watches PyPI for the release that ends the git
+pin, and `.github/workflows/rashid-release.yml` runs it every Tuesday. When a
+release above 0.1.7 appears, the workflow opens a pull request that replaces
+the git URL with `rashid==X.Y.Z`.
+
+Dependabot cannot do this work. It does not read a `pip install` inside a
+workflow `run:` step, and it cannot move a requirement from a git URL to a PyPI
+version. It can keep a version pin current, which is the reason the pin moved
+into a requirements file. Delete the tool and the workflow after that pull
+request merges, and let Dependabot take the job.
+
+The tool reads one rashid line in one of two exact shapes. A line in a third
+shape stops the check with exit code 2, and the workflow files an issue. A
+check that matches nothing would report that no release is due, every week,
+forever.
+
 This file also records workarounds for the other validator CI runs. Those are
 not conformance debts, because the catalog is correct and the validator is not.
 They live here so nobody has to read CI code to find out why a gate skips
 something.
+
+## The weekly data pass
+
+`tests/test_conformance.py` runs rashid with `--no-data`, so a pull request
+never reaches the byte rules. Those rules read every `data` asset over HTTP
+range: PTL-DAT-006 spatial ordering, PTL-DAT-007 per-row-group statistics,
+PTL-DAT-008 the 150,000 row cap on a row group, and PTL-DAT-012 the GeoParquet
+version.
+
+One remote Overture part takes about 7 seconds, and the catalog cites 987
+parts. A single pass is about 2 hours, which no pull request can wait for.
+`.github/workflows/data-pass.yml` runs it weekly instead, as one job per
+collection:
+
+```bash
+python3 tests/test_data_pass.py divisions/division_area
+```
+
+rashid takes a catalog root and it carries no flag that scopes the pass to one
+collection. The gate makes a pruned copy of the catalog in a temporary
+directory: the root catalog, the theme catalog, and the one collection. The
+copy is metadata only.
+
+The pass reports and it does not gate. The bytes belong to Overture. Overture
+can republish a part in the middle of a release, and the pass then goes red on
+data this repository does not own and cannot fix. On a failure the workflow
+opens one issue, or it comments on the issue that is already open. Nothing
+downstream reads the result.
+
+The gate carries no accepted-finding list, unlike `tests/test_conformance.py`.
+It never passes `--live`, so PTL-LIV-004 and PTL-LIV-005 cannot fire. Any
+error-severity finding fails the job and goes in the report.
+
+### What the pass reports today
+
+Measured against release 2026-08-19.0 on 2026-08-27:
+
+| Collection | Result |
+|---|---|
+| base/bathymetry | PTL-DAT-006: 59,963 rows in 4 row groups do not cluster spatially |
+| buildings/building_part | no error |
+| divisions/division | no error |
+| divisions/division_area | no error |
+| divisions/division_boundary | no error |
+
+The other 10 collections were not measured, because 512 parts of
+`buildings/building` cost an hour. The first scheduled run reports them.
+
+The bathymetry finding is upstream. Overture writes that file, and this
+catalog copies no bytes. It is not a row in the table below, and its rule is
+not in `ACCEPTED`: that list gates a pull request, and this pass gates nothing.
 
 ## Accepted deviations
 
