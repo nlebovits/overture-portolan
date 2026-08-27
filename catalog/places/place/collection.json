@@ -1,0 +1,387 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "place",
+  "title": "Place",
+  "description": "Overture's place collection",
+  "license": "other",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.99806213378906,
+          -84.9901123046875,
+          -77.02679443359375,
+          28.517011642456055
+        ],
+        [
+          -176.8875732421875,
+          28.517009735107422,
+          -77.46292114257812,
+          34.473384857177734
+        ],
+        [
+          -179.81707763671875,
+          34.47338104248047,
+          -89.38878631591797,
+          81.75200653076172
+        ],
+        [
+          -89.3887939453125,
+          34.47338104248047,
+          -77.02679443359375,
+          82.7169418334961
+        ],
+        [
+          -75.56138610839844,
+          -84.9283218383789,
+          2.5350000858306885,
+          -21.3747615814209
+        ],
+        [
+          -77.02680206298828,
+          -21.3747615814209,
+          3.3505303859710693,
+          38.73691177368164
+        ],
+        [
+          -77.02680206298828,
+          38.736907958984375,
+          -3.081303358078003,
+          83.57147979736328
+        ],
+        [
+          -3.081301212310791,
+          38.73691177368164,
+          3.350536346435547,
+          66.51543426513672
+        ],
+        [
+          3.350538969039917,
+          -84.9798812866211,
+          72.9884262084961,
+          40.049800872802734
+        ],
+        [
+          3.3506364822387695,
+          40.04979705810547,
+          72.98794555664062,
+          46.40107727050781
+        ],
+        [
+          3.350539445877075,
+          46.40107345581055,
+          11.899445533752441,
+          79.8555679321289
+        ],
+        [
+          11.899446487426758,
+          46.40107345581055,
+          72.98824310302734,
+          81.84305572509766
+        ],
+        [
+          72.9901351928711,
+          -83.35951232910156,
+          106.74645233154297,
+          16.4581356048584
+        ],
+        [
+          106.74644470214844,
+          -83.71138000488281,
+          179.9976043701172,
+          16.4581356048584
+        ],
+        [
+          72.98841857910156,
+          16.4581356048584,
+          107.09851837158203,
+          81.25284576416016
+        ],
+        [
+          107.0985107421875,
+          16.4581356048584,
+          179.59945678710938,
+          77.10000610351562
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "geometry",
+      "description": "Place's geometry which MUST be a Point as defined by GeoJSON schema."
+    },
+    {
+      "name": "categories",
+      "description": "The categories of the place. Complete list is available on GitHub: https://github.com/OvertureMaps/schema/blob/main/docs/schema/concepts/by-theme/places/overture_categories.csv"
+    },
+    {
+      "name": "confidence",
+      "description": "The confidence of the existence of the place. It's a number between 0 and 1. 0 means that we're sure that the place doesn't exist (anymore). 1 means that we're sure that the place exists. If there's no value for the confidence, it means that we don't have any confidence information. Places with operating_status set to 'closed' will have a confidence score of 0"
+    },
+    {
+      "name": "websites",
+      "description": "The websites of the place."
+    },
+    {
+      "name": "emails",
+      "description": "The email addresses of the place."
+    },
+    {
+      "name": "socials",
+      "description": "The social media URLs of the place."
+    },
+    {
+      "name": "phones",
+      "description": "The phone numbers of the place."
+    },
+    {
+      "name": "brand",
+      "description": "The brand of the place. A location with multiple brands is modeled as multiple separate places, each with its own brand."
+    },
+    {
+      "name": "addresses",
+      "description": "The addresses of the place."
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "operating_status",
+      "description": "Indicates the operating status of a place, can be one of [\"open\", \"permanently_closed\", \"temporarily_closed\"]. This is not an indication of 'opening hours' or that the place is open/closed at the current time-of-day or day-of-week."
+    },
+    {
+      "name": "basic_category",
+      "description": "The basic level category of a place. At present this is a mapping of the categories.primary entry to a new, simplified name. This mapping can be 1:1 or M:1 from the existing categories.primary entry. If the entry is currently empty in categories.primary, this entry will be empty. This type of categorization is a cognitive science model that is relevant for taxonomy and ontology development that shows the most broadest and general category name that is most often found in the middle of a general-to-specific hierarchy, with generalization proceeding upward and specialization proceeding downward. The full list of basic level categories is available at https://docs.overturemaps.org/guides/places/"
+    },
+    {
+      "name": "taxonomy",
+      "description": "A new representation of the place's category within the Overture taxonomy. Provides the primary classification, full hierarchy path, and alternate categories."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/places.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture places vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole places theme. This collection's features are in the `place` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Places"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/places/place",
+      "type": "text/html",
+      "title": "Overture documentation for place"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/places/place/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licence terms"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/places.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture places vector tiles",
+      "pmtiles:layers": [
+        "place"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 4,599,286 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 4,598,020 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 4,563,884 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 4,577,476 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 4,579,733 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 4,563,875 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 4,629,273 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 4,576,816 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00008.json",
+      "type": "application/geo+json",
+      "title": "Part 00008, 4,616,856 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00009.json",
+      "type": "application/geo+json",
+      "title": "Part 00009, 4,634,533 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00010.json",
+      "type": "application/geo+json",
+      "title": "Part 00010, 4,677,697 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00011.json",
+      "type": "application/geo+json",
+      "title": "Part 00011, 4,653,912 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00012.json",
+      "type": "application/geo+json",
+      "title": "Part 00012, 4,556,592 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00013.json",
+      "type": "application/geo+json",
+      "title": "Part 00013, 4,587,973 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00014.json",
+      "type": "application/geo+json",
+      "title": "Part 00014, 4,583,300 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00015.json",
+      "type": "application/geo+json",
+      "title": "Part 00015, 4,631,866 rows"
+    }
+  ]
+}

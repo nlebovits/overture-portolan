@@ -1,0 +1,525 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "connector",
+  "title": "Connector",
+  "description": "Overture's connector collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -85.05113220214844,
+          -70.90673828125,
+          22.902034759521484
+        ],
+        [
+          -178.29600524902344,
+          22.902034759521484,
+          -74.43013763427734,
+          32.36259460449219
+        ],
+        [
+          -123.0048599243164,
+          32.36259078979492,
+          -93.23345947265625,
+          37.856475830078125
+        ],
+        [
+          -93.23346710205078,
+          32.36259078979492,
+          -75.3737564086914,
+          37.856475830078125
+        ],
+        [
+          -180.0,
+          37.85647201538086,
+          -103.07608032226562,
+          78.79680633544922
+        ],
+        [
+          -103.0760726928711,
+          37.85647201538086,
+          -86.58558654785156,
+          79.41559600830078
+        ],
+        [
+          -86.5855941772461,
+          37.85647201538086,
+          -71.5457763671875,
+          41.26958084106445
+        ],
+        [
+          -86.5855941772461,
+          41.26957702636719,
+          -70.90673828125,
+          80.0534896850586
+        ],
+        [
+          -70.90674591064453,
+          -77.87741088867188,
+          5.143404006958008,
+          -12.847455978393555
+        ],
+        [
+          -70.90672302246094,
+          -12.847454071044922,
+          10.817241668701172,
+          27.621807098388672
+        ],
+        [
+          -70.90674591064453,
+          27.621835708618164,
+          -0.12344209849834442,
+          45.79167175292969
+        ],
+        [
+          -0.12344161421060562,
+          27.622234344482422,
+          10.817258834838867,
+          45.79167175292969
+        ],
+        [
+          -70.90674591064453,
+          45.79167175292969,
+          -1.002790093421936,
+          82.52540588378906
+        ],
+        [
+          -1.002789855003357,
+          45.79166793823242,
+          4.940154075622559,
+          61.86109161376953
+        ],
+        [
+          4.940157413482666,
+          45.79166793823242,
+          10.817258834838867,
+          50.814266204833984
+        ],
+        [
+          4.9401535987854,
+          50.81426239013672,
+          10.817258834838867,
+          64.91899871826172
+        ],
+        [
+          10.820846557617188,
+          -70.82349395751953,
+          50.08613967895508,
+          -2.7802751064300537
+        ],
+        [
+          10.817267417907715,
+          -2.7802722454071045,
+          50.086151123046875,
+          31.319808959960938
+        ],
+        [
+          10.81725788116455,
+          31.320541381835938,
+          25.20880889892578,
+          46.3199462890625
+        ],
+        [
+          25.208812713623047,
+          31.319807052612305,
+          50.086151123046875,
+          46.3199462890625
+        ],
+        [
+          10.81725788116455,
+          46.319942474365234,
+          19.787553787231445,
+          50.805389404296875
+        ],
+        [
+          10.81725788116455,
+          50.80538558959961,
+          19.787553787231445,
+          78.97254180908203
+        ],
+        [
+          19.787551879882812,
+          46.319942474365234,
+          50.08614730834961,
+          53.839508056640625
+        ],
+        [
+          19.787555694580078,
+          53.83950424194336,
+          50.08610534667969,
+          80.82711791992188
+        ],
+        [
+          50.0861701965332,
+          -80.4163818359375,
+          103.36795806884766,
+          16.363685607910156
+        ],
+        [
+          50.091400146484375,
+          16.363685607910156,
+          103.36795806884766,
+          24.760204315185547
+        ],
+        [
+          103.36796569824219,
+          -82.42407989501953,
+          180.0,
+          -1.8080333471298218
+        ],
+        [
+          103.36795043945312,
+          -1.808029294013977,
+          176.49404907226562,
+          24.760202407836914
+        ],
+        [
+          50.08614730834961,
+          24.760202407836914,
+          106.2361831665039,
+          30.66433334350586
+        ],
+        [
+          50.08614730834961,
+          30.664331436157227,
+          106.2361831665039,
+          81.16793060302734
+        ],
+        [
+          106.23617553710938,
+          24.760204315185547,
+          130.58755493164062,
+          78.09217071533203
+        ],
+        [
+          130.58755493164062,
+          24.768844604492188,
+          180.0,
+          77.10956573486328
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "geometry",
+      "description": "Connector's geometry which MUST be a Point as defined by GeoJSON schema."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/transportation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture transportation vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole transportation theme. This collection's features are in the `connector` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Transportation"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/transportation/connector",
+      "type": "text/html",
+      "title": "Overture documentation for connector"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/transportation/connector/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/transportation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture transportation vector tiles",
+      "pmtiles:layers": [
+        "connector"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 13,149,761 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 13,108,685 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 13,160,918 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 13,186,760 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 13,155,121 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 13,141,006 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 13,190,254 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 13,253,573 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00008.json",
+      "type": "application/geo+json",
+      "title": "Part 00008, 13,153,161 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00009.json",
+      "type": "application/geo+json",
+      "title": "Part 00009, 13,132,902 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00010.json",
+      "type": "application/geo+json",
+      "title": "Part 00010, 13,073,389 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00011.json",
+      "type": "application/geo+json",
+      "title": "Part 00011, 13,055,688 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00012.json",
+      "type": "application/geo+json",
+      "title": "Part 00012, 13,136,689 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00013.json",
+      "type": "application/geo+json",
+      "title": "Part 00013, 13,112,793 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00014.json",
+      "type": "application/geo+json",
+      "title": "Part 00014, 13,134,670 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00015.json",
+      "type": "application/geo+json",
+      "title": "Part 00015, 13,085,998 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00016.json",
+      "type": "application/geo+json",
+      "title": "Part 00016, 13,136,559 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00017.json",
+      "type": "application/geo+json",
+      "title": "Part 00017, 13,090,831 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00018.json",
+      "type": "application/geo+json",
+      "title": "Part 00018, 13,129,044 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00019.json",
+      "type": "application/geo+json",
+      "title": "Part 00019, 13,150,846 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00020.json",
+      "type": "application/geo+json",
+      "title": "Part 00020, 12,954,531 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00021.json",
+      "type": "application/geo+json",
+      "title": "Part 00021, 13,064,827 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00022.json",
+      "type": "application/geo+json",
+      "title": "Part 00022, 13,085,339 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00023.json",
+      "type": "application/geo+json",
+      "title": "Part 00023, 13,057,615 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00024.json",
+      "type": "application/geo+json",
+      "title": "Part 00024, 13,031,391 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00025.json",
+      "type": "application/geo+json",
+      "title": "Part 00025, 13,107,102 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00026.json",
+      "type": "application/geo+json",
+      "title": "Part 00026, 13,081,793 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00027.json",
+      "type": "application/geo+json",
+      "title": "Part 00027, 13,090,709 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00028.json",
+      "type": "application/geo+json",
+      "title": "Part 00028, 13,141,589 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00029.json",
+      "type": "application/geo+json",
+      "title": "Part 00029, 13,176,950 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00030.json",
+      "type": "application/geo+json",
+      "title": "Part 00030, 13,022,788 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00031.json",
+      "type": "application/geo+json",
+      "title": "Part 00031, 12,987,211 rows"
+    }
+  ]
+}

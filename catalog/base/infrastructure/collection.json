@@ -1,0 +1,365 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "infrastructure",
+  "title": "Infrastructure",
+  "description": "Overture's infrastructure collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -85.19830322265625,
+          -32.21195602416992,
+          40.19186019897461
+        ],
+        [
+          -123.67494201660156,
+          32.13353729248047,
+          -75.0500259399414,
+          40.28190612792969
+        ],
+        [
+          -179.75994873046875,
+          37.066261291503906,
+          -86.35617065429688,
+          78.79804992675781
+        ],
+        [
+          -88.62599182128906,
+          38.37786102294922,
+          -51.518795013427734,
+          83.09237670898438
+        ],
+        [
+          -74.01984405517578,
+          -89.9918441772461,
+          9.926081657409668,
+          50.04308319091797
+        ],
+        [
+          -74.23212432861328,
+          37.94999694824219,
+          7.856097221374512,
+          51.281455993652344
+        ],
+        [
+          -51.53464889526367,
+          47.18014907836914,
+          8.385750770568848,
+          82.17057800292969
+        ],
+        [
+          -1.9278308153152466,
+          48.307376861572266,
+          8.404125213623047,
+          81.60833740234375
+        ],
+        [
+          -4.950883388519287,
+          -84.61326599121094,
+          100.1908187866211,
+          42.94660186767578
+        ],
+        [
+          5.213449954986572,
+          32.88433074951172,
+          89.30411529541016,
+          48.287193298339844
+        ],
+        [
+          80.62423706054688,
+          -82.42407989501953,
+          180.0,
+          34.97064971923828
+        ],
+        [
+          88.14546966552734,
+          22.096487045288086,
+          150.56922912597656,
+          47.21424102783203
+        ],
+        [
+          7.187046051025391,
+          46.67283248901367,
+          18.895605087280273,
+          50.94093704223633
+        ],
+        [
+          5.434256553649902,
+          50.632240295410156,
+          18.954620361328125,
+          79.6277847290039
+        ],
+        [
+          12.024003028869629,
+          46.46308517456055,
+          31.052623748779297,
+          76.50936889648438
+        ],
+        [
+          27.8442325592041,
+          45.18833923339844,
+          179.36911010742188,
+          81.85298156738281
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "geometry",
+      "description": "The feature geometry, stored as well-known binary in EPSG:4326."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "level",
+      "description": "Z-order of the feature where 0 is visual level"
+    },
+    {
+      "name": "wikidata",
+      "description": "A wikidata ID if available, as found on https://www.wikidata.org/."
+    },
+    {
+      "name": "source_tags",
+      "description": "Any attributes/tags from the original source data that should be passed through."
+    },
+    {
+      "name": "subtype",
+      "description": "Further description of the type of infrastructure."
+    },
+    {
+      "name": "class",
+      "description": "Further classification of the infrastructure type"
+    },
+    {
+      "name": "height",
+      "description": "Height of the feature in meters."
+    },
+    {
+      "name": "surface",
+      "description": "Surface material, mostly from the OSM tag, with some normalization."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture base vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole base theme. This collection's features are in the `infrastructure` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Base"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/base/infrastructure",
+      "type": "text/html",
+      "title": "Overture documentation for infrastructure"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/base/infrastructure/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture base vector tiles",
+      "pmtiles:layers": [
+        "infrastructure"
+      ]
+    },
+    {
+      "rel": "item",
+      "href": "./items/00000.json",
+      "type": "application/geo+json",
+      "title": "Part 00000, 9,795,441 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00001.json",
+      "type": "application/geo+json",
+      "title": "Part 00001, 9,722,401 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00002.json",
+      "type": "application/geo+json",
+      "title": "Part 00002, 9,678,957 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00003.json",
+      "type": "application/geo+json",
+      "title": "Part 00003, 9,610,314 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00004.json",
+      "type": "application/geo+json",
+      "title": "Part 00004, 9,716,200 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00005.json",
+      "type": "application/geo+json",
+      "title": "Part 00005, 9,652,777 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00006.json",
+      "type": "application/geo+json",
+      "title": "Part 00006, 9,787,093 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00007.json",
+      "type": "application/geo+json",
+      "title": "Part 00007, 9,700,476 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00008.json",
+      "type": "application/geo+json",
+      "title": "Part 00008, 9,716,507 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00009.json",
+      "type": "application/geo+json",
+      "title": "Part 00009, 9,765,421 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00010.json",
+      "type": "application/geo+json",
+      "title": "Part 00010, 9,751,017 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00011.json",
+      "type": "application/geo+json",
+      "title": "Part 00011, 9,803,135 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00012.json",
+      "type": "application/geo+json",
+      "title": "Part 00012, 9,698,519 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00013.json",
+      "type": "application/geo+json",
+      "title": "Part 00013, 9,715,035 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00014.json",
+      "type": "application/geo+json",
+      "title": "Part 00014, 9,691,181 rows"
+    },
+    {
+      "rel": "item",
+      "href": "./items/00015.json",
+      "type": "application/geo+json",
+      "title": "Part 00015, 9,708,862 rows"
+    }
+  ]
+}

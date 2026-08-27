@@ -1,0 +1,229 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "building_part",
+  "title": "Building Part",
+  "description": "Overture's building_part collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.12486267089844,
+          -71.67339324951172,
+          177.45278930664062,
+          78.94337463378906
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id"
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "height",
+      "description": "Height of the building or part in meters. The height is the distance from the lowest point to the highest point."
+    },
+    {
+      "name": "min_height",
+      "description": "The height of the bottom part of building in meters. Used if a building or part of building starts above the ground level."
+    },
+    {
+      "name": "is_underground",
+      "description": "Whether the entire building or part is completely below ground. This is useful for rendering which typically omits these buildings or styles them differently because they are not visible above ground. This is different than the level column which is used to indicate z-ordering of elements and negative values may be above ground."
+    },
+    {
+      "name": "num_floors",
+      "description": "Number of above-ground floors of the building or part."
+    },
+    {
+      "name": "num_floors_underground",
+      "description": "Number of below-ground floors of the building or part."
+    },
+    {
+      "name": "min_floor",
+      "description": "The \"start\" floor of this building or part. Indicates that the building or part is \"floating\" and its bottom-most floor is above ground level, usually because it is part of a larger building in which some parts do reach down to ground level. An example is a building that has an entry road or driveway at ground level into an interior courtyard, where part of the building bridges above the entry road. This property may sometimes be populated when min_height is missing and in these cases can be used as a proxy for min_height."
+    },
+    {
+      "name": "facade_color",
+      "description": "The color (name or color triplet) of the facade of a building or building part in hexadecimal"
+    },
+    {
+      "name": "facade_material",
+      "description": "The outer surface material of building facade."
+    },
+    {
+      "name": "roof_material",
+      "description": "The outermost material of the roof."
+    },
+    {
+      "name": "roof_shape",
+      "description": "The shape of the roof"
+    },
+    {
+      "name": "roof_direction",
+      "description": "Bearing of the roof ridge line in degrees."
+    },
+    {
+      "name": "roof_orientation",
+      "description": "Orientation of the roof shape relative to the footprint shape. Either \"along\" or \"across\"."
+    },
+    {
+      "name": "roof_color",
+      "description": "The color (name or color triplet) of the roof of a building or building part in hexadecimal"
+    },
+    {
+      "name": "roof_height",
+      "description": "The height of the building roof in meters. This represents the distance from the base of the roof to the highest point of the roof."
+    },
+    {
+      "name": "level",
+      "description": "Z-order of the feature where 0 is visual level"
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "geometry",
+      "description": "The part's geometry. It must be a polygon or multipolygon."
+    },
+    {
+      "name": "building_id",
+      "description": "The building ID to which this part belongs"
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture buildings vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole buildings theme. This collection's features are in the `building_part` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    },
+    "data": {
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=buildings/type=building_part/part-00000-18b25a16-1800-5503-8e41-c3f077aa7e2d-c000.zstd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "GeoParquet part 00000",
+      "alternate": {
+        "s3": {
+          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=buildings/type=building_part/part-00000-18b25a16-1800-5503-8e41-c3f077aa7e2d-c000.zstd.parquet",
+          "title": "S3, us-west-2, no credentials needed"
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Buildings"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/buildings/building_part",
+      "type": "text/html",
+      "title": "Overture documentation for building_part"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/buildings/building_part/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture buildings vector tiles",
+      "pmtiles:layers": [
+        "building_part"
+      ]
+    }
+  ]
+}

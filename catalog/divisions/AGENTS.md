@@ -4,7 +4,9 @@ The Overture Maps `divisions` theme, release `2026-08-19.0`.
 
 Collections here:
 
+- `division`
 - `division_area`
+- `division_boundary`
 
 Each collection carries its own agent guide with measured row counts, the S3
 glob, and the bbox pruning pattern. Read that rather than guessing from this

@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "division_boundary",
+  "title": "Division Boundary",
+  "description": "Overture's division_boundary collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -55.18333435058594,
+          180.0,
+          82.29963684082031
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "geometry",
+      "description": "Boundary's geometry which MUST be a LineString or MultiLineString as defined by the GeoJSON schema."
+    },
+    {
+      "name": "division_ids",
+      "description": "Identifies the two divisions to the left and right, respectively, of the boundary line. The left- and right-hand sides of the boundary are considered from the perspective of a person standing on the line facing in the direction in which the geometry is oriented, i.e. facing toward the end of the line. The first array element is the Overture ID of the left division. The second element is the Overture ID of the right division."
+    },
+    {
+      "name": "subtype",
+      "description": "Category of the division from a finite, hierarchical, ordered list of categories (e.g. country, region, locality, etc.) similar to a Who's on First placetype."
+    },
+    {
+      "name": "admin_level",
+      "description": "Integer representing this division's position in its country's administrative hierarchy, where lower numbers correspond to higher level administrative units. In Overture data releases, this value is typically equal to the number of ancestor features in the division's primary hierarchy (the one defined by following `parent_division_id`). Thus, a country always has an `admin_level` of 0, a region has an `admin_level` of 1, while further subdivisions have `admin_level` values greater than 1."
+    },
+    {
+      "name": "class",
+      "description": "Whether the boundary runs on land or beyond the coastline. A maritime boundary is not a land border between two divisions."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "perspectives",
+      "description": "Political perspectives from which this division boundary is considered to be an accurate representation. If this property is absent, then this boundary is not known to be disputed from any political perspective. Consequently, there is only one boundary feature representing the entire real world entity. If this property is present, it means the boundary represents one of several alternative perspectives on the same real-world entity. There are two modes of perspective: 1. `accepted_by` means the representation of the boundary is accepted by the listed entities and would be included on a map drawn from their perspective. 2. `disputed_by` means the representation of the boundary is disputed by the listed entities and would be excluded from a map drawn from their perspective. When drawing a map from the perspective of a given country, one would start by gathering all the undisputed boundary (with no `perspectives` property), and then adding to that first all boundary explicitly accepted by the country, and second all boundary not explicitly disputed by the country."
+    },
+    {
+      "name": "is_disputed",
+      "description": "Indicator if there are entities disputing this division boundary. Information about entities disputing this boundary should be included in perspectives property. This property should also be true if boundary between two entities is unclear and this is \"best guess\". So having it true and no perspectives gives map creators reason not to fully trust the boundary, but use it if they have no other."
+    },
+    {
+      "name": "is_land",
+      "description": "A boolean to indicate whether or not the feature geometry represents the land-clipped, non-maritime boundary. The geometry can be used for map rendering, cartographic display, and similar purposes."
+    },
+    {
+      "name": "is_territorial",
+      "description": "A boolean to indicate whether or not the feature geometry represents Overture's best approximation of this place's maritime boundary. For coastal places, this would tend to include the water area. The geometry can be used for data processing, reverse-geocoding, and similar purposes."
+    },
+    {
+      "name": "country",
+      "description": "ISO 3166-1 alpha-2 country code of the country or country-like entity that both sides of the boundary share. This property will be present on boundaries between two regions, counties, or similar entities within the same country, but will not be present on boundaries between two countries or country-like entities."
+    },
+    {
+      "name": "region",
+      "description": "ISO 3166-2 principal subdivision code of the subdivision-like entity that both sides of the boundary share. This property will be present on boundaries between two counties, localadmins or similar entities within the same principal subdivision, but will not be present on boundaries between different principal subdivisions or countries."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture divisions vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole divisions theme. This collection's features are in the `division_boundary` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    },
+    "data": {
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=divisions/type=division_boundary/part-00000-57556b35-50bb-5108-bd25-fca8c4ef9d56-c000.zstd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "GeoParquet part 00000",
+      "alternate": {
+        "s3": {
+          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division_boundary/part-00000-57556b35-50bb-5108-bd25-fca8c4ef9d56-c000.zstd.parquet",
+          "title": "S3, us-west-2, no credentials needed"
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Divisions"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/divisions/division_boundary",
+      "type": "text/html",
+      "title": "Overture documentation for division_boundary"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/divisions/division_boundary/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture divisions vector tiles",
+      "pmtiles:layers": [
+        "division_boundary"
+      ]
+    }
+  ]
+}

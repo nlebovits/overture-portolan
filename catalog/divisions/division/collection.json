@@ -1,0 +1,226 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "division",
+  "title": "Division",
+  "description": "Overture's division collection",
+  "license": "ODbL-1.0",
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "Amazon Web Services",
+      "roles": [
+        "host"
+      ],
+      "url": "https://registry.opendata.aws/"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.9411163330078,
+          -89.99800109863281,
+          179.99063110351562,
+          82.85611724853516
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "updated": "2026-08-19T00:00:00Z",
+  "table:columns": [
+    {
+      "name": "id",
+      "description": "A feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS."
+    },
+    {
+      "name": "geometry",
+      "description": "Division geometry MUST be a Point as defined by GeoJSON schema. It represents the approximate location of a position commonly associated with the real-world entity modeled by the division feature."
+    },
+    {
+      "name": "country",
+      "description": "ISO 3166-1 alpha-2 country code of the country or country-like entity, that this division represents or belongs to. If the entity this division represents has a country code, the country property contains it. If it does not, the country property contains the country code of the first division encountered by traversing the parent_division_id chain to the root. For example: - The country value for the United States is 'US' - The country value for New York City is 'US' - The country value for Puerto Rico, a dependency of the US, is 'PR'. - The country value for San Juan, Puerto Rico is 'PR'. If an entity has an internationally-recognized ISO 3166-1 alpha-2 country code, it should always be used. In cases where the schema requires the code but no internationally-recognized code is available, a synthetic code may be used provided it does not conflict with any internationally-recognized codes."
+    },
+    {
+      "name": "sources",
+      "description": "The array of source information for the properties of a given feature, with each entry being a source object which lists the property in JSON Pointer notation. All features must have a root level source which is the default source if a specific property's source is not specified."
+    },
+    {
+      "name": "subtype",
+      "description": "Category of the division from a finite, hierarchical, ordered list of categories (e.g. country, region, locality, etc.) similar to a Who's on First placetype."
+    },
+    {
+      "name": "admin_level",
+      "description": "Integer representing this division's position in its country's administrative hierarchy, where lower numbers correspond to higher level administrative units. In Overture data releases, this value is typically equal to the number of ancestor features in the division's primary hierarchy (the one defined by following `parent_division_id`). Thus, a country always has an `admin_level` of 0, a region has an `admin_level` of 1, while further subdivisions have `admin_level` values greater than 1."
+    },
+    {
+      "name": "class",
+      "description": "The settlement class of the division, where one applies. The value ranks a populated place by size, from megacity down to hamlet. It is empty for divisions that are not settlements."
+    },
+    {
+      "name": "names",
+      "description": "Properties defining the names of a feature. The struct carries a primary name, optional common names by language, and optional rules. Quoted from the namesContainer definition in the Overture schema."
+    },
+    {
+      "name": "wikidata",
+      "description": "A wikidata ID if available, as found on https://www.wikidata.org/."
+    },
+    {
+      "name": "perspectives",
+      "description": "Political perspectives from which this division is considered to be an accurate representation. If this property is absent, then this division is not known to be disputed from any political perspective. Consequently, there is only one division feature representing the entire real world entity. If this property is present, it means the division represents one of several alternative perspectives on the same real-world entity. There are two modes of perspective: 1. `accepted_by` means the representation of the division is accepted by the listed entities and would be included on a map drawn from their perspective. 2. `disputed_by` means the representation of the division is disputed by the listed entities and would be excluded from a map drawn from their perspective. When drawing a map from the perspective of a given country, one would start by gathering all the undisputed divisions (with no `perspectives` property), and then adding to that first all divisions explicitly accepted by the country, and second all divisions not explicitly disputed by the country."
+    },
+    {
+      "name": "local_type",
+      "description": "Local name for the subtype property, optionally localized. For example, the Canadian province of Quebec has the subtype 'region', but in the local administrative hierarchy it is referred to as a 'province'. Similarly, the Canadian Yukon territory also has subtype 'region', but is locally called a 'territory'. This property is localized using a standard Overture names structure. So for example, in Switzerland the top-level administrative subdivision corresponding to subtype 'region' is the canton, which is may be translated in each of Switzerland's official languages as, 'canton' in French, 'kanton' in German, 'cantone' in Italian, and 'chantun' in Romansh."
+    },
+    {
+      "name": "region",
+      "description": "ISO 3166-2 principal subdivision code of the subdivision-like entity this division represents or belongs to. If the entity this division represents has a principal subdivision code, the region property contains it. If it does not, the region property contains the principal subdivision code of the first division encountered by traversing the parent_division_id chain to the root. For example: - The region value for the United States is omitted. - The region value for the U.S. state of New York is 'US-NY'. - The region value for New York City is 'US-NY', which it inherits from the state of New York. - The region value for Puerto Rico is 'US-PR'."
+    },
+    {
+      "name": "hierarchies",
+      "description": "Hierarchies in which this division participates. Every division participates in at least one hierarchy. Most participate in only one. Some divisions may participate in more than one hierarchy, for example if they are claimed by different parent divisions from different political perspectives; or if there are other real-world reasons why the division or one of its ancestors has multiple parents. The first hierarchy in the list is the default hierarchy, and the second-to-last entry in the default hierarchy (if there is such an entry) always corresponds to the `parent_division_id' property. The ordering of hierarchies after the first one is arbitrary."
+    },
+    {
+      "name": "parent_division_id",
+      "description": "Division ID of this division's parent division. Not allowed for top-level divisions (countries) and required for all other divisions. The default parent division is the parent division as seen from the default political perspective, if there is one, and is otherwise chosen somewhat arbitrarily. The hierarchies property can be used to inspect the exhaustive list of parent divisions."
+    },
+    {
+      "name": "norms",
+      "description": "Collects information about local norms and rules within the division that are generally useful for mapping and map-related use cases. If the norms property or a desired sub-property of the norms property is missing on a division, but at least one of its ancestor divisions has the norms property and the desired sub-property, then the value from the nearest ancestor division may be assumed."
+    },
+    {
+      "name": "population",
+      "description": "Population of the division"
+    },
+    {
+      "name": "capital_division_ids",
+      "description": "Division IDs of this division's capital divisions. If present, this property will refer to the division IDs of the capital cities, county seats, etc. of a division."
+    },
+    {
+      "name": "capital_of_divisions",
+      "description": "Division IDs and subtypes of divisions this division is a capital of."
+    },
+    {
+      "name": "cartography",
+      "description": "Cartographic hints Overture supplies for rendering, such as the zoom range over which a feature should be drawn."
+    },
+    {
+      "name": "version",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed."
+    },
+    {
+      "name": "bbox"
+    }
+  ],
+  "assets": {
+    "visual": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture divisions vector tiles",
+      "description": "Overture's prebuilt PMTiles archive for the whole divisions theme. This collection's features are in the `division` layer."
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail"
+    },
+    "default-style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default style"
+    },
+    "data": {
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=divisions/type=division/part-00000-4427279e-644a-58f2-bf86-ec1c351e39f4-c000.zstd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "GeoParquet part 00000",
+      "alternate": {
+        "s3": {
+          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division/part-00000-4427279e-644a-58f2-bf86-ec1c351e39f4-c000.zstd.parquet",
+          "title": "S3, us-west-2, no credentials needed"
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Divisions"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://docs.overturemaps.org/divisions/division",
+      "type": "text/html",
+      "title": "Overture documentation for division"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://stac.overturemaps.org/2026-08-19.0/divisions/division/collection.json",
+      "type": "application/json",
+      "title": "Overture STAC collection"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Overture divisions vector tiles",
+      "pmtiles:layers": [
+        "division"
+      ]
+    }
+  ]
+}

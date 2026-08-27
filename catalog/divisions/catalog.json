@@ -6,7 +6,7 @@
   ],
   "id": "divisions",
   "title": "Divisions",
-  "description": "Overture Maps Divisions theme. Holds 1 collection.",
+  "description": "Overture Maps Divisions theme. Holds 3 collections.",
   "links": [
     {
       "rel": "root",
@@ -34,9 +34,21 @@
     },
     {
       "rel": "child",
+      "href": "./division/collection.json",
+      "type": "application/json",
+      "title": "Division"
+    },
+    {
+      "rel": "child",
       "href": "./division_area/collection.json",
       "type": "application/json",
       "title": "Division Area"
+    },
+    {
+      "rel": "child",
+      "href": "./division_boundary/collection.json",
+      "type": "application/json",
+      "title": "Division Boundary"
     }
   ]
 }

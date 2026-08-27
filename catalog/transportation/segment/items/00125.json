@@ -1,0 +1,80 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+  ],
+  "id": "00125",
+  "collection": "segment",
+  "bbox": [
+    134.5958709716797,
+    24.281816482543945,
+    153.98573303222656,
+    35.76956558227539
+  ],
+  "geometry": {
+    "coordinates": [
+      [
+        [
+          134.5958709716797,
+          24.281816482543945
+        ],
+        [
+          153.98573303222656,
+          24.281816482543945
+        ],
+        [
+          153.98573303222656,
+          35.76956558227539
+        ],
+        [
+          134.5958709716797,
+          35.76956558227539
+        ],
+        [
+          134.5958709716797,
+          24.281816482543945
+        ]
+      ]
+    ],
+    "type": "Polygon"
+  },
+  "properties": {
+    "datetime": "2026-08-19T00:00:00Z",
+    "table:row_count": 2776166
+  },
+  "assets": {
+    "data": {
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00125-d357bd9e-cdeb-5947-aa0b-c5f39101c0eb-c000.zstd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "GeoParquet part 00125",
+      "alternate": {
+        "s3": {
+          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=segment/part-00125-d357bd9e-cdeb-5947-aa0b-c5f39101c0eb-c000.zstd.parquet",
+          "title": "S3, us-west-2, no credentials needed"
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json",
+      "title": "Overture Maps"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json"
+    }
+  ]
+}
