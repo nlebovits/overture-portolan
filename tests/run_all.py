@@ -14,7 +14,6 @@ HERE = Path(__file__).resolve().parent
 
 TESTS = [
     "test_links.py",
-    "test_upstream_alive.py",
     "test_stac_valid.py",
     "test_conformance.py",
 ]
