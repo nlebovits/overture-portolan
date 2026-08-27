@@ -43,7 +43,12 @@ from catalog_config import load_config  # noqa: E402
 # and ACCEPTED in tests/test_conformance.py hold the same two ids on purpose.
 EXPECTED: set[str] = {"PTL-LIV-004", "PTL-LIV-005"}
 
-INSTALL = "python -m pip install 'portolan-cli==1.0.0a0'"
+# rashid rather than portolan-cli. The `--no-data` and `--live` flags this
+# gate needs reached portolan-cli in 1.0.0a0, which is a pre-release, and a
+# plain `pip install portolan-cli` in CI takes 0.7.0 and fails with
+# "No such option '--no-data'". rashid carries the same passes, it is already
+# pinned in requirements-ci.txt, and one validator then runs every gate.
+INSTALL = "python -m pip install -r requirements-ci.txt"
 
 
 def fail(message: str) -> None:
@@ -65,20 +70,20 @@ def main() -> int:
     if not host:
         raise SystemExit(f"error  {args.url!r} names no host")
 
-    if shutil.which("portolan") is None:
-        fail("portolan is not installed, so this gate checks nothing")
+    if shutil.which("rashid") is None:
+        fail("rashid is not installed, so this gate checks nothing")
 
     config = load_config()
     target = ROOT / config["publish_dir"]
 
     result = subprocess.run(
         [
-            "portolan",
+            "rashid",
             "check",
             str(target),
             "--no-data",
             "--live",
-            "--url",
+            "--live-base-url",
             args.url,
             "--json",
         ],
@@ -91,9 +96,13 @@ def main() -> int:
     except json.JSONDecodeError:
         print(result.stdout)
         print(result.stderr, file=sys.stderr)
-        raise SystemExit("portolan produced no JSON report") from None
+        raise SystemExit("rashid produced no JSON report") from None
 
-    findings = (report.get("data") or {}).get("findings", [])
+    # rashid puts findings at the top level. portolan-cli nests them under
+    # "data". Read either, so this gate survives a swap between the two.
+    findings = report.get("findings")
+    if findings is None:
+        findings = (report.get("data") or {}).get("findings", [])
     errors = [f for f in findings if f.get("severity") == "error"]
 
     for finding in errors:
