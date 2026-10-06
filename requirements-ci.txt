@@ -21,5 +21,5 @@
 # stac-check stays unpinned on purpose. The stac-check exemption in
 # docs/conformance.md expires when the upstream crash stops. That only happens
 # if CI takes each new release.
-rashid @ git+https://github.com/portolan-sdi/rashid@07fdc40300f4b06f15fca30eef10d7a5aa62ed3d
+rashid==0.1.8
 stac-check
