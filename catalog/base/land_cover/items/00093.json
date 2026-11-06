@@ -8,44 +8,44 @@
   "collection": "land_cover",
   "bbox": [
     107.05653381347656,
-    28.613296508789062,
+    28.361133575439453,
     117.12687683105469,
-    37.99737548828125
+    37.04514694213867
   ],
   "geometry": {
     "coordinates": [
       [
         [
           107.05653381347656,
-          28.613296508789062
+          28.361133575439453
         ],
         [
           117.12687683105469,
-          28.613296508789062
+          28.361133575439453
         ],
         [
           117.12687683105469,
-          37.99737548828125
+          37.04514694213867
         ],
         [
           107.05653381347656,
-          37.99737548828125
+          37.04514694213867
         ],
         [
           107.05653381347656,
-          28.613296508789062
+          28.361133575439453
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 970539
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 946547
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_cover/part-00093-3ce837b9-5498-521d-bcd9-c96859d11edc-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_cover/part-00093-72949348-dbe6-59d3-b92f-6cf4cc483dbc-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00093",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land_cover/part-00093-3ce837b9-5498-521d-bcd9-c96859d11edc-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_cover/part-00093-72949348-dbe6-59d3-b92f-6cf4cc483dbc-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

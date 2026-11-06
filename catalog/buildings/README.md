@@ -4,7 +4,7 @@
 > the agent guide inside each collection. Those carry the measured row counts,
 > the access patterns, and queries that have been run.
 
-The Overture Maps `buildings` theme, release `2026-08-19.0`.
+The Overture Maps `buildings` theme, release `2026-10-21.0`.
 
 - [building](building/README.md)
 - [building_part](building_part/README.md)

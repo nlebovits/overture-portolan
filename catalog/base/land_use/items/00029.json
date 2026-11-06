@@ -7,32 +7,32 @@
   "id": "00029",
   "collection": "land_use",
   "bbox": [
-    27.09145736694336,
+    27.88111114501953,
     43.26407241821289,
-    55.424678802490234,
-    80.82788848876953
+    69.99014282226562,
+    82.50251007080078
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          27.09145736694336,
+          27.88111114501953,
           43.26407241821289
         ],
         [
-          55.424678802490234,
+          69.99014282226562,
           43.26407241821289
         ],
         [
-          55.424678802490234,
-          80.82788848876953
+          69.99014282226562,
+          82.50251007080078
         ],
         [
-          27.09145736694336,
-          80.82788848876953
+          27.88111114501953,
+          82.50251007080078
         ],
         [
-          27.09145736694336,
+          27.88111114501953,
           43.26407241821289
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 1751532
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 1788064
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00029-c0f58ce6-abb5-5487-abd1-65fcbaab7937-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_use/part-00029-8dd272e0-91a8-5705-acd6-b58c3b25a56e-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00029",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land_use/part-00029-c0f58ce6-abb5-5487-abd1-65fcbaab7937-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_use/part-00029-8dd272e0-91a8-5705-acd6-b58c3b25a56e-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

@@ -7,45 +7,45 @@
   "id": "00050",
   "collection": "building",
   "bbox": [
-    -88.05799865722656,
-    35.77494430541992,
-    -84.66785430908203,
-    40.20375061035156
+    -88.00149536132812,
+    35.815853118896484,
+    -84.69664001464844,
+    40.145477294921875
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -88.05799865722656,
-          35.77494430541992
+          -88.00149536132812,
+          35.815853118896484
         ],
         [
-          -84.66785430908203,
-          35.77494430541992
+          -84.69664001464844,
+          35.815853118896484
         ],
         [
-          -84.66785430908203,
-          40.20375061035156
+          -84.69664001464844,
+          40.145477294921875
         ],
         [
-          -88.05799865722656,
-          40.20375061035156
+          -88.00149536132812,
+          40.145477294921875
         ],
         [
-          -88.05799865722656,
-          35.77494430541992
+          -88.00149536132812,
+          35.815853118896484
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 5051790
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 4879062
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=buildings/type=building/part-00050-b2e83442-51df-565b-b7f2-603782be2e38-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00050-b3b95633-5b19-5c81-8a75-b14eaf11a04a-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00050",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=buildings/type=building/part-00050-b2e83442-51df-565b-b7f2-603782be2e38-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building/part-00050-b3b95633-5b19-5c81-8a75-b14eaf11a04a-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

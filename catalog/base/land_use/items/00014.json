@@ -7,32 +7,32 @@
   "id": "00014",
   "collection": "land_use",
   "bbox": [
-    -2.4688796997070312,
+    -2.4271979331970215,
     51.919837951660156,
-    10.843461990356445,
+    11.086250305175781,
     53.18885040283203
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -2.4688796997070312,
+          -2.4271979331970215,
           51.919837951660156
         ],
         [
-          10.843461990356445,
+          11.086250305175781,
           51.919837951660156
         ],
         [
-          10.843461990356445,
+          11.086250305175781,
           53.18885040283203
         ],
         [
-          -2.4688796997070312,
+          -2.4271979331970215,
           53.18885040283203
         ],
         [
-          -2.4688796997070312,
+          -2.4271979331970215,
           51.919837951660156
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 1724321
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 1797462
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_use/part-00014-a667e28c-b5ca-5ced-997c-6a06b6beb928-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_use/part-00014-d14a18ed-e200-55bc-b053-d1bc595d8ac1-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00014",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land_use/part-00014-a667e28c-b5ca-5ced-997c-6a06b6beb928-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_use/part-00014-d14a18ed-e200-55bc-b053-d1bc595d8ac1-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

@@ -8,8 +8,8 @@ does not belong in this file.
 
 ## Overview
 
-Overture Maps `transportation` theme, `segment` type, release `2026-08-19.0`.
-128 GeoParquet parts holding 350,469,378 rows. Geometry is WKB in EPSG:4326.
+Overture Maps `transportation` theme, `segment` type, release `2026-10-21.0`.
+128 GeoParquet parts holding 353,327,860 rows. Geometry is WKB in EPSG:4326.
 
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
@@ -22,7 +22,7 @@ partition-aware reader, and DuckDB is one:
 ```sql
 INSTALL spatial; LOAD spatial;
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=segment/*.parquet');
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/*.parquet');
 ```
 
 Over plain HTTPS, address one part at a time. A glob cannot expand over HTTPS,
@@ -30,7 +30,7 @@ because expansion needs a directory listing:
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00000-f6abc605-dbba-5494-8cf5-2ed70e2e70f4-c000.zstd.parquet');
+FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00000-3d581eb0-9c48-505d-9fe2-9e8192fa15dc-c000.zstd.parquet');
 ```
 
 ## The Bbox Column Is the Fast Path
@@ -41,19 +41,19 @@ row groups without decoding geometry.
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=segment/*.parquet')
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/*.parquet')
 WHERE bbox.xmin BETWEEN -0.6 AND 0.4
   AND bbox.ymin BETWEEN 51.2 AND 51.8;
 ```
 
 A query that calls `ST_Intersects` without a bbox filter first reads every
-geometry in 350,469,378 rows.
+geometry in 353,327,860 rows.
 
 ## Row Groups
 
 Parts hold 128 to
 128 row groups. The largest holds
-32,074 rows, which is inside
+32,294 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
 ## Coded Columns
