@@ -8,8 +8,8 @@ does not belong in this file.
 
 ## Overview
 
-Overture Maps `base` theme, `bathymetry` type, release `2026-08-19.0`.
-1 GeoParquet parts holding 59,963 rows. Geometry is WKB in EPSG:4326.
+Overture Maps `base` theme, `bathymetry` type, release `2026-10-21.0`.
+1 GeoParquet parts holding 407,277 rows. Geometry is WKB in EPSG:4326.
 
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
@@ -22,7 +22,7 @@ partition-aware reader, and DuckDB is one:
 ```sql
 INSTALL spatial; LOAD spatial;
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=bathymetry/*.parquet');
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=bathymetry/*.parquet');
 ```
 
 Over plain HTTPS, address one part at a time. A glob cannot expand over HTTPS,
@@ -30,7 +30,7 @@ because expansion needs a directory listing:
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=bathymetry/part-00000-cf17cfee-00e5-5871-9cab-7f48d910d28f-c000.zstd.parquet');
+FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=bathymetry/part-00000-f694f37d-3f93-5e9b-a2c1-8e4584376f38-c000.zstd.parquet');
 ```
 
 ## The Bbox Column Is the Fast Path
@@ -41,26 +41,20 @@ row groups without decoding geometry.
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=bathymetry/*.parquet')
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=bathymetry/*.parquet')
 WHERE bbox.xmin BETWEEN -0.6 AND 0.4
   AND bbox.ymin BETWEEN 51.2 AND 51.8;
 ```
 
 A query that calls `ST_Intersects` without a bbox filter first reads every
-geometry in 59,963 rows.
+geometry in 407,277 rows.
 
 ## Row Groups
 
-Parts hold 4 to
-4 row groups. The largest holds
-15,200 rows, which is inside
+Parts hold 16 to
+16 row groups. The largest holds
+27,790 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
-
-## Known Issues
-
-Read these before you trust a query against this collection.
-
-- **The rows are not spatially ordered.** rashid reports PTL-DAT-006 against release 2026-08-19.0: 59,963 rows in 4 row groups do not cluster spatially. A reader cannot skip any part of the file, so a bbox filter prunes nothing here and a spatial query reads the whole collection. Reproduce it with `python3 tests/test_data_pass.py base/bathymetry`, which takes about 13 seconds.
 
 ## Schema and Field Notes
 

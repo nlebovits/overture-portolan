@@ -31,9 +31,15 @@
     "spatial": {
       "bbox": [
         [
+          -180.0,
+          -85.05113220214844,
+          180.0,
+          83.87517547607422
+        ],
+        [
           -179.862548828125,
           -67.5722427368164,
-          -43.999996185302734,
+          -52.32376480102539,
           83.33621978759766
         ],
         [
@@ -56,8 +62,8 @@
         ],
         [
           16.333520889282227,
-          -47.17884063720703,
-          63.33327102661133,
+          -50.21872329711914,
+          77.8495101928711,
           52.81937789916992
         ],
         [
@@ -67,7 +73,7 @@
           82.05862426757812
         ],
         [
-          39.41386413574219,
+          63.07693099975586,
           -55.322818756103516,
           180.0,
           35.67293167114258
@@ -89,7 +95,7 @@
       ]
     }
   },
-  "updated": "2026-08-19T00:00:00Z",
+  "updated": "2026-10-21T00:00:00Z",
   "table:columns": [
     {
       "name": "id",
@@ -149,7 +155,7 @@
   ],
   "assets": {
     "visual": {
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/divisions.pmtiles",
       "type": "application/vnd.pmtiles",
       "roles": [
         "visual"
@@ -216,13 +222,13 @@
     },
     {
       "rel": "canonical",
-      "href": "https://stac.overturemaps.org/2026-08-19.0/divisions/division_area/collection.json",
+      "href": "https://stac.overturemaps.org/2026-10-21.0/divisions/division_area/collection.json",
       "type": "application/json",
       "title": "Overture STAC collection"
     },
     {
       "rel": "pmtiles",
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/divisions.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/divisions.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "Overture divisions vector tiles",
       "pmtiles:layers": [
@@ -233,49 +239,49 @@
       "rel": "item",
       "href": "./items/00000.json",
       "type": "application/geo+json",
-      "title": "Part 00000, 138,481 rows"
+      "title": "Part 00000, 139,406 rows"
     },
     {
       "rel": "item",
       "href": "./items/00001.json",
       "type": "application/geo+json",
-      "title": "Part 00001, 138,440 rows"
+      "title": "Part 00001, 147,173 rows"
     },
     {
       "rel": "item",
       "href": "./items/00002.json",
       "type": "application/geo+json",
-      "title": "Part 00002, 137,677 rows"
+      "title": "Part 00002, 126,907 rows"
     },
     {
       "rel": "item",
       "href": "./items/00003.json",
       "type": "application/geo+json",
-      "title": "Part 00003, 135,323 rows"
+      "title": "Part 00003, 127,831 rows"
     },
     {
       "rel": "item",
       "href": "./items/00004.json",
       "type": "application/geo+json",
-      "title": "Part 00004, 121,969 rows"
+      "title": "Part 00004, 137,010 rows"
     },
     {
       "rel": "item",
       "href": "./items/00005.json",
       "type": "application/geo+json",
-      "title": "Part 00005, 130,273 rows"
+      "title": "Part 00005, 136,071 rows"
     },
     {
       "rel": "item",
       "href": "./items/00006.json",
       "type": "application/geo+json",
-      "title": "Part 00006, 135,321 rows"
+      "title": "Part 00006, 131,817 rows"
     },
     {
       "rel": "item",
       "href": "./items/00007.json",
       "type": "application/geo+json",
-      "title": "Part 00007, 136,693 rows"
+      "title": "Part 00007, 138,044 rows"
     }
   ]
 }

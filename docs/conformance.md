@@ -86,7 +86,7 @@ range: PTL-DAT-006 spatial ordering, PTL-DAT-007 per-row-group statistics,
 PTL-DAT-008 the 150,000 row cap on a row group, and PTL-DAT-012 the GeoParquet
 version.
 
-One remote Overture part takes about 7 seconds, and the catalog cites 987
+One remote Overture part takes about 7 seconds, and the catalog cites 1020
 parts. A single pass is about 2 hours, which no pull request can wait for.
 `.github/workflows/data-pass.yml` runs it weekly instead, as one job per
 collection:
@@ -112,11 +112,11 @@ error-severity finding fails the job and goes in the report.
 
 ### What the pass reports today
 
-Measured against release 2026-08-19.0 on 2026-08-27:
+Measured against release 2026-10-21.0 on 2026-11-06:
 
 | Collection | Result |
 |---|---|
-| base/bathymetry | PTL-DAT-006: 59,963 rows in 4 row groups do not cluster spatially |
+| base/bathymetry | no error |
 | buildings/building_part | no error |
 | divisions/division | no error |
 | divisions/division_area | no error |
@@ -125,9 +125,9 @@ Measured against release 2026-08-19.0 on 2026-08-27:
 The other 10 collections were not measured, because 512 parts of
 `buildings/building` cost an hour. The first scheduled run reports them.
 
-The bathymetry finding is upstream. Overture writes that file, and this
-catalog copies no bytes. It is not a row in the table below, and its rule is
-not in `ACCEPTED`: that list gates a pull request, and this pass gates nothing.
+Release 2026-08-19.0 failed PTL-DAT-006 on `base/bathymetry`. Its 59,963 rows
+in 4 row groups did not cluster spatially. Release 2026-10-21.0 holds 407,277
+rows in 16 row groups, and the pass finds no error.
 
 ## Accepted deviations
 

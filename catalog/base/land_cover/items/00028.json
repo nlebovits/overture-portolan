@@ -7,32 +7,32 @@
   "id": "00028",
   "collection": "land_cover",
   "bbox": [
-    -96.04096221923828,
+    -94.57046508789062,
     55.73889923095703,
-    -81.64336395263672,
+    -77.52009582519531,
     65.93498229980469
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -96.04096221923828,
+          -94.57046508789062,
           55.73889923095703
         ],
         [
-          -81.64336395263672,
+          -77.52009582519531,
           55.73889923095703
         ],
         [
-          -81.64336395263672,
+          -77.52009582519531,
           65.93498229980469
         ],
         [
-          -96.04096221923828,
+          -94.57046508789062,
           65.93498229980469
         ],
         [
-          -96.04096221923828,
+          -94.57046508789062,
           55.73889923095703
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 988792
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 988284
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_cover/part-00028-6fdb39f4-7dfb-5ddc-8789-441f48d67cd3-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_cover/part-00028-95a5b96b-b555-5b9d-8c37-883b87d0a3c4-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00028",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land_cover/part-00028-6fdb39f4-7dfb-5ddc-8789-441f48d67cd3-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_cover/part-00028-95a5b96b-b555-5b9d-8c37-883b87d0a3c4-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

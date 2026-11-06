@@ -18,9 +18,9 @@
       "geoparquet": [
         "1.1.0"
       ],
-      "items": 32,
+      "items": 64,
       "license": "other",
-      "max_row_group_rows": 97727,
+      "max_row_group_rows": 52029,
       "row_group_cap": 150000
     },
     "base/bathymetry": {
@@ -38,7 +38,7 @@
       ],
       "items": 1,
       "license": "CC0-1.0",
-      "max_row_group_rows": 15200,
+      "max_row_group_rows": 27790,
       "row_group_cap": 150000
     },
     "base/infrastructure": {
@@ -62,7 +62,7 @@
       ],
       "items": 16,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 67105,
+      "max_row_group_rows": 69702,
       "row_group_cap": 150000
     },
     "base/land": {
@@ -84,9 +84,9 @@
       "geoparquet": [
         "1.1.0"
       ],
-      "items": 47,
+      "items": 48,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 25588,
+      "max_row_group_rows": 25202,
       "row_group_cap": 150000
     },
     "base/land_cover": {
@@ -104,7 +104,7 @@
       ],
       "items": 128,
       "license": "CC-BY-4.0",
-      "max_row_group_rows": 19590,
+      "max_row_group_rows": 19656,
       "row_group_cap": 150000
     },
     "base/land_use": {
@@ -128,7 +128,7 @@
       ],
       "items": 32,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 34812,
+      "max_row_group_rows": 33246,
       "row_group_cap": 150000
     },
     "base/water": {
@@ -152,7 +152,7 @@
       ],
       "items": 32,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 22750,
+      "max_row_group_rows": 24749,
       "row_group_cap": 150000
     },
     "buildings/building": {
@@ -187,7 +187,7 @@
       ],
       "items": 512,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 57772,
+      "max_row_group_rows": 59888,
       "row_group_cap": 150000
     },
     "buildings/building_part": {
@@ -220,7 +220,7 @@
       ],
       "items": 1,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 24949,
+      "max_row_group_rows": 24846,
       "row_group_cap": 150000
     },
     "divisions/division": {
@@ -252,7 +252,7 @@
       ],
       "items": 1,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 27258,
+      "max_row_group_rows": 29533,
       "row_group_cap": 150000
     },
     "divisions/division_area": {
@@ -277,7 +277,7 @@
       ],
       "items": 8,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 4556,
+      "max_row_group_rows": 4819,
       "row_group_cap": 150000
     },
     "divisions/division_boundary": {
@@ -303,14 +303,13 @@
       ],
       "items": 1,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 1584,
+      "max_row_group_rows": 1548,
       "row_group_cap": 150000
     },
     "places/place": {
       "columns": [
         "id",
         "geometry",
-        "categories",
         "confidence",
         "websites",
         "emails",
@@ -331,7 +330,7 @@
       ],
       "items": 16,
       "license": "other",
-      "max_row_group_rows": 31025,
+      "max_row_group_rows": 33275,
       "row_group_cap": 150000
     },
     "transportation/connector": {
@@ -347,7 +346,7 @@
       ],
       "items": 32,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 90422,
+      "max_row_group_rows": 91004,
       "row_group_cap": 150000
     },
     "transportation/segment": {
@@ -379,9 +378,9 @@
       ],
       "items": 128,
       "license": "ODbL-1.0",
-      "max_row_group_rows": 32074,
+      "max_row_group_rows": 32294,
       "row_group_cap": 150000
     }
   },
-  "release": "2026-08-19.0"
+  "release": "2026-10-21.0"
 }
