@@ -39,7 +39,7 @@
         [
           -179.862548828125,
           -67.5722427368164,
-          -52.32376480102539,
+          -43.999996185302734,
           83.33621978759766
         ],
         [
@@ -64,7 +64,7 @@
           16.333520889282227,
           -50.21872329711914,
           77.8495101928711,
-          52.81937789916992
+          54.717041015625
         ],
         [
           20.16356658935547,
@@ -73,7 +73,7 @@
           82.05862426757812
         ],
         [
-          63.07693099975586,
+          66.71943664550781,
           -55.322818756103516,
           180.0,
           35.67293167114258
@@ -95,7 +95,7 @@
       ]
     }
   },
-  "updated": "2026-10-21T00:00:00Z",
+  "updated": "2026-11-18T00:00:00Z",
   "table:columns": [
     {
       "name": "id",
@@ -155,7 +155,7 @@
   ],
   "assets": {
     "visual": {
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/divisions.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-11-18.0/divisions.pmtiles",
       "type": "application/vnd.pmtiles",
       "roles": [
         "visual"
@@ -222,13 +222,13 @@
     },
     {
       "rel": "canonical",
-      "href": "https://stac.overturemaps.org/2026-10-21.0/divisions/division_area/collection.json",
+      "href": "https://stac.overturemaps.org/2026-11-18.0/divisions/division_area/collection.json",
       "type": "application/json",
       "title": "Overture STAC collection"
     },
     {
       "rel": "pmtiles",
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/divisions.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-11-18.0/divisions.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "Overture divisions vector tiles",
       "pmtiles:layers": [
@@ -239,49 +239,49 @@
       "rel": "item",
       "href": "./items/00000.json",
       "type": "application/geo+json",
-      "title": "Part 00000, 139,406 rows"
+      "title": "Part 00000, 141,154 rows"
     },
     {
       "rel": "item",
       "href": "./items/00001.json",
       "type": "application/geo+json",
-      "title": "Part 00001, 147,173 rows"
+      "title": "Part 00001, 135,670 rows"
     },
     {
       "rel": "item",
       "href": "./items/00002.json",
       "type": "application/geo+json",
-      "title": "Part 00002, 126,907 rows"
+      "title": "Part 00002, 135,276 rows"
     },
     {
       "rel": "item",
       "href": "./items/00003.json",
       "type": "application/geo+json",
-      "title": "Part 00003, 127,831 rows"
+      "title": "Part 00003, 141,157 rows"
     },
     {
       "rel": "item",
       "href": "./items/00004.json",
       "type": "application/geo+json",
-      "title": "Part 00004, 137,010 rows"
+      "title": "Part 00004, 130,006 rows"
     },
     {
       "rel": "item",
       "href": "./items/00005.json",
       "type": "application/geo+json",
-      "title": "Part 00005, 136,071 rows"
+      "title": "Part 00005, 140,186 rows"
     },
     {
       "rel": "item",
       "href": "./items/00006.json",
       "type": "application/geo+json",
-      "title": "Part 00006, 131,817 rows"
+      "title": "Part 00006, 137,203 rows"
     },
     {
       "rel": "item",
       "href": "./items/00007.json",
       "type": "application/geo+json",
-      "title": "Part 00007, 138,044 rows"
+      "title": "Part 00007, 127,267 rows"
     }
   ]
 }

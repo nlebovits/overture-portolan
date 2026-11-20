@@ -9,8 +9,8 @@
   "bbox": [
     2.5306813716888428,
     -72.02598571777344,
-    29.363588333129883,
-    -31.755290985107422
+    29.35535430908203,
+    -31.782949447631836
   ],
   "geometry": {
     "coordinates": [
@@ -20,16 +20,16 @@
           -72.02598571777344
         ],
         [
-          29.363588333129883,
+          29.35535430908203,
           -72.02598571777344
         ],
         [
-          29.363588333129883,
-          -31.755290985107422
+          29.35535430908203,
+          -31.782949447631836
         ],
         [
           2.5306813716888428,
-          -31.755290985107422
+          -31.782949447631836
         ],
         [
           2.5306813716888428,
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 5066334
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 5023261
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00128-65080a09-9f70-5292-b486-cef18b7e8215-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=buildings/type=building/part-00128-ea881650-cfd0-53e5-8142-71d2bb1aa96c-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00128",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building/part-00128-65080a09-9f70-5292-b486-cef18b7e8215-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=buildings/type=building/part-00128-ea881650-cfd0-53e5-8142-71d2bb1aa96c-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

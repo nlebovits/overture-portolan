@@ -7,16 +7,16 @@
   "id": "00013",
   "collection": "segment",
   "bbox": [
-    -86.40234375,
+    -86.04722595214844,
     30.86443328857422,
     -80.55244445800781,
-    35.396385192871094
+    35.37350845336914
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -86.40234375,
+          -86.04722595214844,
           30.86443328857422
         ],
         [
@@ -25,14 +25,14 @@
         ],
         [
           -80.55244445800781,
-          35.396385192871094
+          35.37350845336914
         ],
         [
-          -86.40234375,
-          35.396385192871094
+          -86.04722595214844,
+          35.37350845336914
         ],
         [
-          -86.40234375,
+          -86.04722595214844,
           30.86443328857422
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2779372
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2807263
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00013-40e0d343-b6d3-5bd7-ac43-63df9c0f4d5b-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=segment/part-00013-9ece5c91-28f5-574a-bccf-cd7c67cc4ce2-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00013",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00013-40e0d343-b6d3-5bd7-ac43-63df9c0f4d5b-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=segment/part-00013-9ece5c91-28f5-574a-bccf-cd7c67cc4ce2-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

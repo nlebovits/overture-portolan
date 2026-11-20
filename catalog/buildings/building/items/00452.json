@@ -7,45 +7,45 @@
   "id": "00452",
   "collection": "building",
   "bbox": [
-    87.13701629638672,
-    24.44215202331543,
-    88.25398254394531,
-    25.82209014892578
+    87.09980010986328,
+    24.426525115966797,
+    88.21690368652344,
+    25.820762634277344
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          87.13701629638672,
-          24.44215202331543
+          87.09980010986328,
+          24.426525115966797
         ],
         [
-          88.25398254394531,
-          24.44215202331543
+          88.21690368652344,
+          24.426525115966797
         ],
         [
-          88.25398254394531,
-          25.82209014892578
+          88.21690368652344,
+          25.820762634277344
         ],
         [
-          87.13701629638672,
-          25.82209014892578
+          87.09980010986328,
+          25.820762634277344
         ],
         [
-          87.13701629638672,
-          24.44215202331543
+          87.09980010986328,
+          24.426525115966797
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 4961876
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 5011098
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00452-076701b1-de21-58f0-900f-d42f5b04e80b-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=buildings/type=building/part-00452-0f8f2c83-ea05-524f-890a-b9182ed12e94-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00452",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building/part-00452-076701b1-de21-58f0-900f-d42f5b04e80b-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=buildings/type=building/part-00452-0f8f2c83-ea05-524f-890a-b9182ed12e94-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

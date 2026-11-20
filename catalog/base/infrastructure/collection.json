@@ -40,11 +40,11 @@
           -180.0,
           -85.19830322265625,
           -54.61439514160156,
-          34.54825210571289
+          34.00184631347656
         ],
         [
-          -123.70166778564453,
-          32.331382751464844,
+          -123.68640899658203,
+          32.13353729248047,
           -75.0500259399414,
           40.28190612792969
         ],
@@ -56,8 +56,8 @@
         ],
         [
           -89.09351348876953,
-          38.52455520629883,
-          -55.585750579833984,
+          38.37786102294922,
+          -55.67055892944336,
           83.09237670898438
         ],
         [
@@ -68,7 +68,7 @@
         ],
         [
           -74.23212432861328,
-          37.941864013671875,
+          37.94999694824219,
           7.473811626434326,
           51.281455993652344
         ],
@@ -79,7 +79,7 @@
           82.17057800292969
         ],
         [
-          -2.395550012588501,
+          -6.516981601715088,
           48.307376861572266,
           8.377767562866211,
           81.60833740234375
@@ -88,13 +88,13 @@
           -4.950883388519287,
           -84.61326599121094,
           100.1908187866211,
-          42.94660186767578
+          43.07897186279297
         ],
         [
           5.054999828338623,
-          32.88433074951172,
-          89.30734252929688,
-          47.98484420776367
+          35.26112747192383,
+          89.30411529541016,
+          48.287193298339844
         ],
         [
           80.62423706054688,
@@ -103,16 +103,16 @@
           34.97064971923828
         ],
         [
-          88.1188735961914,
+          86.9426498413086,
           22.096487045288086,
-          150.56922912597656,
-          47.123783111572266
+          151.8768768310547,
+          47.867897033691406
         ],
         [
           7.07415771484375,
-          46.49415969848633,
-          18.313304901123047,
-          50.911746978759766
+          46.52682113647461,
+          18.895605087280273,
+          50.94093704223633
         ],
         [
           5.434256553649902,
@@ -122,13 +122,13 @@
         ],
         [
           12.024003028869629,
-          46.27459716796875,
-          29.691715240478516,
+          46.46308517456055,
+          29.70001220703125,
           76.50936889648438
         ],
         [
           25.12592124938965,
-          45.184574127197266,
+          45.18833923339844,
           179.36911010742188,
           81.85298156738281
         ]
@@ -143,7 +143,7 @@
       ]
     }
   },
-  "updated": "2026-10-21T00:00:00Z",
+  "updated": "2026-11-18T00:00:00Z",
   "table:columns": [
     {
       "name": "id",
@@ -199,7 +199,7 @@
   ],
   "assets": {
     "visual": {
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/base.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-11-18.0/base.pmtiles",
       "type": "application/vnd.pmtiles",
       "roles": [
         "visual"
@@ -266,13 +266,13 @@
     },
     {
       "rel": "canonical",
-      "href": "https://stac.overturemaps.org/2026-10-21.0/base/infrastructure/collection.json",
+      "href": "https://stac.overturemaps.org/2026-11-18.0/base/infrastructure/collection.json",
       "type": "application/json",
       "title": "Overture STAC collection"
     },
     {
       "rel": "pmtiles",
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/base.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-11-18.0/base.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "Overture base vector tiles",
       "pmtiles:layers": [
@@ -283,97 +283,97 @@
       "rel": "item",
       "href": "./items/00000.json",
       "type": "application/geo+json",
-      "title": "Part 00000, 9,838,534 rows"
+      "title": "Part 00000, 9,838,312 rows"
     },
     {
       "rel": "item",
       "href": "./items/00001.json",
       "type": "application/geo+json",
-      "title": "Part 00001, 9,827,249 rows"
+      "title": "Part 00001, 9,884,702 rows"
     },
     {
       "rel": "item",
       "href": "./items/00002.json",
       "type": "application/geo+json",
-      "title": "Part 00002, 9,941,209 rows"
+      "title": "Part 00002, 10,062,189 rows"
     },
     {
       "rel": "item",
       "href": "./items/00003.json",
       "type": "application/geo+json",
-      "title": "Part 00003, 9,890,344 rows"
+      "title": "Part 00003, 9,981,781 rows"
     },
     {
       "rel": "item",
       "href": "./items/00004.json",
       "type": "application/geo+json",
-      "title": "Part 00004, 9,852,673 rows"
+      "title": "Part 00004, 9,978,380 rows"
     },
     {
       "rel": "item",
       "href": "./items/00005.json",
       "type": "application/geo+json",
-      "title": "Part 00005, 9,806,499 rows"
+      "title": "Part 00005, 10,025,758 rows"
     },
     {
       "rel": "item",
       "href": "./items/00006.json",
       "type": "application/geo+json",
-      "title": "Part 00006, 9,884,069 rows"
+      "title": "Part 00006, 9,948,475 rows"
     },
     {
       "rel": "item",
       "href": "./items/00007.json",
       "type": "application/geo+json",
-      "title": "Part 00007, 9,860,780 rows"
+      "title": "Part 00007, 9,935,608 rows"
     },
     {
       "rel": "item",
       "href": "./items/00008.json",
       "type": "application/geo+json",
-      "title": "Part 00008, 9,914,317 rows"
+      "title": "Part 00008, 10,182,366 rows"
     },
     {
       "rel": "item",
       "href": "./items/00009.json",
       "type": "application/geo+json",
-      "title": "Part 00009, 9,865,385 rows"
+      "title": "Part 00009, 10,090,766 rows"
     },
     {
       "rel": "item",
       "href": "./items/00010.json",
       "type": "application/geo+json",
-      "title": "Part 00010, 10,018,123 rows"
+      "title": "Part 00010, 10,173,184 rows"
     },
     {
       "rel": "item",
       "href": "./items/00011.json",
       "type": "application/geo+json",
-      "title": "Part 00011, 9,963,333 rows"
+      "title": "Part 00011, 10,115,530 rows"
     },
     {
       "rel": "item",
       "href": "./items/00012.json",
       "type": "application/geo+json",
-      "title": "Part 00012, 10,047,611 rows"
+      "title": "Part 00012, 10,048,228 rows"
     },
     {
       "rel": "item",
       "href": "./items/00013.json",
       "type": "application/geo+json",
-      "title": "Part 00013, 10,072,037 rows"
+      "title": "Part 00013, 10,136,086 rows"
     },
     {
       "rel": "item",
       "href": "./items/00014.json",
       "type": "application/geo+json",
-      "title": "Part 00014, 10,107,029 rows"
+      "title": "Part 00014, 10,000,019 rows"
     },
     {
       "rel": "item",
       "href": "./items/00015.json",
       "type": "application/geo+json",
-      "title": "Part 00015, 10,090,068 rows"
+      "title": "Part 00015, 10,021,140 rows"
     }
   ]
 }

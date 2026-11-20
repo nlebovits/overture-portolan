@@ -1,6 +1,6 @@
 # AGENTS.md — Addresses
 
-The Overture Maps `addresses` theme, release `2026-10-21.0`.
+The Overture Maps `addresses` theme, release `2026-11-18.0`.
 
 Collections here:
 

@@ -7,16 +7,16 @@
   "id": "00037",
   "collection": "segment",
   "bbox": [
-    -15.415196418762207,
+    -13.402460098266602,
     4.358713150024414,
     -1.1260970830917358,
-    37.148834228515625
+    32.72364044189453
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -15.415196418762207,
+          -13.402460098266602,
           4.358713150024414
         ],
         [
@@ -25,14 +25,14 @@
         ],
         [
           -1.1260970830917358,
-          37.148834228515625
+          32.72364044189453
         ],
         [
-          -15.415196418762207,
-          37.148834228515625
+          -13.402460098266602,
+          32.72364044189453
         ],
         [
-          -15.415196418762207,
+          -13.402460098266602,
           4.358713150024414
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2822705
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2823147
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00037-94ac3c12-07ba-5925-8349-7fccf5e60aa9-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=segment/part-00037-57d5e1ac-2d62-59dc-ac6d-dbbeb65672f4-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00037",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00037-94ac3c12-07ba-5925-8349-7fccf5e60aa9-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=segment/part-00037-57d5e1ac-2d62-59dc-ac6d-dbbeb65672f4-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

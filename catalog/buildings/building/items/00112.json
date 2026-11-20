@@ -7,32 +7,32 @@
   "id": "00112",
   "collection": "building",
   "bbox": [
-    -70.64086151123047,
+    -70.63289642333984,
     36.92842102050781,
-    -8.929945945739746,
+    -8.896029472351074,
     82.52578735351562
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -70.64086151123047,
+          -70.63289642333984,
           36.92842102050781
         ],
         [
-          -8.929945945739746,
+          -8.896029472351074,
           36.92842102050781
         ],
         [
-          -8.929945945739746,
+          -8.896029472351074,
           82.52578735351562
         ],
         [
-          -70.64086151123047,
+          -70.63289642333984,
           82.52578735351562
         ],
         [
-          -70.64086151123047,
+          -70.63289642333984,
           36.92842102050781
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 4889603
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 5011029
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00112-ad9edaac-2e67-5e85-a59b-c773b504d50d-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=buildings/type=building/part-00112-04c5ed8f-4fd5-570f-b450-bb130f9300eb-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00112",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building/part-00112-ad9edaac-2e67-5e85-a59b-c773b504d50d-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=buildings/type=building/part-00112-04c5ed8f-4fd5-570f-b450-bb130f9300eb-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }
