@@ -15,11 +15,11 @@ Every asset link points at Overture's own buckets.
 
 | | |
 |---|---|
-| Release | `2026-08-19.0` |
+| Release | `2026-10-21.0` |
 | Parts | 16 |
-| Rows | 73,631,092 |
+| Rows | 88,418,121 |
 | Geometry | Point |
-| Columns | 17, 16 with a description |
+| Columns | 16, 15 with a description |
 | Format | GeoParquet 1.1.0, WKB |
 | Licence | other |
 
@@ -30,7 +30,7 @@ The data is GeoParquet on a public bucket. No credentials are needed.
 ```sql
 INSTALL spatial; LOAD spatial;
 SELECT count(*)
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=places/type=place/*.parquet');
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/*.parquet');
 ```
 
 See [AGENTS.md](AGENTS.md) for join keys, the bbox pruning pattern, and more
@@ -38,7 +38,7 @@ queries.
 
 ## Where This Came From
 
-Overture Maps publishes this data under release `2026-08-19.0`. Column meanings
+Overture Maps publishes this data under release `2026-10-21.0`. Column meanings
 come from Overture's JSON Schema at tag `v1.18.0`. Both are linked from the
 collection metadata as `via` and `canonical`.
 

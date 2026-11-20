@@ -1,7 +1,7 @@
 # Overture Maps Portolan Catalog
 
 This repository maintains a Portolan mirror of Overture Maps release
-`2026-08-19.0`. It publishes metadata, documentation, styles, and thumbnails.
+`2026-10-21.0`. It publishes metadata, documentation, styles, and thumbnails.
 The data stays in Overture's public buckets.
 
 The live catalog starts at

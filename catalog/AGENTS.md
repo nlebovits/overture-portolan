@@ -8,13 +8,13 @@ came from, it does not belong in this file. An agent acting on an invented join
 key or an invented column name produces a confident wrong answer, and nothing
 downstream catches it.
 
-Every query below was run against the published data on 2026-08-27, and the
+Every query below was run against the published data on 2026-11-06, and the
 output is pasted with it. Timings come from one machine on a home connection, so
 treat them as ratios rather than as guarantees.
 
 ## What This Catalog Holds
 
-Overture Maps release `2026-08-19.0`, as 15 collections across 6 themes. The
+Overture Maps release `2026-10-21.0`, as 15 collections across 6 themes. The
 root is <https://nlebovits.github.io/overture-portolan/catalog.json>.
 
 | Theme | Collections |
@@ -26,9 +26,9 @@ root is <https://nlebovits.github.io/overture-portolan/catalog.json>.
 | `places` | `place` |
 | `transportation` | `connector`, `segment` |
 
-Together they hold 4,332,026,224 rows in 987 GeoParquet files, 611.6 GB in
-total, measured by listing the release prefix on 2026-08-27. The catalog itself
-is 1005 STAC objects: one root, six theme catalogs, 15 collections, and 983
+Together they hold 4,367,602,832 rows in 1020 GeoParquet files, 621.5 GB in
+total, measured by listing the release prefix on 2026-11-06. The catalog itself
+is 1038 STAC objects: one root, six theme catalogs, 15 collections, and 1016
 items.
 
 **This catalog holds metadata only.** Every `data` href points at
@@ -60,11 +60,11 @@ configured.
 INSTALL spatial; LOAD spatial;
 
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division_area/*.parquet');
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=divisions/type=division_area/*.parquet');
 ```
 
 ```
-[(1074177,)]   -- 2.7s
+[(1084259,)]   -- 3.5s
 ```
 
 **A glob cannot expand over HTTPS**, because expansion needs a directory
@@ -75,11 +75,11 @@ gives both forms: the `href` is the HTTPS URL and `alternate.s3.href` is the
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=divisions/type=division_area/part-00000-f96e181e-fc0f-5b29-a7c1-054128d2640e-c000.zstd.parquet');
+FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=divisions/type=division_area/part-00000-d97cde63-9be2-55c6-8b16-c60d627c9ab7-c000.zstd.parquet');
 ```
 
 ```
-[(138481,)]   -- 1.1s
+[(139406,)]   -- 4.5s
 ```
 
 ### Four Collections Carry Their Data At Collection Level
@@ -108,36 +108,37 @@ are not the same query, and the difference is silent.
 ```sql
 -- Correct: keeps every feature whose bbox overlaps the window.
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division_area/*.parquet')
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=divisions/type=division_area/*.parquet')
 WHERE bbox.xmin <= 0.0 AND bbox.xmax >= -0.2
   AND bbox.ymin <= 51.6 AND bbox.ymax >= 51.4
   AND ST_Intersects(geometry, ST_MakeEnvelope(-0.2, 51.4, 0.0, 51.6));
 ```
 
 Measured three ways over the same window on `divisions/division_area`,
-1,074,177 rows in 8 parts:
+1,084,259 rows in 8 parts:
 
 ```
-bbox overlap test, then ST_Intersects: 567 rows in 5.7s
-bbox.xmin/ymin BETWEEN, then ST_Intersects: 537 rows in 0.5s
-ST_Intersects alone: 567 rows in 85.9s
+bbox overlap test, then ST_Intersects: 568 rows in 17.5s
+bbox.xmin/ymin BETWEEN, then ST_Intersects: 539 rows in 12.6s
+ST_Intersects alone: 568 rows in 144.2s
 ```
 
-The overlap test gives the same 567 rows as the unfiltered spatial predicate and
-runs about 15 times faster. The corner test, which filters `bbox.xmin` and
-`bbox.ymin` into the window with `BETWEEN`, drops 30 of those 567. It discards
+The overlap test gives the same 568 rows as the unfiltered spatial predicate and
+runs about 8 times faster. The corner test, which filters `bbox.xmin` and
+`bbox.ymin` into the window with `BETWEEN`, drops 29 of those 568. It discards
 every feature whose box starts west or south of the window and reaches into it.
 It returns quickly and it returns the wrong answer.
 
-The gap widens with collection size. On `buildings/building`, 2,529,582,613
-rows in 512 parts, the same overlap filter counted 415,888 features over a
-0.2-degree window in 49.6 seconds. The unfiltered `ST_Intersects` over the same
-window did not finish in 14 minutes and was killed.
+The gap widens with collection size. On `buildings/building`, 2,533,842,612
+rows in 512 parts, the same overlap filter counted 420,345 features over a
+0.2-degree window in 35.3 seconds. On release `2026-08-19.0`, the unfiltered
+`ST_Intersects` over the same window did not finish in 14 minutes and was
+killed.
 
 Two consequences follow. Scope every exploratory query to a window before you
 run it against a large collection. And prefer a small collection when you only
-want to see the shape of the data: `base/bathymetry` holds 59,963 rows and
-`divisions/division_boundary` holds 87,533.
+want to see the shape of the data: `base/bathymetry` holds 407,277 rows and
+`divisions/division_boundary` holds 87,536.
 
 ## Join Keys
 
@@ -168,7 +169,7 @@ position along the segment, so `unnest` first and then read `connector_id`.
 ```sql
 WITH seg AS (
   SELECT id, unnest(connectors) AS c
-  FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=segment/*.parquet')
+  FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/*.parquet')
   WHERE bbox.xmin <= -0.10 AND bbox.xmax >= -0.12
     AND bbox.ymin <= 51.52 AND bbox.ymax >= 51.50
 )
@@ -176,14 +177,14 @@ SELECT count(*) AS pairs,
        count(DISTINCT seg.id) AS segments,
        count(DISTINCT k.id) AS connectors
 FROM seg
-JOIN read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=connector/*.parquet') k
+JOIN read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=connector/*.parquet') k
   ON seg.c.connector_id = k.id
 WHERE k.bbox.xmin <= -0.10 AND k.bbox.xmax >= -0.12
   AND k.bbox.ymin <= 51.52 AND k.bbox.ymax >= 51.50;
 ```
 
 ```
-[(13456, 4635, 6375)]   -- 38.6s
+[(12241, 4264, 5862)]   -- 29.1s
 ```
 
 Bound both sides of a join by bbox. The join itself has no spatial awareness, so
@@ -193,8 +194,8 @@ A cross-collection join on the smaller divisions collections runs in seconds:
 
 ```sql
 SELECT d.names.primary AS division, a.subtype, a.class
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division_area/*.parquet') a
-JOIN read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=divisions/type=division/*.parquet') d
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=divisions/type=division_area/*.parquet') a
+JOIN read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=divisions/type=division/*.parquet') d
   ON a.division_id = d.id
 WHERE a.bbox.xmin <= 0.0 AND a.bbox.xmax >= -0.2
   AND a.bbox.ymin <= 51.6 AND a.bbox.ymax >= 51.4
@@ -210,7 +211,7 @@ LIMIT 5;
 ('Aberfeldy Village', 'neighborhood', 'land')
 ('Acorn Estate', 'neighborhood', 'land')
 ('Acorn Walk', 'neighborhood', 'land')
--- 9.7s
+-- 10.2s
 ```
 
 `places/place` carries an `addresses` column, which Overture's schema describes
@@ -269,7 +270,7 @@ older release points at bytes that are gone.
 ## Rendering
 
 Each collection's `visual` asset is Overture's prebuilt PMTiles archive for the
-whole theme, not for that collection. Six archives cover 15 collections, 573.9
+whole theme, not for that collection. Six archives cover 15 collections, 579.6
 GB in total. The `pmtiles` link on each collection carries `pmtiles:layers` with
 the layer name to use, which is the collection id.
 
@@ -288,7 +289,7 @@ which `tools/make_styles.py` generates with both values set on the source.
 **No `file:size` and no `file:checksum` on upstream assets.** A consumer cannot
 verify the integrity of a data file from this catalog alone. The omission is
 deliberate: a validator reads every byte of an asset that declares either, which
-would turn a conformance check into a 611.6 GB download. Both are a SHOULD under
+would turn a conformance check into a 621.5 GB download. Both are a SHOULD under
 PORTO-CORE-028. See
 [docs/publication.md](https://github.com/nlebovits/overture-portolan/blob/main/docs/publication.md).
 

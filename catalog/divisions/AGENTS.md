@@ -1,6 +1,6 @@
 # AGENTS.md — Divisions
 
-The Overture Maps `divisions` theme, release `2026-08-19.0`.
+The Overture Maps `divisions` theme, release `2026-10-21.0`.
 
 Collections here:
 

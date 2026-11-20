@@ -4,7 +4,7 @@
 > the agent guide inside each collection. Those carry the measured row counts,
 > the access patterns, and queries that have been run.
 
-The Overture Maps `transportation` theme, release `2026-08-19.0`.
+The Overture Maps `transportation` theme, release `2026-10-21.0`.
 
 - [connector](connector/README.md)
 - [segment](segment/README.md)

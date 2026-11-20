@@ -7,8 +7,8 @@
   "id": "00069",
   "collection": "segment",
   "bbox": [
-    12.7249755859375,
-    2.0217225551605225,
+    12.863103866577148,
+    1.9045947790145874,
     37.23779296875,
     25.30352210998535
   ],
@@ -16,36 +16,36 @@
     "coordinates": [
       [
         [
-          12.7249755859375,
-          2.0217225551605225
+          12.863103866577148,
+          1.9045947790145874
         ],
         [
           37.23779296875,
-          2.0217225551605225
+          1.9045947790145874
         ],
         [
           37.23779296875,
           25.30352210998535
         ],
         [
-          12.7249755859375,
+          12.863103866577148,
           25.30352210998535
         ],
         [
-          12.7249755859375,
-          2.0217225551605225
+          12.863103866577148,
+          1.9045947790145874
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 2746041
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 2734874
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=segment/part-00069-b989fb5d-500c-5157-b49f-249c2a9cc55a-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00069-a9566f9e-8e77-5e69-b80c-d543b1fcf0c8-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00069",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=segment/part-00069-b989fb5d-500c-5157-b49f-249c2a9cc55a-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00069-a9566f9e-8e77-5e69-b80c-d543b1fcf0c8-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

@@ -7,45 +7,45 @@
   "id": "00005",
   "collection": "connector",
   "bbox": [
-    -103.0760726928711,
-    37.85647201538086,
-    -86.58558654785156,
+    -103.30379486083984,
+    37.90239715576172,
+    -86.89836120605469,
     79.41559600830078
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -103.0760726928711,
-          37.85647201538086
+          -103.30379486083984,
+          37.90239715576172
         ],
         [
-          -86.58558654785156,
-          37.85647201538086
+          -86.89836120605469,
+          37.90239715576172
         ],
         [
-          -86.58558654785156,
+          -86.89836120605469,
           79.41559600830078
         ],
         [
-          -103.0760726928711,
+          -103.30379486083984,
           79.41559600830078
         ],
         [
-          -103.0760726928711,
-          37.85647201538086
+          -103.30379486083984,
+          37.90239715576172
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 13141006
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 13197909
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=transportation/type=connector/part-00005-f8fe6113-2564-52ec-a6ff-063c53699ee5-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=connector/part-00005-ea25dfac-40c6-5c6c-b439-c8fa2b1226e8-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00005",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=transportation/type=connector/part-00005-f8fe6113-2564-52ec-a6ff-063c53699ee5-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=connector/part-00005-ea25dfac-40c6-5c6c-b439-c8fa2b1226e8-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

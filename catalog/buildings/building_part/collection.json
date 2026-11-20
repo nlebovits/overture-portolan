@@ -48,7 +48,7 @@
       ]
     }
   },
-  "updated": "2026-08-19T00:00:00Z",
+  "updated": "2026-10-21T00:00:00Z",
   "table:columns": [
     {
       "name": "id"
@@ -139,7 +139,7 @@
   ],
   "assets": {
     "visual": {
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/buildings.pmtiles",
       "type": "application/vnd.pmtiles",
       "roles": [
         "visual"
@@ -164,30 +164,6 @@
       ],
       "title": "Default style"
     },
-    "style-by-roof-material": {
-      "href": "./styles/by_roof_material.json",
-      "type": "application/vnd.mapbox.style+json",
-      "roles": [
-        "style"
-      ],
-      "title": "By roof material"
-    },
-    "style-by-roof-shape": {
-      "href": "./styles/by_roof_shape.json",
-      "type": "application/vnd.mapbox.style+json",
-      "roles": [
-        "style"
-      ],
-      "title": "By roof shape"
-    },
-    "style-flat": {
-      "href": "./styles/flat.json",
-      "type": "application/vnd.mapbox.style+json",
-      "roles": [
-        "style"
-      ],
-      "title": "Single colour"
-    },
     "style-zoom": {
       "href": "./styles/zoom.json",
       "type": "application/vnd.mapbox.style+json",
@@ -197,7 +173,7 @@
       "title": "By zoom level"
     },
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=buildings/type=building_part/part-00000-18b25a16-1800-5503-8e41-c3f077aa7e2d-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building_part/part-00000-bd282a3b-17f8-59d2-be35-2c8995e1f976-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -205,7 +181,7 @@
       "title": "GeoParquet part 00000",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=buildings/type=building_part/part-00000-18b25a16-1800-5503-8e41-c3f077aa7e2d-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building_part/part-00000-bd282a3b-17f8-59d2-be35-2c8995e1f976-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }
@@ -244,13 +220,13 @@
     },
     {
       "rel": "canonical",
-      "href": "https://stac.overturemaps.org/2026-08-19.0/buildings/building_part/collection.json",
+      "href": "https://stac.overturemaps.org/2026-10-21.0/buildings/building_part/collection.json",
       "type": "application/json",
       "title": "Overture STAC collection"
     },
     {
       "rel": "pmtiles",
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-08-19.0/buildings.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/buildings.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "Overture buildings vector tiles",
       "pmtiles:layers": [

@@ -8,7 +8,7 @@ does not belong in this file.
 
 ## Overview
 
-Overture Maps `base` theme, `land_cover` type, release `2026-08-19.0`.
+Overture Maps `base` theme, `land_cover` type, release `2026-10-21.0`.
 128 GeoParquet parts holding 123,302,114 rows. Geometry is WKB in EPSG:4326.
 
 This catalog holds metadata only. Every `data` asset href points at
@@ -22,7 +22,7 @@ partition-aware reader, and DuckDB is one:
 ```sql
 INSTALL spatial; LOAD spatial;
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land_cover/*.parquet');
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_cover/*.parquet');
 ```
 
 Over plain HTTPS, address one part at a time. A glob cannot expand over HTTPS,
@@ -30,7 +30,7 @@ because expansion needs a directory listing:
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=land_cover/part-00000-4720939f-e9d9-5bb1-9182-85d871b23a33-c000.zstd.parquet');
+FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_cover/part-00000-85bc879a-eb38-5465-b53a-dd291ad09efa-c000.zstd.parquet');
 ```
 
 ## The Bbox Column Is the Fast Path
@@ -41,7 +41,7 @@ row groups without decoding geometry.
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=land_cover/*.parquet')
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_cover/*.parquet')
 WHERE bbox.xmin BETWEEN -0.6 AND 0.4
   AND bbox.ymin BETWEEN 51.2 AND 51.8;
 ```
@@ -53,7 +53,7 @@ geometry in 123,302,114 rows.
 
 Parts hold 64 to
 128 row groups. The largest holds
-19,590 rows, which is inside
+19,656 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
 ## Coded Columns

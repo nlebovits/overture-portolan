@@ -8,8 +8,8 @@
   "collection": "water",
   "bbox": [
     -128.01556396484375,
-    56.09958267211914,
-    -108.89604949951172,
+    55.98161697387695,
+    -110.51592254638672,
     90.0
   ],
   "geometry": {
@@ -17,14 +17,14 @@
       [
         [
           -128.01556396484375,
-          56.09958267211914
+          55.98161697387695
         ],
         [
-          -108.89604949951172,
-          56.09958267211914
+          -110.51592254638672,
+          55.98161697387695
         ],
         [
-          -108.89604949951172,
+          -110.51592254638672,
           90.0
         ],
         [
@@ -33,19 +33,19 @@
         ],
         [
           -128.01556396484375,
-          56.09958267211914
+          55.98161697387695
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-08-19T00:00:00Z",
-    "table:row_count": 2088236
+    "datetime": "2026-10-21T00:00:00Z",
+    "table:row_count": 2021344
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=base/type=water/part-00009-2fce7955-e757-5d11-b7b1-abfd3cfb74a4-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=water/part-00009-6897cfec-fa94-500e-bb32-5ebd708c61c8-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00009",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-08-19.0/theme=base/type=water/part-00009-2fce7955-e757-5d11-b7b1-abfd3cfb74a4-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=water/part-00009-6897cfec-fa94-500e-bb32-5ebd708c61c8-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

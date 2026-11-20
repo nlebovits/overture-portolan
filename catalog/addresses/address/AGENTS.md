@@ -8,8 +8,8 @@ does not belong in this file.
 
 ## Overview
 
-Overture Maps `addresses` theme, `address` type, release `2026-08-19.0`.
-32 GeoParquet parts holding 472,797,160 rows. Geometry is WKB in EPSG:4326.
+Overture Maps `addresses` theme, `address` type, release `2026-10-21.0`.
+64 GeoParquet parts holding 475,263,892 rows. Geometry is WKB in EPSG:4326.
 
 This catalog holds metadata only. Every `data` asset href points at
 `overturemaps-us-west-2`, which Overture hosts and which needs no credentials.
@@ -22,7 +22,7 @@ partition-aware reader, and DuckDB is one:
 ```sql
 INSTALL spatial; LOAD spatial;
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=addresses/type=address/*.parquet');
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=addresses/type=address/*.parquet');
 ```
 
 Over plain HTTPS, address one part at a time. A glob cannot expand over HTTPS,
@@ -30,7 +30,7 @@ because expansion needs a directory listing:
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-08-19.0/theme=addresses/type=address/part-00000-239b7d07-845d-5c63-9969-d08b18f7957d-c000.zstd.parquet');
+FROM read_parquet('https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=addresses/type=address/part-00000-c44357eb-9a65-5104-b485-af7f0be62da4-c000.zstd.parquet');
 ```
 
 ## The Bbox Column Is the Fast Path
@@ -41,19 +41,19 @@ row groups without decoding geometry.
 
 ```sql
 SELECT count(*) AS rows
-FROM read_parquet('s3://overturemaps-us-west-2/release/2026-08-19.0/theme=addresses/type=address/*.parquet')
+FROM read_parquet('s3://overturemaps-us-west-2/release/2026-10-21.0/theme=addresses/type=address/*.parquet')
 WHERE bbox.xmin BETWEEN -0.6 AND 0.4
   AND bbox.ymin BETWEEN 51.2 AND 51.8;
 ```
 
 A query that calls `ST_Intersects` without a bbox filter first reads every
-geometry in 472,797,160 rows.
+geometry in 475,263,892 rows.
 
 ## Row Groups
 
 Parts hold 256 to
-512 row groups. The largest holds
-97,727 rows, which is inside
+256 row groups. The largest holds
+52,029 rows, which is inside
 the 150,000 cap Portolan sets, so range reads stay small.
 
 ## Schema and Field Notes

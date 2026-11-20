@@ -21,14 +21,6 @@ DUCKDB_SETUP = "INSTALL spatial; LOAD spatial;"
 # Overture's data, not this mirror: the mirror copies no bytes and can only
 # report what it read.
 KNOWN_ISSUES: dict[str, list[str]] = {
-    "base/bathymetry": [
-        "**The rows are not spatially ordered.** rashid reports PTL-DAT-006 "
-        "against release 2026-08-19.0: 59,963 rows in 4 row groups do not "
-        "cluster spatially. A reader cannot skip any part of the file, so a "
-        "bbox filter prunes nothing here and a spatial query reads the whole "
-        "collection. Reproduce it with `python3 tests/test_data_pass.py "
-        "base/bathymetry`, which takes about 13 seconds.",
-    ],
     "base/land_cover": [
         "**Overture reports bboxes outside the WGS84 range.** Its STAC gives "
         "longitudes of 180.00022888183594 and -180.00022888183594, which "

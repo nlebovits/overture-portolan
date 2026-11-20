@@ -4,7 +4,7 @@
 > the agent guide inside each collection. Those carry the measured row counts,
 > the access patterns, and queries that have been run.
 
-The Overture Maps `divisions` theme, release `2026-08-19.0`.
+The Overture Maps `divisions` theme, release `2026-10-21.0`.
 
 - [division](division/README.md)
 - [division_area](division_area/README.md)
