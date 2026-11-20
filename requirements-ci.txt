@@ -5,21 +5,17 @@
 # a pull request and a different thing in a weekly run.
 #
 # The template took a floor here, not a pin, so a repo made from it picks up
-# each new 0.1.x release. This catalog pins instead, because it needs a fix
-# that is merged but not yet released.
+# each new 0.1.x release. This catalog pins instead. The catalog declares
+# Portolan v0.3.0, and rashid 0.4.0 is the first release that carries the
+# v0.3.0 rules.
 #
-# The pin is the merge commit of portolan-sdi/rashid#167, which moves
-# PTL-DAT-006 off a per-row read and onto footer statistics. Measured on one
-# remote Overture part, that takes the data pass from 48.5s to 7.1s.
-#
-# tools/check_rashid_release.py replaces the line below with 'rashid==X.Y.Z'
-# when PyPI carries a release above 0.1.7, and
-# .github/workflows/rashid-release.yml runs it every week. Do not reformat the
-# line by hand: the tool matches one of two exact shapes and it fails when it
-# matches neither.
+# tools/check_rashid_release.py reads the line below in one of two exact
+# shapes, and .github/workflows/rashid-release.yml runs it every week. Do not
+# reformat the line by hand. The tool fails when the line matches neither
+# shape.
 #
 # stac-check stays unpinned on purpose. The stac-check exemption in
 # docs/conformance.md expires when the upstream crash stops. That only happens
 # if CI takes each new release.
-rashid @ git+https://github.com/portolan-sdi/rashid@07fdc40300f4b06f15fca30eef10d7a5aa62ed3d
+rashid==0.4.0
 stac-check

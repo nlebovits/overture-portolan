@@ -85,15 +85,15 @@ no bytes.
 outside it ever is. `.github/workflows/pages.yml` uploads that directory and
 nothing else. Do not move a file into `catalog/` to make it publish.
 
-### Publication and its two accepted deviations
+### Publication on GitHub Pages
 
 A push to `main` deploys `catalog/` to GitHub Pages. This catalog uses neither
 `portolan push` nor the template's `tools/publish.py`, and it uploads nothing to
 an object store.
 
-That choice costs two conformance findings, PTL-LIV-004 and PTL-LIV-005, both
-recorded in `docs/conformance.md` and tracked by portolan-spec#183. Read
-`docs/publication.md` before any change to hosting, the item shape, or the
+GitHub Pages cannot answer a browser's preflighted range request. Portolan
+v0.3.0 asks for that only on a host that serves cloud-native files, so this
+catalog carries no accepted deviation. Read `docs/publication.md` before any change to hosting, the item shape, or the
 asset formats. The three decisions are coupled, and the reasoning is not
 recoverable from the code.
 

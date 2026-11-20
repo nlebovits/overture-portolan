@@ -7,32 +7,32 @@
   "id": "00017",
   "collection": "address",
   "bbox": [
-    -122.16939544677734,
+    -122.16667938232422,
     33.37537384033203,
-    -118.37879943847656,
+    -118.3687515258789,
     61.87055587768555
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -122.16939544677734,
+          -122.16667938232422,
           33.37537384033203
         ],
         [
-          -118.37879943847656,
+          -118.3687515258789,
           33.37537384033203
         ],
         [
-          -118.37879943847656,
+          -118.3687515258789,
           61.87055587768555
         ],
         [
-          -122.16939544677734,
+          -122.16667938232422,
           61.87055587768555
         ],
         [
-          -122.16939544677734,
+          -122.16667938232422,
           33.37537384033203
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 7436157
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 7473940
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=addresses/type=address/part-00017-4ae842e7-9273-5948-89f7-af031518a4e8-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=addresses/type=address/part-00017-a852fc78-5b75-5ea4-b18a-cbc11f282d48-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00017",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=addresses/type=address/part-00017-4ae842e7-9273-5948-89f7-af031518a4e8-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=addresses/type=address/part-00017-a852fc78-5b75-5ea4-b18a-cbc11f282d48-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

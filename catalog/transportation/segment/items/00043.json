@@ -7,45 +7,45 @@
   "id": "00043",
   "collection": "segment",
   "bbox": [
-    -3.8789045810699463,
-    41.07962417602539,
-    1.6038818359375,
-    45.86809539794922
+    -3.891166925430298,
+    41.010108947753906,
+    1.5575958490371704,
+    45.75812911987305
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -3.8789045810699463,
-          41.07962417602539
+          -3.891166925430298,
+          41.010108947753906
         ],
         [
-          1.6038818359375,
-          41.07962417602539
+          1.5575958490371704,
+          41.010108947753906
         ],
         [
-          1.6038818359375,
-          45.86809539794922
+          1.5575958490371704,
+          45.75812911987305
         ],
         [
-          -3.8789045810699463,
-          45.86809539794922
+          -3.891166925430298,
+          45.75812911987305
         ],
         [
-          -3.8789045810699463,
-          41.07962417602539
+          -3.891166925430298,
+          41.010108947753906
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2716728
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2769324
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00043-03f8b057-9efb-5c98-812b-d8599fb7d59d-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=segment/part-00043-f0532804-231c-5726-93c6-b6459c5f1b0b-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00043",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00043-03f8b057-9efb-5c98-812b-d8599fb7d59d-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=segment/part-00043-f0532804-231c-5726-93c6-b6459c5f1b0b-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

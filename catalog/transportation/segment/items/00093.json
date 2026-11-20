@@ -7,32 +7,32 @@
   "id": "00093",
   "collection": "segment",
   "bbox": [
-    44.80482864379883,
+    44.52918243408203,
     38.13272476196289,
-    73.9876708984375,
+    74.52550506591797,
     52.30512619018555
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          44.80482864379883,
+          44.52918243408203,
           38.13272476196289
         ],
         [
-          73.9876708984375,
+          74.52550506591797,
           38.13272476196289
         ],
         [
-          73.9876708984375,
+          74.52550506591797,
           52.30512619018555
         ],
         [
-          44.80482864379883,
+          44.52918243408203,
           52.30512619018555
         ],
         [
-          44.80482864379883,
+          44.52918243408203,
           38.13272476196289
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2740575
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2771894
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00093-cd3f74f4-c87c-5484-922a-2ba03cdc941e-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=segment/part-00093-733c3ec3-78c0-5445-b7b1-c83f93822e6b-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00093",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00093-cd3f74f4-c87c-5484-922a-2ba03cdc941e-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=segment/part-00093-733c3ec3-78c0-5445-b7b1-c83f93822e6b-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

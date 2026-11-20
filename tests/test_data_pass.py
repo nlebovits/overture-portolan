@@ -18,9 +18,7 @@ name. The copy holds metadata only, so it costs about 5 MB and no network.
 The pruned copy is why this gate takes a collection and not a filter: one
 collection is one job, and 15 jobs run in about the time the largest one takes.
 
-There is no accepted-finding list here, unlike `tests/test_conformance.py`. The
-two ids that gate accepts, PTL-LIV-004 and PTL-LIV-005, only fire under
-`--live`, which this gate does not pass. Any error-severity finding fails.
+There is no accepted-finding list here. Any error-severity finding fails.
 
 Usage:
     python3 tests/test_data_pass.py divisions/division_area
@@ -46,10 +44,10 @@ from catalog_config import load_config  # noqa: E402
 
 # The same range as tests/test_conformance.py, for the same reason: a rashid
 # below the floor reports a pass for rules it does not carry, and an
-# unreviewed 0.2 rule set changes what this gate means.
-MIN_VERSION = (0, 1, 5)
-MAX_VERSION = (0, 2, 0)
-SPEC = "rashid>=0.1.5,<0.2.0"
+# unreviewed 0.5 rule set changes what this gate means.
+MIN_VERSION = (0, 4, 0)
+MAX_VERSION = (0, 5, 0)
+SPEC = "rashid>=0.4.0,<0.5.0"
 INSTALL = f"python -m pip install '{SPEC}'"
 
 
