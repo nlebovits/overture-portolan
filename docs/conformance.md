@@ -16,8 +16,7 @@ python3 tests/test_live_hosting.py https://nlebovits.github.io/overture-portolan
 ```
 
 It runs from `.github/workflows/pages.yml` once the deploy succeeds. It passes
-only when the host reports exactly PTL-LIV-004 and PTL-LIV-005 and nothing
-else, so a third finding fails the build. The `--url` is mandatory: rashid
+only when the host reports no error-severity finding. The `--url` is mandatory: rashid
 exempts the upstream hosts under PORTO-CORE-073 only when it knows the publish
 host, and without it the Overture buckets report CORS failures this catalog
 does not control. The gate also fails on any finding that names another host,
@@ -31,17 +30,18 @@ widened allow-list is a false claim about what this catalog conforms to.
 
 ## The rashid version floor
 
-The gate needs rashid `>=0.1.5,<0.2.0`. It reads `rashid --version` and fails
+The gate needs rashid `>=0.4.0,<0.5.0`. It reads `rashid --version` and fails
 outside that range. It also fails when rashid is absent, and prints the install
 command. A skip would report a green run for a catalog that no validator read.
 
-The floor is 0.1.5 because rules PTL-LNK-007, PTL-LNK-008, PTL-LNK-009 and
-PTL-AST-006 do not exist below it. The gate asserts all four. An older rashid
-reports a pass for a catalog that it never checked against them. The same range
-is in `portolan-cli/pyproject.toml`.
+The floor is 0.4.0 because the catalog declares Portolan v0.3.0, and rashid
+0.4.0 is the first release that carries the v0.3.0 rules. One of them is
+PTL-PRO-003, which requires a top-level `updated` field on every catalog of a
+mirror. An older rashid reports a pass for a catalog that it never checked
+against those rules.
 
-The upper bound stops an unreviewed 0.2 rule set from changing what this gate
-means. Raise both bounds together when you move to 0.2, and read the new rules
+The upper bound stops an unreviewed 0.5 rule set from changing what this gate
+means. Raise both bounds together when you move to 0.5, and read the new rules
 first.
 
 ## The rashid pin and the watch on it
@@ -51,22 +51,20 @@ workflows read that file: `ci.yml`, `sync.yml`, and `data-pass.yml`. One file
 keeps all three on one validator, because a gate must not mean one thing on a
 pull request and a different thing in a weekly run.
 
-The pin is a git commit, not a release. It names the merge commit of
-[rashid#167](https://github.com/portolan-sdi/rashid/pull/167), which moves
-PTL-DAT-006 off a per-row read and onto footer statistics. Measured on one
-remote Overture part on 2026-08-27, that takes the data pass from 48.5 seconds
-to 7.1 seconds. The fix is merged and it is not released.
+The pin is `rashid==0.4.0`. Until 2026-11-20 it was a git commit, the merge
+commit of [rashid#167](https://github.com/portolan-sdi/rashid/pull/167), which
+moves PTL-DAT-006 off a per-row read and onto footer statistics. Every release
+from 0.1.8 on carries that change.
 
-`tools/check_rashid_release.py` watches PyPI for the release that ends the git
-pin, and `.github/workflows/rashid-release.yml` runs it every Tuesday. When a
-release above 0.1.7 appears, the workflow opens a pull request that replaces
-the git URL with `rashid==X.Y.Z`.
+`tools/check_rashid_release.py` watches PyPI for the release that ends a git
+pin, and `.github/workflows/rashid-release.yml` runs it every Tuesday. With a
+version pin the tool reports that the move is done and exits 0.
 
 Dependabot cannot do this work. It does not read a `pip install` inside a
 workflow `run:` step, and it cannot move a requirement from a git URL to a PyPI
 version. It can keep a version pin current, which is the reason the pin moved
-into a requirements file. Delete the tool and the workflow after that pull
-request merges, and let Dependabot take the job.
+into a requirements file. Delete the tool and the workflow, and let Dependabot
+take the job. Dependabot needs a `pip` entry in `.github/dependabot.yml` first.
 
 The tool reads one rashid line in one of two exact shapes. A line in a third
 shape stops the check with exit code 2, and the workflow files an issue. A
@@ -106,9 +104,8 @@ data this repository does not own and cannot fix. On a failure the workflow
 opens one issue, or it comments on the issue that is already open. Nothing
 downstream reads the result.
 
-The gate carries no accepted-finding list, unlike `tests/test_conformance.py`.
-It never passes `--live`, so PTL-LIV-004 and PTL-LIV-005 cannot fire. Any
-error-severity finding fails the job and goes in the report.
+The gate carries no accepted-finding list. Any error-severity finding fails the
+job and goes in the report.
 
 ### What the pass reports today
 
@@ -133,33 +130,22 @@ rows in 16 row groups, and the pass finds no error.
 
 | Rule | Where | Why accepted | Tracking |
 |---|---|---|---|
-| PTL-LIV-004 | the published host | GitHub Pages sends no `Access-Control-Expose-Headers` and exposes no header configuration | portolan-spec#183 |
-| PTL-LIV-005 | the published host | GitHub Pages returns 405 to an OPTIONS preflight, and exposes no header configuration | portolan-spec#183 |
 
-Both findings concern range reads. A `Range` header is not CORS-safelisted, so a
-ranged fetch from a browser triggers a preflight, and a range reader needs
-`Content-Range`, `Accept-Ranges`, and `ETag` readable from script.
+The table is empty.
 
-Nothing on this host is range-read. It serves STAC JSON, Markdown, thumbnails,
-and style JSON. Each is small and each arrives through a simple GET, which
-triggers no preflight and needs no exposed headers. The GeoParquet and PMTiles
-sit on Overture's buckets, which serve range requests and cross-origin reads
-correctly, and which PORTO-CORE-073 exempts because this catalog does not control
-them.
+Until 2026-11-20 it held PTL-LIV-004 and PTL-LIV-005 on the published host.
+GitHub Pages sends no `Access-Control-Expose-Headers`, returns 405 to an
+OPTIONS preflight, and exposes no header configuration. Portolan v0.3.0 applies
+those two rules only to COG, Parquet, PMTiles, and COPC files
+([portolan-spec#183](https://github.com/portolan-sdi/portolan-spec/issues/183)).
+This host serves STAC JSON, Markdown, thumbnails, and style JSON, so rashid
+0.4.0 reports neither rule.
 
-GitHub Pages does answer range requests correctly, verified on 2026-08-27. It
-returns 206 with `Content-Range` and `Accept-Ranges`. Only the two CORS elements
-that support a browser range read are absent.
-
-This constrains one design decision, recorded in
-[publication.md](publication.md): the catalog ships plain item JSON rather than a
-STAC-GeoParquet item mirror. An item mirror is a cloud-native asset, and to host
-one here would put a range-read file on a host that cannot serve a preflighted
-range request.
-
-[portolan-spec#183](https://github.com/portolan-sdi/portolan-spec/issues/183)
-proposes to scope these requirements to hosts that serve cloud-native assets.
-Both rows leave this table when it resolves, whichever way it resolves.
+The host did not change. A browser still cannot send it a preflighted range
+request. That constrains one design decision, recorded in
+[publication.md](publication.md): the catalog ships plain item JSON rather than
+a STAC-GeoParquet item mirror. An item mirror is a cloud-native asset, and the
+two rules apply again when this host serves one.
 
 <!--
 When you accept one, add a row and a section explaining it, like this:
