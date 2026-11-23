@@ -7,45 +7,45 @@
   "id": "00032",
   "collection": "address",
   "bbox": [
-    -44.469913482666016,
-    -23.218629837036133,
-    -40.78251647949219,
-    -20.84931755065918
+    -44.311344146728516,
+    -23.19782066345215,
+    -40.58365249633789,
+    -20.794483184814453
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -44.469913482666016,
-          -23.218629837036133
+          -44.311344146728516,
+          -23.19782066345215
         ],
         [
-          -40.78251647949219,
-          -23.218629837036133
+          -40.58365249633789,
+          -23.19782066345215
         ],
         [
-          -40.78251647949219,
-          -20.84931755065918
+          -40.58365249633789,
+          -20.794483184814453
         ],
         [
-          -44.469913482666016,
-          -20.84931755065918
+          -44.311344146728516,
+          -20.794483184814453
         ],
         [
-          -44.469913482666016,
-          -23.218629837036133
+          -44.311344146728516,
+          -23.19782066345215
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 7443065
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 7463427
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=addresses/type=address/part-00032-f1bd2776-8dd3-54db-881f-cd1f38d75a81-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=addresses/type=address/part-00032-de9e2f2d-c441-5b2f-b455-c1dab54681c2-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00032",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=addresses/type=address/part-00032-f1bd2776-8dd3-54db-881f-cd1f38d75a81-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=addresses/type=address/part-00032-de9e2f2d-c441-5b2f-b455-c1dab54681c2-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

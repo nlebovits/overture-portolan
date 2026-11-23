@@ -38,10 +38,8 @@ jobs:
         uses: actions/deploy-pages@v4
 
   # The live pass needs a deployed URL, so it cannot run on a pull request.
-  # Without it, PTL-LIV-004 and PTL-LIV-005 stay unchecked: tests/
-  # test_conformance.py runs rashid with no --live, and those two ids are the
-  # whole content of its ACCEPTED set. This job asserts that the host still
-  # reports exactly those two and nothing else.
+  # tests/test_conformance.py runs rashid with no --live, so the PTL-LIV rules
+  # run only here. This job asserts that the host reports no error.
   live:
     needs: deploy
     runs-on: ubuntu-latest

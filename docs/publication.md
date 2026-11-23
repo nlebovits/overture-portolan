@@ -38,11 +38,12 @@ wrong deletes a live catalog.
 
 A git-deployed host removes the problem instead of management of it.
 
-## What this costs: two accepted deviations
+## What this costs
 
-Portolan requires a host to answer range requests and to permit cross-origin
-reads, so browser clients read data directly. `rashid` checks this in its live
-pass. Measured against GitHub Pages on 2026-08-27:
+Portolan requires a host that serves cloud-native files to answer range
+requests and to permit cross-origin reads, so browser clients read data
+directly. `rashid` checks this in its live pass. Measured against GitHub Pages
+on 2026-08-27:
 
 | Check | Requirement | Result |
 |---|---|---|
@@ -52,7 +53,7 @@ pass. Measured against GitHub Pages on 2026-08-27:
 | PTL-LIV-005 | OPTIONS preflight | fails, returns 405 |
 
 GitHub Pages exposes no header configuration, so neither failure is fixable from
-this repository. Both are recorded in [conformance.md](conformance.md).
+this repository.
 
 The two failures matter only for range reads. A `Range` header is not
 CORS-safelisted, so a ranged fetch from a browser triggers a preflight, and a range
@@ -65,9 +66,11 @@ PMTiles live on Overture's buckets, which answer range requests and permit
 cross-origin reads correctly, and which PORTO-CORE-073 exempts from these
 requirements because this catalog does not control them.
 
-So the findings are real against the letter of the spec and describe no defect a
-client can encounter. See [portolan-spec#183](https://github.com/portolan-sdi/portolan-spec/issues/183),
-which proposes to scope the requirements to hosts that serve cloud-native assets.
+Portolan v0.3.0 scopes the requirements to COG, Parquet, PMTiles, and COPC
+files, after [portolan-spec#183](https://github.com/portolan-sdi/portolan-spec/issues/183).
+This host serves none, so rashid 0.4.0 reports neither PTL-LIV-004 nor
+PTL-LIV-005, measured on 2026-11-20. [conformance.md](conformance.md) records
+the two former deviations.
 
 ## Why this rules out a STAC-GeoParquet item mirror
 
@@ -76,8 +79,8 @@ collection here clears that. This catalog ships plain item JSON instead.
 
 An item mirror is `application/vnd.apache.parquet`, which is a cloud-native asset.
 To host one here would put a range-read file on a host that cannot serve a
-preflighted range request, and the two accepted deviations above would stop
-describing a technicality and start describing a broken client.
+preflighted range request. PTL-LIV-004 and PTL-LIV-005 would fire again, and
+they would describe a broken client.
 
 The item mirror is a generated artifact rather than a migration, so it returns for
 free if either the host or the requirement changes.

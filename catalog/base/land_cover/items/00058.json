@@ -7,45 +7,45 @@
   "id": "00058",
   "collection": "land_cover",
   "bbox": [
-    0.43550795316696167,
-    42.291114807128906,
-    14.179933547973633,
-    48.88495635986328
+    -1.3251901865005493,
+    42.740272521972656,
+    8.215118408203125,
+    48.12138366699219
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          0.43550795316696167,
-          42.291114807128906
+          -1.3251901865005493,
+          42.740272521972656
         ],
         [
-          14.179933547973633,
-          42.291114807128906
+          8.215118408203125,
+          42.740272521972656
         ],
         [
-          14.179933547973633,
-          48.88495635986328
+          8.215118408203125,
+          48.12138366699219
         ],
         [
-          0.43550795316696167,
-          48.88495635986328
+          -1.3251901865005493,
+          48.12138366699219
         ],
         [
-          0.43550795316696167,
-          42.291114807128906
+          -1.3251901865005493,
+          42.740272521972656
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 977710
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 976872
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_cover/part-00058-f9ca55ec-4ed0-5cd8-a985-e6880ab974a6-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=base/type=land_cover/part-00058-59a0598b-8a1d-59ca-882b-3d47afc90fa9-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00058",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_cover/part-00058-f9ca55ec-4ed0-5cd8-a985-e6880ab974a6-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=base/type=land_cover/part-00058-59a0598b-8a1d-59ca-882b-3d47afc90fa9-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

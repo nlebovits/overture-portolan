@@ -7,45 +7,45 @@
   "id": "00100",
   "collection": "land_cover",
   "bbox": [
-    21.644750595092773,
-    50.99579620361328,
-    36.02696228027344,
-    57.930973052978516
+    19.37199592590332,
+    50.95087814331055,
+    31.876724243164062,
+    58.281314849853516
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          21.644750595092773,
-          50.99579620361328
+          19.37199592590332,
+          50.95087814331055
         ],
         [
-          36.02696228027344,
-          50.99579620361328
+          31.876724243164062,
+          50.95087814331055
         ],
         [
-          36.02696228027344,
-          57.930973052978516
+          31.876724243164062,
+          58.281314849853516
         ],
         [
-          21.644750595092773,
-          57.930973052978516
+          19.37199592590332,
+          58.281314849853516
         ],
         [
-          21.644750595092773,
-          50.99579620361328
+          19.37199592590332,
+          50.95087814331055
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 933386
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 953964
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=land_cover/part-00100-97abcdd4-8d1b-5b04-9733-af71ba2a1f8a-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=base/type=land_cover/part-00100-224e2b05-5c3f-59db-b930-12734c7e1743-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00100",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=land_cover/part-00100-97abcdd4-8d1b-5b04-9733-af71ba2a1f8a-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=base/type=land_cover/part-00100-224e2b05-5c3f-59db-b930-12734c7e1743-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

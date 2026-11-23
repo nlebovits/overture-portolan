@@ -7,45 +7,45 @@
   "id": "00335",
   "collection": "building",
   "bbox": [
-    115.348388671875,
-    -8.784416198730469,
+    115.40180969238281,
+    -8.81206226348877,
     179.20266723632812,
-    -6.252021312713623
+    -6.276637554168701
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          115.348388671875,
-          -8.784416198730469
+          115.40180969238281,
+          -8.81206226348877
         ],
         [
           179.20266723632812,
-          -8.784416198730469
+          -8.81206226348877
         ],
         [
           179.20266723632812,
-          -6.252021312713623
+          -6.276637554168701
         ],
         [
-          115.348388671875,
-          -6.252021312713623
+          115.40180969238281,
+          -6.276637554168701
         ],
         [
-          115.348388671875,
-          -8.784416198730469
+          115.40180969238281,
+          -8.81206226348877
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 4948864
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 4918958
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00335-14d282c4-b544-532a-98c2-fb1be30da586-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=buildings/type=building/part-00335-1b2cc84d-f02c-57dd-98a1-c7d6cc269e01-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00335",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building/part-00335-14d282c4-b544-532a-98c2-fb1be30da586-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=buildings/type=building/part-00335-1b2cc84d-f02c-57dd-98a1-c7d6cc269e01-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

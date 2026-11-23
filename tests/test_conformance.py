@@ -34,21 +34,21 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from catalog_config import load_config  # noqa: E402
 
-# Both rows are in docs/conformance.md, tracked by portolan-spec#183.
-# Never add an id here without the matching row there.
-ACCEPTED: set[str] = {"PTL-LIV-004", "PTL-LIV-005"}
+# The set is empty. Never add an id here without a matching row in
+# docs/conformance.md.
+ACCEPTED: set[str] = set()
 
 config = load_config()
 target = ROOT / config["publish_dir"]
 
-# The floor comes from portolan-cli/pyproject.toml:54. Rules PTL-LNK-007,
-# PTL-LNK-008, PTL-LNK-009 and PTL-AST-006 do not exist below rashid 0.1.5.
-# This gate asserts all four. A rashid below the floor reports a pass for a
-# catalog that it never checked against those four rules. The upper bound stops
-# an unreviewed 0.2 rule set from changing what this gate means.
-MIN_VERSION = (0, 1, 5)
-MAX_VERSION = (0, 2, 0)
-SPEC = "rashid>=0.1.5,<0.2.0"
+# The catalog declares Portolan v0.3.0. rashid 0.4.0 is the first release
+# that carries the v0.3.0 rules, such as PTL-PRO-003 on the `updated` field of
+# a mirror. A rashid below the floor reports a pass for a catalog that it never
+# checked against those rules. The upper bound stops an unreviewed 0.5 rule set
+# from changing what this gate means.
+MIN_VERSION = (0, 4, 0)
+MAX_VERSION = (0, 5, 0)
+SPEC = "rashid>=0.4.0,<0.5.0"
 INSTALL = f"python -m pip install '{SPEC}'"
 
 

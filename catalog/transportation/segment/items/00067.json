@@ -8,44 +8,44 @@
   "collection": "segment",
   "bbox": [
     33.414730072021484,
-    -19.613529205322266,
+    -19.077672958374023,
     72.49187469482422,
-    -3.3432817459106445
+    -3.0120532512664795
   ],
   "geometry": {
     "coordinates": [
       [
         [
           33.414730072021484,
-          -19.613529205322266
+          -19.077672958374023
         ],
         [
           72.49187469482422,
-          -19.613529205322266
+          -19.077672958374023
         ],
         [
           72.49187469482422,
-          -3.3432817459106445
+          -3.0120532512664795
         ],
         [
           33.414730072021484,
-          -3.3432817459106445
+          -3.0120532512664795
         ],
         [
           33.414730072021484,
-          -19.613529205322266
+          -19.077672958374023
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2734604
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2795222
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00067-89393f00-689a-5207-8a35-8141db729759-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=segment/part-00067-c706bb19-0a0c-58bb-b729-c2af494d5d9f-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00067",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00067-89393f00-689a-5207-8a35-8141db729759-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=segment/part-00067-c706bb19-0a0c-58bb-b729-c2af494d5d9f-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

@@ -2,7 +2,7 @@
   "type": "Collection",
   "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.3.0/schema.json",
     "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
     "https://stac-extensions.github.io/table/v1.2.0/schema.json",
     "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
@@ -48,7 +48,7 @@
       ]
     }
   },
-  "updated": "2026-10-21T00:00:00Z",
+  "updated": "2026-11-18T00:00:00Z",
   "table:columns": [
     {
       "name": "id",
@@ -80,7 +80,7 @@
   ],
   "assets": {
     "visual": {
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/base.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-11-18.0/base.pmtiles",
       "type": "application/vnd.pmtiles",
       "roles": [
         "visual"
@@ -114,7 +114,7 @@
       "title": "Single colour"
     },
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=bathymetry/part-00000-f694f37d-3f93-5e9b-a2c1-8e4584376f38-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=base/type=bathymetry/part-00000-2be34811-ad98-5e1e-aabf-d237d2b72ea4-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -122,7 +122,7 @@
       "title": "GeoParquet part 00000",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=bathymetry/part-00000-f694f37d-3f93-5e9b-a2c1-8e4584376f38-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=base/type=bathymetry/part-00000-2be34811-ad98-5e1e-aabf-d237d2b72ea4-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }
@@ -161,13 +161,13 @@
     },
     {
       "rel": "canonical",
-      "href": "https://stac.overturemaps.org/2026-10-21.0/base/bathymetry/collection.json",
+      "href": "https://stac.overturemaps.org/2026-11-18.0/base/bathymetry/collection.json",
       "type": "application/json",
       "title": "Overture STAC collection"
     },
     {
       "rel": "pmtiles",
-      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-10-21.0/base.pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-11-18.0/base.pmtiles",
       "type": "application/vnd.pmtiles",
       "title": "Overture base vector tiles",
       "pmtiles:layers": [

@@ -7,45 +7,45 @@
   "id": "00028",
   "collection": "water",
   "bbox": [
-    14.733153343200684,
-    40.90048599243164,
-    29.00069236755371,
-    52.732521057128906
+    15.53450870513916,
+    39.99949645996094,
+    29.94210433959961,
+    53.058841705322266
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          14.733153343200684,
-          40.90048599243164
+          15.53450870513916,
+          39.99949645996094
         ],
         [
-          29.00069236755371,
-          40.90048599243164
+          29.94210433959961,
+          39.99949645996094
         ],
         [
-          29.00069236755371,
-          52.732521057128906
+          29.94210433959961,
+          53.058841705322266
         ],
         [
-          14.733153343200684,
-          52.732521057128906
+          15.53450870513916,
+          53.058841705322266
         ],
         [
-          14.733153343200684,
-          40.90048599243164
+          15.53450870513916,
+          39.99949645996094
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2120797
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2101832
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=water/part-00028-4e7ffd7f-8e45-5f16-9e1e-f8c86e11fbc6-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=base/type=water/part-00028-ec483221-e024-5256-a1a3-c9c943e5d742-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00028",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=base/type=water/part-00028-4e7ffd7f-8e45-5f16-9e1e-f8c86e11fbc6-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=base/type=water/part-00028-ec483221-e024-5256-a1a3-c9c943e5d742-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

@@ -7,16 +7,16 @@
   "id": "00008",
   "collection": "connector",
   "bbox": [
-    -71.08326721191406,
+    -70.73310852050781,
     -77.87741088867188,
     5.143404006958008,
-    -13.456657409667969
+    -12.708468437194824
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          -71.08326721191406,
+          -70.73310852050781,
           -77.87741088867188
         ],
         [
@@ -25,14 +25,14 @@
         ],
         [
           5.143404006958008,
-          -13.456657409667969
+          -12.708468437194824
         ],
         [
-          -71.08326721191406,
-          -13.456657409667969
+          -70.73310852050781,
+          -12.708468437194824
         ],
         [
-          -71.08326721191406,
+          -70.73310852050781,
           -77.87741088867188
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 13133834
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 13211253
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=connector/part-00008-3e89418e-73a2-564f-9271-227c81cb1881-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=connector/part-00008-7d9a1bb6-f5e9-5a77-8b7d-35802fa41467-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00008",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=connector/part-00008-3e89418e-73a2-564f-9271-227c81cb1881-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=connector/part-00008-7d9a1bb6-f5e9-5a77-8b7d-35802fa41467-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

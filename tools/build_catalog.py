@@ -37,7 +37,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
 SOURCES = ROOT / "sources"
 
-PORTOLAN_SCHEMA = "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json"
+PORTOLAN_SCHEMA = "https://schemas.portolan-sdi.org/portolan/v0.3.0/schema.json"
 TABLE_EXT = "https://stac-extensions.github.io/table/v1.2.0/schema.json"
 ALTERNATE_EXT = "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
 WEB_MAP_LINKS_EXT = "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
@@ -465,6 +465,7 @@ def build_theme(theme: str, type_names: list[str], release: str) -> None:
                 f"Holds {len(type_names)} collection"
                 f"{'s' if len(type_names) != 1 else ''}."
             ),
+            "updated": f"{release[:10]}T00:00:00Z",
             "links": [
                 {
                     "rel": "root",
@@ -505,9 +506,19 @@ def build_theme(theme: str, type_names: list[str], release: str) -> None:
 
 
 def update_root(release: str) -> None:
-    """Link every theme on disk, and record the release in `updated`."""
+    """Link every theme on disk, and record the release in `updated`.
+
+    The root also takes the Portolan schema URI from `PORTOLAN_SCHEMA`. rashid
+    reads the profile version from the root, so the root and every other object
+    must declare the same URI.
+    """
     path = CATALOG / "catalog.json"
     root = json.loads(path.read_text())
+    root["stac_extensions"] = [PORTOLAN_SCHEMA] + [
+        uri
+        for uri in root.get("stac_extensions", [])
+        if not uri.startswith("https://schemas.portolan-sdi.org/portolan/")
+    ]
     keep = [link for link in root["links"] if link.get("rel") != "child"]
     root["links"] = keep + [
         {

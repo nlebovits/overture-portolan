@@ -7,32 +7,32 @@
   "id": "00099",
   "collection": "segment",
   "bbox": [
-    80.50869750976562,
+    80.27571868896484,
     4.289172172546387,
-    109.14742279052734,
+    109.16645050048828,
     12.62899398803711
   ],
   "geometry": {
     "coordinates": [
       [
         [
-          80.50869750976562,
+          80.27571868896484,
           4.289172172546387
         ],
         [
-          109.14742279052734,
+          109.16645050048828,
           4.289172172546387
         ],
         [
-          109.14742279052734,
+          109.16645050048828,
           12.62899398803711
         ],
         [
-          80.50869750976562,
+          80.27571868896484,
           12.62899398803711
         ],
         [
-          80.50869750976562,
+          80.27571868896484,
           4.289172172546387
         ]
       ]
@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 2727739
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 2795292
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=transportation/type=segment/part-00099-72f3d7a8-788a-50b2-8189-1eeac77484e1-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=transportation/type=segment/part-00099-3d0d9b1f-e139-5c12-8329-323a5d4a4db3-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00099",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=transportation/type=segment/part-00099-72f3d7a8-788a-50b2-8189-1eeac77484e1-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=transportation/type=segment/part-00099-3d0d9b1f-e139-5c12-8329-323a5d4a4db3-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

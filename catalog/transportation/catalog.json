@@ -2,11 +2,12 @@
   "type": "Catalog",
   "stac_version": "1.1.0",
   "stac_extensions": [
-    "https://schemas.portolan-sdi.org/portolan/v0.1.1/schema.json"
+    "https://schemas.portolan-sdi.org/portolan/v0.3.0/schema.json"
   ],
   "id": "transportation",
   "title": "Transportation",
   "description": "Overture Maps Transportation theme. Holds 2 collections.",
+  "updated": "2026-11-18T00:00:00Z",
   "links": [
     {
       "rel": "root",

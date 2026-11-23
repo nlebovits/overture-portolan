@@ -40,12 +40,12 @@
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 138044
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 127267
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=divisions/type=division_area/part-00007-d6e7a745-606f-5e85-9ffb-393dbdae0728-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=divisions/type=division_area/part-00007-0c90d340-1f8e-5324-be89-6031277f2196-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00007",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=divisions/type=division_area/part-00007-d6e7a745-606f-5e85-9ffb-393dbdae0728-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=divisions/type=division_area/part-00007-0c90d340-1f8e-5324-be89-6031277f2196-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

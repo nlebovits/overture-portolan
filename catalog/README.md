@@ -8,7 +8,7 @@
 The [Overture Maps Foundation](https://overturemaps.org/) publishes an open map
 of the world: buildings, roads, places, addresses, administrative divisions, and
 base layers such as water and land cover. This catalog describes release
-`2026-10-21.0` of that data as a [Portolan](https://www.portolan-sdi.org/)
+`2026-11-18.0` of that data as a [Portolan](https://www.portolan-sdi.org/)
 catalog.
 
 Overture produces and hosts the data. This catalog holds metadata only. Every
@@ -19,19 +19,19 @@ have been run.
 
 ## What Is Here
 
-15 collections across 6 themes, from release `2026-10-21.0`. Every row count
-below was measured from the parquet footers on 2026-11-06.
+15 collections across 6 themes, from release `2026-11-18.0`. Every row count
+below was measured from the parquet footers on 2026-11-19.
 
 | Theme | Collections | Rows |
 |---|---|---|
-| [Addresses](addresses/README.md) | address | 475,263,892 |
-| [Base](base/README.md) | bathymetry, infrastructure, land, land_cover, land_use, water | 482,502,445 |
-| [Buildings](buildings/README.md) | building, building_part | 2,538,328,719 |
-| [Divisions](divisions/README.md) | division, division_area, division_boundary | 5,872,794 |
-| [Places](places/README.md) | place | 88,418,121 |
-| [Transportation](transportation/README.md) | connector, segment | 777,216,861 |
+| [Addresses](addresses/README.md) | address | 475,239,461 |
+| [Base](base/README.md) | bathymetry, infrastructure, land, land_cover, land_use, water | 485,634,657 |
+| [Buildings](buildings/README.md) | building, building_part | 2,548,795,353 |
+| [Divisions](divisions/README.md) | division, division_area, division_boundary | 5,889,943 |
+| [Places](places/README.md) | place | 90,295,748 |
+| [Transportation](transportation/README.md) | connector, segment | 780,528,949 |
 
-That is 4,367,602,832 rows in 1020 GeoParquet files, 621.5 GB in total. Coverage
+That is 4,386,384,111 rows in 1036 GeoParquet files, 623.6 GB in total. Coverage
 is global. The data carries no time dimension, so each collection describes the
 world as of its release rather than a period.
 
@@ -85,7 +85,7 @@ describe, such as `bbox` and `geometry`, and each names its source in
 
 The data is GeoParquet on a public AWS bucket in `us-west-2`. No account and no
 credentials are needed. This query reads one file over HTTPS, and it returned in
-2.9 seconds on 2026-11-06. DuckDB reads the file footer, then the `depth` column
+3.1 seconds on 2026-11-20. DuckDB reads the file footer, then the `depth` column
 alone, and never the geometry.
 
 ```sql
@@ -93,7 +93,7 @@ INSTALL spatial; LOAD spatial;
 
 SELECT depth, count(*) AS features
 FROM read_parquet(
-  'https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=base/type=bathymetry/part-00000-f694f37d-3f93-5e9b-a2c1-8e4584376f38-c000.zstd.parquet'
+  'https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=base/type=bathymetry/part-00000-2be34811-ad98-5e1e-aabf-d237d2b72ea4-c000.zstd.parquet'
 )
 GROUP BY depth
 ORDER BY depth
@@ -124,7 +124,7 @@ MapLibre style to draw it with.
 
 The catalog root is `catalog.json`, published at
 <https://nlebovits.github.io/overture-portolan/catalog.json>. Below it sit six
-theme catalogs, 15 collections, and 1016 items, one per GeoParquet file. Four
+theme catalogs, 15 collections, and 1032 items, one per GeoParquet file. Four
 collections hold a single file each and carry it directly, so they have no
 items.
 

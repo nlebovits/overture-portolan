@@ -7,8 +7,8 @@
   "id": "00511",
   "collection": "building",
   "bbox": [
-    139.92660522460938,
-    39.59944534301758,
+    140.0209197998047,
+    39.694557189941406,
     179.67999267578125,
     77.10958099365234
   ],
@@ -16,36 +16,36 @@
     "coordinates": [
       [
         [
-          139.92660522460938,
-          39.59944534301758
+          140.0209197998047,
+          39.694557189941406
         ],
         [
           179.67999267578125,
-          39.59944534301758
+          39.694557189941406
         ],
         [
           179.67999267578125,
           77.10958099365234
         ],
         [
-          139.92660522460938,
+          140.0209197998047,
           77.10958099365234
         ],
         [
-          139.92660522460938,
-          39.59944534301758
+          140.0209197998047,
+          39.694557189941406
         ]
       ]
     ],
     "type": "Polygon"
   },
   "properties": {
-    "datetime": "2026-10-21T00:00:00Z",
-    "table:row_count": 5009352
+    "datetime": "2026-11-18T00:00:00Z",
+    "table:row_count": 4810537
   },
   "assets": {
     "data": {
-      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-10-21.0/theme=buildings/type=building/part-00511-5dcf8371-19ed-5561-b25c-39dfa8239cc7-c000.zstd.parquet",
+      "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-11-18.0/theme=buildings/type=building/part-00511-693e66d9-8268-5cb9-acc0-1af0eff5d0e9-c000.zstd.parquet",
       "type": "application/vnd.apache.parquet",
       "roles": [
         "data"
@@ -53,7 +53,7 @@
       "title": "GeoParquet part 00511",
       "alternate": {
         "s3": {
-          "href": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=buildings/type=building/part-00511-5dcf8371-19ed-5561-b25c-39dfa8239cc7-c000.zstd.parquet",
+          "href": "s3://overturemaps-us-west-2/release/2026-11-18.0/theme=buildings/type=building/part-00511-693e66d9-8268-5cb9-acc0-1af0eff5d0e9-c000.zstd.parquet",
           "title": "S3, us-west-2, no credentials needed"
         }
       }

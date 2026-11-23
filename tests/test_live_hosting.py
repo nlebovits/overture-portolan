@@ -1,20 +1,15 @@
 #!/usr/bin/env python3
-"""The published host answers exactly the two deviations we accept.
+"""The published host passes the live pass with no error.
 
-tests/test_conformance.py runs rashid without --live, so it never exercises
-PTL-LIV-004 and PTL-LIV-005, the two ids in its ACCEPTED set. Those two rules
-probe a server, and a pull request has no server to probe. They stayed
-unchecked until someone ran the live pass by hand.
+tests/test_conformance.py runs rashid without --live, so it never runs the
+PTL-LIV rules. Those rules probe a server, and a pull request has no server to
+probe.
 
 This gate runs the live pass against the deployed site, so it belongs after a
-deploy rather than on a pull request. It asserts the exact shape of the
-accepted deviation:
+deploy rather than on a pull request. It fails on any error-severity finding
+whose rule id is not in EXPECTED, and EXPECTED is empty.
 
-- exactly two error-severity findings,
-- their rule ids are PTL-LIV-004 and PTL-LIV-005,
-- both name the publish host.
-
-Anything else fails. A third finding means the host changed. A finding against
+Every finding must also name the publish host. A finding against
 an `overturemaps` host means the PORTO-CORE-073 carve-out did not apply, which
 happens when --url is missing: rashid then has no publish host to compare
 against, probes every absolute href, and reports the Overture buckets. The
@@ -39,9 +34,11 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from catalog_config import load_config  # noqa: E402
 
-# Both rows are in docs/conformance.md, tracked by portolan-spec#183. This set
-# and ACCEPTED in tests/test_conformance.py hold the same two ids on purpose.
-EXPECTED: set[str] = {"PTL-LIV-004", "PTL-LIV-005"}
+# Portolan v0.3.0 applies the range and CORS rules only to COG, Parquet,
+# PMTiles, and COPC files (portolan-spec#183). This host serves none of them,
+# so it reports no error. This set and ACCEPTED in tests/test_conformance.py
+# hold the same ids on purpose.
+EXPECTED: set[str] = set()
 
 # rashid rather than portolan-cli. The `--no-data` and `--live` flags this
 # gate needs reached portolan-cli in 1.0.0a0, which is a pre-release, and a
